@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Spektr Stroy Invest</title>
+<meta name="description" content="Spektr Stroy Invest MChJ: qurilish materiallari, metiz, bo'yoq-lak, elektr va maishiy tovarlar. Toshkent, Chilonzor.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Onest:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: sticky bar, hero with a 4-band "spectrum" deck (one band per catalog line), then about, catalog, lead form, contacts. */
+:root{
+  --bg:#EEF0F1; --surface:#FFFFFF; --sunk:#E3E7EA; --ink:#151B21; --muted:#56616B; --line:#D3D9DE;
+  --c-build:#6F7983; --c-metiz:#2F6690; --c-paint:#C2412D; --c-elec:#C98E00;
+  --btn:#151B21; --btn-fg:#FFFFFF; --focus:#2F6690; --ok:#2B7A4B; --err:#B3261E;
+  --f-display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --f-body:"Onest",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --r:6px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12161A; --surface:#1B2126; --sunk:#232A30; --ink:#E8EBEE; --muted:#9BA6B0; --line:#2D353C;
+  --c-build:#99A2AB; --c-metiz:#5C9DCC; --c-paint:#E2664F; --c-elec:#F2B92B;
+  --btn:#F2B92B; --btn-fg:#12161A; --focus:#F2B92B; --ok:#5DC28B; --err:#F2847A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161A; --surface:#1B2126; --sunk:#232A30; --ink:#E8EBEE; --muted:#9BA6B0; --line:#2D353C;
+  --c-build:#99A2AB; --c-metiz:#5C9DCC; --c-paint:#E2664F; --c-elec:#F2B92B;
+  --btn:#F2B92B; --btn-fg:#12161A; --focus:#F2B92B; --ok:#5DC28B; --err:#F2847A; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;letter-spacing:-.01em}
+h2{font-size:clamp(1.5rem,3.2vw,2.1rem);font-weight:700;line-height:1.15}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.eyebrow{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* Header */
+header.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--surface);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:20px;padding-block:12px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-mark{display:grid;grid-template-columns:repeat(4,6px);gap:2px;height:26px}
+.logo-mark i{display:block;border-radius:1px}
+.logo-mark i:nth-child(1){background:var(--c-build)}.logo-mark i:nth-child(2){background:var(--c-metiz)}
+.logo-mark i:nth-child(3){background:var(--c-paint)}.logo-mark i:nth-child(4){background:var(--c-elec)}
+.logo-word{font-family:var(--f-display);font-weight:800;font-size:.95rem;line-height:1;letter-spacing:.02em}
+.logo-word small{display:block;font-family:var(--f-mono);font-weight:400;font-size:.62rem;letter-spacing:.16em;color:var(--muted);margin-top:4px}
+nav.links{display:flex;gap:18px;margin-left:auto}
+nav.links a{text-decoration:none;font-weight:500;font-size:.95rem;color:var(--muted)}
+nav.links a:hover{color:var(--ink)}
+.langs{display:flex;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.langs button{all:unset;cursor:pointer;font-family:var(--f-mono);font-size:.75rem;font-weight:600;padding:6px 10px;color:var(--muted)}
+.langs button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.langs button:focus-visible{outline:2px solid var(--focus);outline-offset:-2px}
+.bar-phone{font-family:var(--f-mono);font-weight:600;font-size:.9rem;text-decoration:none;white-space:nowrap}
+@media (max-width:860px){nav.links{display:none}.langs{margin-left:auto}}
+@media (max-width:480px){.bar-phone{display:none}}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 .98rem var(--f-body);padding:13px 20px;border-radius:var(--r);border:1.5px solid var(--btn);background:var(--btn);color:var(--btn-fg);text-decoration:none;cursor:pointer;transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+
+/* Hero */
+.hero .wrap{display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:center;padding-block:56px 64px}
+.hero h1{font-size:clamp(1.9rem,4.6vw,3.3rem);font-weight:800;line-height:1.08;margin-top:14px}
+.hero .lead{color:var(--muted);font-size:1.08rem;max-width:52ch;margin-top:18px}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.hero .meta{display:flex;gap:22px;flex-wrap:wrap;margin-top:28px;font-size:.92rem;color:var(--muted)}
+.hero .meta b{color:var(--ink);font-weight:600}
+.deck{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;height:380px}
+.band{all:unset;box-sizing:border-box;cursor:pointer;border-radius:var(--r);padding:16px 12px;display:flex;flex-direction:column;justify-content:space-between;color:#fff;transition:transform .2s ease,filter .2s}
+.band:hover{transform:translateY(-6px)}
+.band:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.band[data-cat="build"]{background:var(--c-build)}
+.band[data-cat="metiz"]{background:var(--c-metiz);margin-top:28px}
+.band[data-cat="paint"]{background:var(--c-paint);margin-top:12px}
+.band[data-cat="elec"]{background:var(--c-elec);margin-top:40px;color:#1A1405}
+:root[data-theme="dark"] .band[data-cat="build"]{color:#12161A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .band[data-cat="build"]{color:#12161A}}
+.band .num{font-family:var(--f-mono);font-size:.78rem;opacity:.85}
+.band .bname{font-family:var(--f-display);font-weight:700;font-size:.95rem;line-height:1.2;writing-mode:vertical-rl;transform:rotate(180deg);align-self:flex-start}
+.band .cnt{font-family:var(--f-mono);font-size:.78rem;font-weight:600}
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:1fr;gap:32px;padding-block:36px 44px}
+  .deck{grid-template-columns:1fr;height:auto}
+  .band{margin-top:0!important;flex-direction:row;align-items:center;padding:16px}
+  .band .bname{writing-mode:horizontal-tb;transform:none;flex:1;align-self:center}
+}
+
+/* Sections */
+section.block{padding-block:64px;border-top:1px solid var(--line)}
+.sec-head{display:flex;flex-direction:column;gap:10px;margin-bottom:32px;max-width:640px}
+.sec-head p{color:var(--muted)}
+
+/* About */
+.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:start}
+.about-grid .text{display:flex;flex-direction:column;gap:16px;max-width:62ch}
+.facts{margin:0;display:grid;grid-template-columns:auto 1fr;border-top:1px solid var(--line)}
+.facts dt,.facts dd{margin:0;padding:14px 0;border-bottom:1px solid var(--line)}
+.facts dt{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-right:20px;padding-top:17px}
+.facts dd{font-weight:500}
+.lines{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:40px}
+.line{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;border-top:4px solid var(--c)}
+.line h3{font-size:.92rem;font-weight:700;line-height:1.25}
+.line p{color:var(--muted);font-size:.92rem;margin-top:8px}
+@media (max-width:860px){.about-grid{grid-template-columns:1fr;gap:32px}.lines{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.lines{grid-template-columns:1fr}}
+
+/* Catalog */
+.cat-tools{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:24px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;font-size:.9rem;font-weight:500;background:var(--surface)}
+.chip i{width:10px;height:10px;border-radius:2px;background:var(--c,var(--ink))}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.search{margin-left:auto;position:relative;min-width:0;flex:0 1 280px}
+.search input{width:100%;font:inherit;padding:10px 14px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);color:var(--ink)}
+@media (max-width:640px){.search{flex:1 1 100%;margin-left:0}}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.card .top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.tag{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.tag i{width:8px;height:8px;border-radius:2px;background:var(--c)}
+.code{font-family:var(--f-mono);font-size:.7rem;color:var(--muted)}
+.card h3{font-family:var(--f-body);font-weight:600;font-size:1.06rem;line-height:1.3;letter-spacing:0}
+.spec{font-family:var(--f-mono);font-size:.8rem;color:var(--muted);background:var(--sunk);border-radius:4px;padding:6px 8px;align-self:flex-start;overflow-wrap:anywhere}
+.card .foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:10px;padding-top:12px;border-top:1px dashed var(--line)}
+.price{font-size:.85rem;color:var(--muted)}
+.ask{all:unset;cursor:pointer;font-weight:600;font-size:.9rem;padding:7px 12px;border-radius:var(--r);border:1.5px solid var(--ink)}
+.ask:hover{background:var(--ink);color:var(--bg)}
+.ask:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.empty{padding:40px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:var(--r)}
+
+/* Lead form */
+.lead-band{background:var(--ink);color:var(--bg)}
+.lead-band section.block{border-top:0}
+.lead-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:48px;align-items:start}
+.lead-grid .eyebrow{color:color-mix(in srgb,var(--bg) 65%,transparent)}
+.lead-grid h2{color:var(--bg)}
+.lead-intro{display:flex;flex-direction:column;gap:18px}
+.lead-intro p{color:color-mix(in srgb,var(--bg) 75%,transparent);max-width:46ch}
+.steps{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:14px}
+.steps li{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start}
+.steps b{font-family:var(--f-mono);font-size:.8rem;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;border:1px solid color-mix(in srgb,var(--bg) 40%,transparent)}
+form.lead{background:var(--surface);color:var(--ink);border-radius:var(--r);padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field.full{grid-column:1/-1}
+.field label,.field legend{font-size:.85rem;font-weight:600}
+.field input,.field select,.field textarea{font:inherit;padding:11px 13px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg);color:var(--ink);width:100%}
+.field textarea{min-height:96px;resize:vertical}
+.field .hint{font-size:.8rem;color:var(--muted)}
+.field.invalid input{border-color:var(--err)}
+.field .err{font-size:.8rem;color:var(--err)}
+fieldset.field{border:0;padding:0;margin:0}
+.radios{display:flex;gap:16px;flex-wrap:wrap;margin-top:4px}
+.radios label{font-weight:500;display:inline-flex;gap:8px;align-items:center}
+.form-foot{grid-column:1/-1;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.form-foot .btn{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.form-foot small{color:var(--muted);font-size:.8rem;flex:1;min-width:200px}
+.status{grid-column:1/-1;border-radius:var(--r);padding:14px 16px;font-size:.92rem}
+.status.ok{background:color-mix(in srgb,var(--ok) 14%,transparent);border:1px solid var(--ok)}
+.status.warn{background:var(--sunk);border:1px solid var(--line)}
+.status pre{font-family:var(--f-mono);font-size:.78rem;white-space:pre-wrap;margin:10px 0 0;overflow-wrap:anywhere}
+@media (max-width:860px){.lead-grid{grid-template-columns:1fr;gap:32px}}
+@media (max-width:520px){form.lead{grid-template-columns:1fr;padding:20px}}
+
+/* Contacts */
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.ccard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.ccard .v{font-weight:600;font-size:1.05rem}
+.ccard .mono{font-family:var(--f-mono)}
+.ccard .row{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.copy{all:unset;cursor:pointer;font-size:.78rem;font-weight:600;padding:4px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
+.copy:focus-visible{outline:2px solid var(--focus)}
+.ccard a.out{font-size:.9rem;font-weight:600}
+@media (max-width:860px){.contact-grid{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--line);padding-block:28px;color:var(--muted);font-size:.85rem}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+
+
+<header class="bar">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Spektr Stroy Invest">
+      <span class="logo-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="logo-word">SPEKTR<small>STROY INVEST</small></span>
+    </a>
+    <nav class="links">
+      <a href="#about" data-i18n="nav_about"></a>
+      <a href="#catalog" data-i18n="nav_catalog"></a>
+      <a href="#lead" data-i18n="nav_lead"></a>
+      <a href="#contacts" data-i18n="nav_contacts"></a>
+    </nav>
+    <div class="langs" role="group" aria-label="Til / Язык / Language">
+      <button type="button" data-lang="uz">UZ</button>
+      <button type="button" data-lang="ru">RU</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
+    <a class="bar-phone" href="tel:+998781201300">78 120 13 00</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow" data-i18n="hero_eyebrow"></span>
+        <h1 data-i18n="hero_title"></h1>
+        <p class="lead" data-i18n="hero_lead"></p>
+        <div class="ctas">
+          <a class="btn" href="#lead" data-i18n="cta_lead"></a>
+          <a class="btn ghost" href="#catalog" data-i18n="cta_catalog"></a>
+        </div>
+        <div class="meta">
+          <span><b data-i18n="meta_hours_k"></b> <span data-i18n="meta_hours_v"></span></span>
+          <span><b data-i18n="meta_place_k"></b> <span data-i18n="meta_place_v"></span></span>
+        </div>
+      </div>
+      <div class="deck" id="deck" aria-label="Katalog"></div>
+    </div>
+  </section>
+
+  <section class="block" id="about">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="text">
+          <span class="eyebrow" data-i18n="about_eyebrow"></span>
+          <h2 data-i18n="about_title"></h2>
+          <p data-i18n="about_p1"></p>
+          <p data-i18n="about_p2"></p>
+        </div>
+        <dl class="facts">
+          <dt data-i18n="f_form_k"></dt><dd data-i18n="f_form_v"></dd>
+          <dt data-i18n="f_trade_k"></dt><dd data-i18n="f_trade_v"></dd>
+          <dt data-i18n="f_addr_k"></dt><dd data-i18n="f_addr_v"></dd>
+          <dt data-i18n="f_land_k"></dt><dd data-i18n="f_land_v"></dd>
+          <dt data-i18n="f_hours_k"></dt><dd data-i18n="f_hours_v"></dd>
+        </dl>
+      </div>
+      <div class="lines" id="lines"></div>
+    </div>
+  </section>
+
+  <section class="block" id="catalog">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow" data-i18n="cat_eyebrow"></span>
+        <h2 data-i18n="cat_title"></h2>
+        <p data-i18n="cat_lead"></p>
+      </div>
+      <div class="cat-tools">
+        <div class="chips" id="chips"></div>
+        <div class="search"><input id="q" type="search" data-i18n-ph="cat_search" aria-label="Search"></div>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <div class="lead-band" id="lead">
+    <section class="block">
+      <div class="wrap lead-grid">
+        <div class="lead-intro">
+          <span class="eyebrow" data-i18n="lead_eyebrow"></span>
+          <h2 data-i18n="lead_title"></h2>
+          <p data-i18n="lead_p"></p>
+          <ol class="steps">
+            <li><b>1</b><span data-i18n="step1"></span></li>
+            <li><b>2</b><span data-i18n="step2"></span></li>
+            <li><b>3</b><span data-i18n="step3"></span></li>
+          </ol>
+        </div>
+        <form class="lead" id="leadForm" novalidate>
+          <div class="field" id="f-name">
+            <label for="name" data-i18n="fm_name"></label>
+            <input id="name" name="name" autocomplete="name" data-i18n-ph="fm_name_ph">
+            <span class="err" hidden data-i18n="err_name"></span>
+          </div>
+          <div class="field" id="f-phone">
+            <label for="phone" data-i18n="fm_phone"></label>
+            <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" value="+998 ">
+            <span class="err" hidden data-i18n="err_phone"></span>
+          </div>
+          <div class="field full">
+            <label for="cat" data-i18n="fm_cat"></label>
+            <select id="cat" name="cat"></select>
+          </div>
+          <div class="field full">
+            <label for="msg" data-i18n="fm_msg"></label>
+            <textarea id="msg" name="msg" data-i18n-ph="fm_msg_ph"></textarea>
+          </div>
+          <fieldset class="field full">
+            <legend data-i18n="fm_how"></legend>
+            <div class="radios">
+              <label><input type="radio" name="how" id="how-call" value="call" checked> <span data-i18n="fm_how_call"></span></label>
+              <label><input type="radio" name="how" id="how-tg" value="tg"> <span>Telegram</span></label>
+            </div>
+          </fieldset>
+          <div class="form-foot">
+            <button class="btn" type="submit" id="send" data-i18n="fm_send"></button>
+            <small data-i18n="fm_note"></small>
+          </div>
+          <div class="status" id="status" hidden></div>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <section class="block" id="contacts">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow" data-i18n="ct_eyebrow"></span>
+        <h2 data-i18n="ct_title"></h2>
+      </div>
+      <div class="contact-grid">
+        <div class="ccard">
+          <span class="eyebrow" data-i18n="ct_phone"></span>
+          <div class="row"><span class="v mono">+998 78 120 13 00</span><button class="copy" data-copy="+998781201300" data-i18n="copy"></button></div>
+          <div class="row"><span class="v mono">+998 78 120 14 00</span><button class="copy" data-copy="+998781201400" data-i18n="copy"></button></div>
+        </div>
+        <div class="ccard">
+          <span class="eyebrow" data-i18n="ct_addr"></span>
+          <span class="v" data-i18n="f_addr_v"></span>
+          <span class="hint" style="color:var(--muted)" data-i18n="f_land_v"></span>
+          <a class="out" id="mapLink" target="_blank" rel="noopener" data-i18n="ct_map"></a>
+        </div>
+        <div class="ccard">
+          <span class="eyebrow" data-i18n="ct_mail"></span>
+          <div class="row"><span class="v mono">spektr-si@mail.ru</span><button class="copy" data-copy="spektr-si@mail.ru" data-i18n="copy"></button></div>
+          <span class="eyebrow" style="margin-top:8px" data-i18n="f_hours_k"></span>
+          <span class="v" data-i18n="f_hours_v"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 «SPEKTR STROY INVEST» MChJ</span>
+    <span data-i18n="foot"></span>
+  </div>
+</footer>
+
+<script>
+/* ========== SOZLAMA: Telegram bot ==========
+   1) @BotFather orqali bot yarating va tokenni oling.
+   2) Arizalar tushadigan chat yoki guruh ID sini oling.
+   3) Quyidagi qiymatlarni to'ldiring. Sayt o'z domeningizda turganda ishlaydi.
+   Eslatma: token brauzer kodida ko'rinadi. Ishga tushirishda server tomondagi kichik relay (masalan Cloudflare Worker) orqali yuborish tavsiya etiladi. */
+const TELEGRAM = { token: "", chatId: "", relayUrl: "" };
+
+const CATS = {
+  build:{c:"--c-build", uz:"Qurilish materiallari", ru:"Стройматериалы", en:"Building materials",
+    d:{uz:"Sement, blok, shcheben, bitum", ru:"Цемент, блоки, щебень, битум", en:"Cement, blocks, crushed stone, bitumen"}},
+  metiz:{c:"--c-metiz", uz:"Mahkamlash (metiz)", ru:"Крепёж (метизы)", en:"Fasteners",
+    d:{uz:"Ankerli bolt, gayka, shayba, rezba", ru:"Анкерные болты, гайки, шайбы, резьба", en:"Anchor bolts, nuts, washers, threaded rod"}},
+  paint:{c:"--c-paint", uz:"Bo'yoq va lak", ru:"Лакокраска", en:"Paints & coatings",
+    d:{uz:"Emal, suv-emulsiya, grunt, lak", ru:"Эмали, водоэмульсия, грунт, лак", en:"Enamel, emulsion, primer, varnish"}},
+  elec:{c:"--c-elec", uz:"Elektr va maishiy tovarlar", ru:"Электро- и бытовые товары", en:"Electrical & household",
+    d:{uz:"Lampalar, isitgichlar, maishiy kimyo", ru:"Лампы, обогреватели, бытовая химия", en:"Lamps, heaters, cleaning products"}}
+};
+
+const PRODUCTS = [
+  {id:"QM-01",cat:"build",n:{uz:"Portlandsement M400",ru:"Портландцемент М400",en:"Portland cement M400"},s:{uz:"Qop, 50 kg",ru:"Мешок, 50 кг",en:"Bag, 50 kg"}},
+  {id:"QM-02",cat:"build",n:{uz:"Portlandsement M500",ru:"Портландцемент М500",en:"Portland cement M500"},s:{uz:"Qop, 50 kg",ru:"Мешок, 50 кг",en:"Bag, 50 kg"}},
+  {id:"QM-03",cat:"build",n:{uz:"Shlakoblok",ru:"Шлакоблок",en:"Cinder block"},s:{uz:"390×190×188 mm",ru:"390×190×188 мм",en:"390×190×188 mm"}},
+  {id:"QM-04",cat:"build",n:{uz:"Shcheben, 5-20 fraksiya",ru:"Щебень, фракция 5-20",en:"Crushed stone, 5-20 mm"}, s:{uz:"Tonna / m³",ru:"Тонна / м³",en:"Tonne / m³"}},
+  {id:"QM-05",cat:"build",n:{uz:"Shcheben, 20-40 fraksiya",ru:"Щебень, фракция 20-40",en:"Crushed stone, 20-40 mm"},s:{uz:"Tonna / m³",ru:"Тонна / м³",en:"Tonne / m³"}},
+  {id:"QM-06",cat:"build",n:{uz:"Neft bitumi",ru:"Битум нефтяной",en:"Petroleum bitumen"},s:{uz:"Markasi so'rov bo'yicha",ru:"Марка по запросу",en:"Grade on request"}},
+  {id:"MZ-01",cat:"metiz",n:{uz:"Ankerli bolt",ru:"Анкерный болт",en:"Anchor bolt"},s:{uz:"M8 dan M20 gacha",ru:"М8-М20",en:"M8 to M20"}},
+  {id:"MZ-02",cat:"metiz",n:{uz:"Anker gaykasi",ru:"Анкерная гайка",en:"Anchor nut"},s:{uz:"O'lcham so'rov bo'yicha",ru:"Размер по запросу",en:"Size on request"}},
+  {id:"MZ-03",cat:"metiz",n:{uz:"Anker shaybasi",ru:"Анкерная шайба",en:"Anchor washer"},s:{uz:"O'lcham so'rov bo'yicha",ru:"Размер по запросу",en:"Size on request"}},
+  {id:"MZ-04",cat:"metiz",n:{uz:"Rezbali shpilka",ru:"Шпилька резьбовая",en:"Threaded rod"},s:{uz:"M6 dan M24 gacha",ru:"М6-М24",en:"M6 to M24"}},
+  {id:"BL-01",cat:"paint",n:{uz:"Emal PF-115",ru:"Эмаль ПФ-115",en:"Enamel PF-115"},s:{uz:"Rang palitrasi bo'yicha",ru:"По палитре цветов",en:"By colour chart"}},
+  {id:"BL-02",cat:"paint",n:{uz:"Suv-emulsion bo'yoq",ru:"Водоэмульсионная краска",en:"Water-based emulsion paint"},s:{uz:"Ichki va tashqi ishlar",ru:"Для внутренних и наружных работ",en:"Interior and exterior"}},
+  {id:"BL-03",cat:"paint",n:{uz:"Grunt GF-021",ru:"Грунт ГФ-021",en:"Primer GF-021"},s:{uz:"Metall uchun",ru:"По металлу",en:"For metal"}},
+  {id:"BL-04",cat:"paint",n:{uz:"Lak",ru:"Лак",en:"Varnish"},s:{uz:"Turi so'rov bo'yicha",ru:"Тип по запросу",en:"Type on request"}},
+  {id:"EM-01",cat:"elec",n:{uz:"Energiya tejamkor lampalar",ru:"Энергосберегающие лампы",en:"Energy-saving lamps"},s:{uz:"Patron E14 / E27",ru:"Цоколь E14 / E27",en:"E14 / E27 base"}},
+  {id:"EM-02",cat:"elec",n:{uz:"Cho'g'lanma lampalar",ru:"Лампы накаливания",en:"Incandescent lamps"},s:{uz:"Quvvat so'rov bo'yicha",ru:"Мощность по запросу",en:"Wattage on request"}},
+  {id:"EM-03",cat:"elec",n:{uz:"Lampa starterlari",ru:"Стартеры для ламп",en:"Lamp starters"},s:{uz:"Lyuminessent lampalar uchun",ru:"Для люминесцентных ламп",en:"For fluorescent lamps"}},
+  {id:"EM-04",cat:"elec",n:{uz:"Moyli radiatorlar",ru:"Масляные радиаторы",en:"Oil-filled radiators"},s:{uz:"Sektsiyalar soni turlicha",ru:"Разное число секций",en:"Various section counts"}},
+  {id:"EM-05",cat:"elec",n:{uz:"Maishiy isitgichlar",ru:"Бытовые обогреватели",en:"Household heaters"},s:{uz:"Model so'rov bo'yicha",ru:"Модель по запросу",en:"Model on request"}},
+  {id:"EM-06",cat:"elec",n:{uz:"Elektr choynaklar",ru:"Электрочайники",en:"Electric kettles"},s:{uz:"Model so'rov bo'yicha",ru:"Модель по запросу",en:"Model on request"}},
+  {id:"EM-07",cat:"elec",n:{uz:"Yuvish va tozalash vositalari",ru:"Моющие и чистящие средства",en:"Cleaning products"},s:{uz:"Ulgurji va dona",ru:"Опт и розница",en:"Wholesale and retail"}}
+];
+
+const T = {
+uz:{nav_about:"Kompaniya",nav_catalog:"Katalog",nav_lead:"Ariza",nav_contacts:"Kontaktlar",
+hero_eyebrow:"Toshkent · Chilonzor · Ulgurji va chakana",
+hero_title:"Qurilish materiallari, metiz, bo'yoq va elektr tovarlari bir manzilda",
+hero_lead:"«Spektr Stroy Invest» qurilish obyektlari, ustalar va xonadon egalariga kerakli tovarlarni ulgurji va chakana sotadi. Arizangizni qoldiring, menejer narx va mavjudlikni aytib beradi.",
+cta_lead:"Ariza qoldirish",cta_catalog:"Katalogni ko'rish",meta_hours_k:"Ish vaqti:",meta_hours_v:"har kuni 09:00-17:00",meta_place_k:"Mo'ljal:",meta_place_v:"Novza metrosi",
+about_eyebrow:"Kompaniya haqida",about_title:"Qurilish va ta'mir uchun ishonchli ta'minotchi",
+about_p1:"«SPEKTR STROY INVEST» MChJ Toshkentning Chilonzor tumanida joylashgan savdo kompaniyasi. Biz qurilish materiallari, mahkamlash buyumlari, bo'yoq-lak mahsulotlari hamda elektr va maishiy tovarlar bilan ishlaymiz.",
+about_p2:"Katta hajmdagi buyurtmalar uchun ulgurji, kichik ehtiyojlar uchun chakana savdo qilamiz. Kerakli tovarlarni turli joylardan izlamasdan, bitta manzildan olishingiz mumkin.",
+f_form_k:"Tashkilot",f_form_v:"«SPEKTR STROY INVEST» MChJ",f_trade_k:"Faoliyat",f_trade_v:"Ulgurji va chakana savdo",f_addr_k:"Manzil",f_addr_v:"Toshkent, Chilonzor tumani, Muqimiy ko'chasi, 14-uy, 27-ofis",f_land_k:"Mo'ljal",f_land_v:"Muqimiy va Chilonzor ko'chalari chorrahasi, Novza metrosi",f_hours_k:"Ish vaqti",f_hours_v:"Har kuni, 09:00-17:00",
+cat_eyebrow:"Katalog",cat_title:"Mahsulotlar",cat_lead:"Narxlar hajm va partiyaga qarab belgilanadi. Kerakli mahsulotni tanlab, narx so'rang.",cat_search:"Mahsulot nomi bo'yicha qidirish",all:"Hammasi",items:"ta mahsulot",price:"Narxi: so'rov bo'yicha",ask:"Narx so'rash",empty:"Hech narsa topilmadi. Arizada yozib qoldiring, topib beramiz.",
+lead_eyebrow:"Ariza",lead_title:"Narx va mavjudlikni bilib oling",lead_p:"Formani to'ldiring. Arizangiz darhol menejerga yetib boradi.",
+step1:"Mahsulot va hajmni yozasiz",step2:"Menejer siz bilan bog'lanib, narx va mavjudlikni aytadi",step3:"Buyurtma shartlarini kelishib olasiz",
+fm_name:"Ismingiz",fm_name_ph:"Masalan, Anvar",fm_phone:"Telefon raqamingiz",fm_cat:"Yo'nalish",fm_msg:"Mahsulot va hajm",fm_msg_ph:"Masalan: M400 sement, 100 qop",fm_how:"Qanday bog'lanaylik?",fm_how_call:"Qo'ng'iroq",fm_send:"Arizani yuborish",fm_note:"Raqamingiz faqat siz bilan bog'lanish uchun ishlatiladi.",other:"Boshqa / bilmayman",
+err_name:"Ismingizni yozing",err_phone:"Raqamni +998 XX XXX XX XX ko'rinishida yozing",
+ok:"Rahmat! Arizangiz qabul qilindi. Menejer tez orada bog'lanadi.",sending:"Yuborilmoqda...",
+demo:"Sayt hozir sinov rejimida: Telegram bot hali ulanmagan, ariza yuborilmadi. Shoshilinch bo'lsa, qo'ng'iroq qiling: +998 78 120 13 00. Ariza matni:",
+fail:"Arizani yuborib bo'lmadi. Iltimos, qo'ng'iroq qiling: +998 78 120 13 00. Ariza matni:",
+ct_eyebrow:"Kontaktlar",ct_title:"Biz bilan bog'laning",ct_phone:"Telefon",ct_addr:"Manzil",ct_mail:"E-pochta",ct_map:"Xaritada ochish →",copy:"Nusxa olish",copied:"Nusxa olindi",foot:"Qurilish materiallari · Metiz · Bo'yoq-lak · Elektr va maishiy tovarlar"},
+ru:{nav_about:"О компании",nav_catalog:"Каталог",nav_lead:"Заявка",nav_contacts:"Контакты",
+hero_eyebrow:"Ташкент · Чиланзар · Опт и розница",
+hero_title:"Стройматериалы, крепёж, краски и электротовары в одном месте",
+hero_lead:"«Spektr Stroy Invest» продаёт оптом и в розницу всё необходимое для строительных объектов, мастеров и домашнего ремонта. Оставьте заявку, менеджер сообщит цену и наличие.",
+cta_lead:"Оставить заявку",cta_catalog:"Смотреть каталог",meta_hours_k:"Режим:",meta_hours_v:"ежедневно 09:00-17:00",meta_place_k:"Ориентир:",meta_place_v:"метро «Новза»",
+about_eyebrow:"О компании",about_title:"Надёжный поставщик для стройки и ремонта",
+about_p1:"ООО «SPEKTR STROY INVEST» является торговой компанией в Чиланзарском районе Ташкента. Мы работаем со строительными материалами, крепежом, лакокрасочной продукцией, электро- и бытовыми товарами.",
+about_p2:"Крупные заказы отгружаем оптом, небольшие потребности закрываем в розницу. Всё нужное можно взять в одном месте, не объезжая несколько поставщиков.",
+f_form_k:"Организация",f_form_v:"ООО «SPEKTR STROY INVEST»",f_trade_k:"Деятельность",f_trade_v:"Оптовая и розничная торговля",f_addr_k:"Адрес",f_addr_v:"Ташкент, Чиланзарский район, ул. Мукими, 14, офис 27",f_land_k:"Ориентир",f_land_v:"Перекрёсток ул. Мукими и ул. Чиланзар, метро «Новза»",f_hours_k:"Режим работы",f_hours_v:"Ежедневно, 09:00-17:00",
+cat_eyebrow:"Каталог",cat_title:"Продукция",cat_lead:"Цена зависит от объёма и партии. Выберите товар и запросите цену.",cat_search:"Поиск по названию",all:"Все",items:"товаров",price:"Цена: по запросу",ask:"Узнать цену",empty:"Ничего не найдено. Напишите в заявке, мы подберём.",
+lead_eyebrow:"Заявка",lead_title:"Узнайте цену и наличие",lead_p:"Заполните форму. Заявка сразу поступит менеджеру.",
+step1:"Вы указываете товар и объём",step2:"Менеджер связывается с вами и сообщает цену и наличие",step3:"Согласовываете условия заказа",
+fm_name:"Ваше имя",fm_name_ph:"Например, Анвар",fm_phone:"Номер телефона",fm_cat:"Направление",fm_msg:"Товар и объём",fm_msg_ph:"Например: цемент М400, 100 мешков",fm_how:"Как с вами связаться?",fm_how_call:"Звонок",fm_send:"Отправить заявку",fm_note:"Номер используется только для связи с вами.",other:"Другое / не знаю",
+err_name:"Укажите имя",err_phone:"Введите номер в формате +998 XX XXX XX XX",
+ok:"Спасибо! Заявка принята. Менеджер скоро свяжется с вами.",sending:"Отправка...",
+demo:"Сайт в тестовом режиме: Telegram-бот ещё не подключён, заявка не отправлена. Если срочно, позвоните: +998 78 120 13 00. Текст заявки:",
+fail:"Не удалось отправить заявку. Позвоните: +998 78 120 13 00. Текст заявки:",
+ct_eyebrow:"Контакты",ct_title:"Свяжитесь с нами",ct_phone:"Телефон",ct_addr:"Адрес",ct_mail:"E-mail",ct_map:"Открыть на карте →",copy:"Копировать",copied:"Скопировано",foot:"Стройматериалы · Крепёж · Лакокраска · Электро- и бытовые товары"},
+en:{nav_about:"Company",nav_catalog:"Catalog",nav_lead:"Request",nav_contacts:"Contacts",
+hero_eyebrow:"Tashkent · Chilanzar · Wholesale and retail",
+hero_title:"Building materials, fasteners, paints and electrical goods in one place",
+hero_lead:"Spektr Stroy Invest sells wholesale and retail to construction sites, tradespeople and homeowners. Leave a request and a manager will confirm price and availability.",
+cta_lead:"Send a request",cta_catalog:"View catalog",meta_hours_k:"Hours:",meta_hours_v:"daily 09:00-17:00",meta_place_k:"Landmark:",meta_place_v:"Novza metro",
+about_eyebrow:"About us",about_title:"A dependable supplier for building and renovation",
+about_p1:"SPEKTR STROY INVEST LLC is a trading company in the Chilanzar district of Tashkent. We supply building materials, fasteners, paints and coatings, and electrical and household goods.",
+about_p2:"Large orders are handled wholesale, smaller needs at retail. You can get what you need from one address instead of visiting several suppliers.",
+f_form_k:"Company",f_form_v:"SPEKTR STROY INVEST LLC",f_trade_k:"Business",f_trade_v:"Wholesale and retail trade",f_addr_k:"Address",f_addr_v:"14 Mukimi Street, office 27, Chilanzar district, Tashkent",f_land_k:"Landmark",f_land_v:"Corner of Mukimi and Chilanzar streets, Novza metro",f_hours_k:"Hours",f_hours_v:"Daily, 09:00-17:00",
+cat_eyebrow:"Catalog",cat_title:"Products",cat_lead:"Prices depend on volume and batch. Pick a product and request a quote.",cat_search:"Search by product name",all:"All",items:"products",price:"Price: on request",ask:"Request price",empty:"Nothing found. Describe it in your request and we will source it.",
+lead_eyebrow:"Request",lead_title:"Check price and availability",lead_p:"Fill in the form. Your request goes straight to a manager.",
+step1:"Tell us the product and quantity",step2:"A manager contacts you with price and availability",step3:"Agree on the order terms",
+fm_name:"Your name",fm_name_ph:"e.g. Anvar",fm_phone:"Phone number",fm_cat:"Product line",fm_msg:"Product and quantity",fm_msg_ph:"e.g. M400 cement, 100 bags",fm_how:"How should we reach you?",fm_how_call:"Phone call",fm_send:"Send request",fm_note:"Your number is used only to contact you.",other:"Other / not sure",
+err_name:"Enter your name",err_phone:"Enter the number as +998 XX XXX XX XX",
+ok:"Thank you! Your request was received. A manager will contact you soon.",sending:"Sending...",
+demo:"The site is in test mode: the Telegram bot is not connected yet, so the request was not sent. If urgent, call +998 78 120 13 00. Request text:",
+fail:"The request could not be sent. Please call +998 78 120 13 00. Request text:",
+ct_eyebrow:"Contacts",ct_title:"Get in touch",ct_phone:"Phone",ct_addr:"Address",ct_mail:"Email",ct_map:"Open in maps →",copy:"Copy",copied:"Copied",foot:"Building materials · Fasteners · Paints · Electrical and household goods"}
+};
+
+let lang = "uz", activeCat = "all";
+try { const s = localStorage.getItem("ssi_lang"); if (T[s]) lang = s; } catch(e){}
+const $ = s => document.querySelector(s);
+const t = k => (T[lang] && T[lang][k]) || k;
+
+function applyLang(){
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i18n]").forEach(el => el.textContent = t(el.dataset.i18n));
+  document.querySelectorAll("[data-i18n-ph]").forEach(el => el.placeholder = t(el.dataset.i18nPh));
+  document.querySelectorAll(".langs button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
+  const q = encodeURIComponent("Toshkent, Muqimiy ko'chasi 14");
+  $("#mapLink").href = "https://yandex.uz/maps/?text=" + q;
+  renderDeck(); renderLines(); renderChips(); renderSelect(); renderGrid();
+}
+
+function count(cat){ return PRODUCTS.filter(p => p.cat === cat).length; }
+
+function renderDeck(){
+  const keys = Object.keys(CATS);
+  $("#deck").innerHTML = keys.map((k,i) =>
+    `<button class="band" type="button" data-cat="${k}"><span class="num">0${i+1}</span><span class="bname">${CATS[k][lang]}</span><span class="cnt">${count(k)} ${t("items")}</span></button>`).join("");
+  $("#deck").querySelectorAll(".band").forEach(b => b.addEventListener("click", () => { activeCat = b.dataset.cat; renderChips(); renderGrid(); $("#catalog").scrollIntoView(); }));
+}
+function renderLines(){
+  $("#lines").innerHTML = Object.keys(CATS).map(k =>
+    `<div class="line" style="--c:var(${CATS[k].c})"><h3>${CATS[k][lang]}</h3><p>${CATS[k].d[lang]}</p></div>`).join("");
+}
+function renderChips(){
+  const all = [["all", t("all"), "--ink"]].concat(Object.keys(CATS).map(k => [k, CATS[k][lang], CATS[k].c]));
+  $("#chips").innerHTML = all.map(([k,l,c]) => `<button class="chip" type="button" data-cat="${k}" aria-pressed="${k===activeCat}" style="--c:var(${c})"><i></i>${l}</button>`).join("");
+  $("#chips").querySelectorAll(".chip").forEach(b => b.addEventListener("click", () => { activeCat = b.dataset.cat; renderChips(); renderGrid(); }));
+}
+function renderSelect(){
+  const sel = $("#cat"), cur = sel.value;
+  sel.innerHTML = Object.keys(CATS).map(k => `<option value="${k}">${CATS[k][lang]}</option>`).join("") + `<option value="other">${t("other")}</option>`;
+  if (cur) sel.value = cur;
+}
+function renderGrid(){
+  const q = $("#q").value.trim().toLowerCase();
+  const list = PRODUCTS.filter(p => (activeCat === "all" || p.cat === activeCat) &&
+    (!q || Object.values(p.n).some(v => v.toLowerCase().includes(q)) || p.id.toLowerCase().includes(q)));
+  if (!list.length){ $("#grid").innerHTML = `<div class="empty" style="grid-column:1/-1">${t("empty")}</div>`; return; }
+  $("#grid").innerHTML = list.map(p => `
+    <article class="card" style="--c:var(${CATS[p.cat].c})">
+      <div class="top"><span class="tag"><i></i>${CATS[p.cat][lang]}</span><span class="code">${p.id}</span></div>
+      <h3>${p.n[lang]}</h3>
+      <span class="spec">${p.s[lang]}</span>
+      <div class="foot"><span class="price">${t("price")}</span><button class="ask" type="button" data-id="${p.id}">${t("ask")}</button></div>
+    </article>`).join("");
+  $("#grid").querySelectorAll(".ask").forEach(b => b.addEventListener("click", () => {
+    const p = PRODUCTS.find(x => x.id === b.dataset.id);
+    $("#cat").value = p.cat;
+    $("#msg").value = `${p.n[lang]} (${p.id}): `;
+    $("#lead").scrollIntoView();
+    setTimeout(() => { const m = $("#msg"); m.focus(); m.setSelectionRange(m.value.length, m.value.length); }, 350);
+  }));
+}
+
+document.querySelectorAll(".langs button").forEach(b => b.addEventListener("click", () => {
+  lang = b.dataset.lang; try { localStorage.setItem("ssi_lang", lang); } catch(e){} applyLang();
+}));
+$("#q").addEventListener("input", renderGrid);
+
+/* Phone mask: +998 XX XXX XX XX */
+const phone = $("#phone");
+phone.addEventListener("input", () => {
+  let d = phone.value.replace(/\D/g, "");
+  if (!d.startsWith("998")) d = "998" + d.replace(/^998/, "");
+  d = d.slice(0, 12);
+  const r = d.slice(3);
+  let out = "+998";
+  if (r.length) out += " " + r.slice(0,2);
+  if (r.length > 2) out += " " + r.slice(2,5);
+  if (r.length > 5) out += " " + r.slice(5,7);
+  if (r.length > 7) out += " " + r.slice(7,9);
+  phone.value = out;
+});
+
+function esc(s){ return s.replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c])); }
+
+$("#leadForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const name = $("#name").value.trim(), ph = phone.value.replace(/\D/g, "");
+  const okName = name.length >= 2, okPhone = ph.length === 12;
+  $("#f-name").classList.toggle("invalid", !okName); $("#f-name .err").hidden = okName;
+  $("#f-phone").classList.toggle("invalid", !okPhone); $("#f-phone .err").hidden = okPhone;
+  if (!okName) { $("#name").focus(); return; }
+  if (!okPhone) { phone.focus(); return; }
+
+  const catVal = $("#cat").value;
+  const catName = catVal === "other" ? T.uz.other : CATS[catVal].uz;
+  const how = document.querySelector('input[name="how"]:checked').value === "tg" ? "Telegram" : "Qo'ng'iroq";
+  const text = `🧱 Yangi ariza (sayt)\nIsm: ${name}\nTelefon: ${phone.value}\nYo'nalish: ${catName}\nMahsulot: ${$("#msg").value.trim() || "-"}\nBog'lanish: ${how}\nTil: ${lang.toUpperCase()}`;
+
+  const st = $("#status"), btn = $("#send");
+  const configured = TELEGRAM.relayUrl || (TELEGRAM.token && TELEGRAM.chatId);
+  if (!configured){
+    st.className = "status warn"; st.hidden = false;
+    st.innerHTML = esc(t("demo")) + `<pre>${esc(text)}</pre>`; return;
+  }
+  btn.disabled = true; btn.textContent = t("sending");
+  try {
+    const url = TELEGRAM.relayUrl || `https://api.telegram.org/bot${TELEGRAM.token}/sendMessage`;
+    /* Oddiy form formatida yuboriladi: brauzer qo'shimcha CORS tekshiruvini (preflight) talab qilmaydi */
+    const res = await fetch(url, { method:"POST",
+      body: new URLSearchParams({ chat_id: TELEGRAM.chatId, text }) });
+    if (!res.ok) throw new Error(res.status);
+    st.className = "status ok"; st.hidden = false; st.textContent = t("ok");
+    e.target.reset(); phone.value = "+998 ";
+  } catch(err){
+    st.className = "status warn"; st.hidden = false;
+    st.innerHTML = esc(t("fail")) + `<pre>${esc(text)}</pre>`;
+  } finally { btn.disabled = false; btn.textContent = t("fm_send"); }
+});
+
+document.addEventListener("click", e => {
+  const b = e.target.closest(".copy"); if (!b) return;
+  const done = () => { b.textContent = t("copied"); setTimeout(() => b.textContent = t("copy"), 1500); };
+  try {
+    navigator.clipboard.writeText(b.dataset.copy).then(done, () => selectNear(b));
+  } catch(err){ selectNear(b); }
+});
+function selectNear(b){
+  const v = b.parentElement.querySelector(".v"); if (!v) return;
+  const r = document.createRange(); r.selectNodeContents(v);
+  const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+}
+
+applyLang();
+</script>
+
+</body>
+</html>
