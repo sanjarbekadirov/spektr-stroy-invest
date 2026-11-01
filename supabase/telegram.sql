@@ -34,7 +34,7 @@ begin
   perform net.http_post(
     url := 'https://api.telegram.org/bot' || v_token || '/sendMessage',
     body := jsonb_build_object('chat_id', -1003909099944, 'text', left(format(
-      E'🏢 Yangi so''rov №%s\nTashkilot: %s\nSTIR: %s\nMas''ul shaxs: %s\nTelefon: %s\nManzil: %s\nTil: %s\nKabinet: %s\n\nPozitsiyalar:\n%s',
+      E'🏢 Yangi buyurtma №%s\nTashkilot: %s\nSTIR: %s\nMas''ul shaxs: %s\nTelefon: %s\nManzil: %s\nTil: %s\nKabinet: %s\n\nPozitsiyalar:\n%s',
       new.id, new.org, nullif(new.inn, ''), new.contact_name, new.phone, nullif(new.address, ''),
       upper(new.lang), coalesce(v_email, 'kirmagan'), new.request_text
     ), 4000)),
