@@ -1003,6 +1003,7 @@ function updateCounts(){
   const n = Object.keys(list).length;
   $$(".badge").forEach(b => { b.textContent = n; b.dataset.n = n; });
   $("#inCount").textContent = n;
+  $(".inlist").hidden = !n;
 }
 function setDir(d, scroll){ dir = d; showAll = false; renderTabs(); renderCards(); closeMega(); if (scroll) $("#catalog").scrollIntoView(); }
 
