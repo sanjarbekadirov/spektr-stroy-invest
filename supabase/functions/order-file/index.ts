@@ -19,18 +19,30 @@ Deno.serve(async (req) => {
   const name = order.attachment_name ?? "fayl";
   if (!ALLOWED.test(name)) return reply(422, "file type not allowed");
 
-  const { data: file, error: dlError } = await sb.storage.from("order-files").download(order.attachment_path);
-  if (dlError) return reply(500, dlError.message);
-
   const { data: cfg, error: cfgError } = await sb.rpc("telegram_config");
   if (cfgError) return reply(500, cfgError.message);
 
-  const form = new FormData();
-  form.set("chat_id", String(cfg.chat_id));
-  form.set("caption", `📎 Buyurtma №${order.id}: ${order.org}`.slice(0, 1000));
-  form.set("document", file, name);
-  const tg = await fetch(`https://api.telegram.org/bot${cfg.token}/sendDocument`, { method: "POST", body: form });
-  if (!tg.ok) return reply(502, `telegram ${tg.status}`);
+  // Telegram bilan ulanish vaqti-vaqti bilan qotib qoladi, shuning uchun qayta urinamiz
+  let sent = false, lastError = "";
+  for (let attempt = 1; attempt <= 3 && !sent; attempt++) {
+    try {
+      const { data: file, error: dlError } = await sb.storage.from("order-files").download(order.attachment_path);
+      if (dlError) throw dlError;
+      const form = new FormData();
+      form.set("chat_id", String(cfg.chat_id));
+      form.set("caption", `📎 Buyurtma №${order.id}: ${order.org}`.slice(0, 1000));
+      form.set("document", file, name);
+      const tg = await fetch(`https://api.telegram.org/bot${cfg.token}/sendDocument`, {
+        method: "POST", body: form, signal: AbortSignal.timeout(25000),
+      });
+      if (!tg.ok) throw new Error(`telegram ${tg.status}`);
+      sent = true;
+    } catch (e) {
+      lastError = String(e?.message ?? e);
+      console.error(`order ${order.id} attempt ${attempt}: ${lastError}`);
+    }
+  }
+  if (!sent) return reply(502, lastError);
 
   await sb.from("orders").update({ attachment_sent_at: new Date().toISOString() }).eq("id", order.id);
   return reply(200, "sent");
