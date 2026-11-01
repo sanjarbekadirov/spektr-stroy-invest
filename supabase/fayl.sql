@@ -77,7 +77,7 @@ begin
       url := 'https://iwuouayiomygwuoppfob.supabase.co/functions/v1/order-file',
       body := jsonb_build_object('order_id', new.id),
       headers := jsonb_build_object('Content-Type', 'application/json', 'Authorization', 'Bearer ' || (select decrypted_secret from vault.decrypted_secrets where name = 'functions_anon_key')),
-      timeout_milliseconds := 30000
+      timeout_milliseconds := 100000
     );
   end if;
   return new;
