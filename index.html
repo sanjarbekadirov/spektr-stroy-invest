@@ -97,7 +97,7 @@ nav.sub a.cta{margin-left:auto;color:var(--accent-text);font-weight:700}
 .ic.lg{width:64px;height:64px}.ic.lg svg.i{width:30px;height:30px}
 
 /* Hero */
-.hero .wrap{display:grid;grid-template-columns:minmax(0,2.1fr) minmax(0,1fr);gap:16px;padding-block:20px}
+.hero .wrap{padding-block:20px}
 .slider{position:relative;border-radius:14px;overflow:hidden;min-height:480px;background:var(--purple)}
 .slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:18px;padding:44px clamp(24px,5vw,56px);opacity:0;visibility:hidden;transition:opacity .5s,visibility .5s}
 .slide.on{opacity:1;visibility:visible}
@@ -123,21 +123,6 @@ nav.sub a.cta{margin-left:auto;color:var(--accent-text);font-weight:700}
 .arrows{position:absolute;right:18px;bottom:16px;display:flex;gap:8px;z-index:3}
 .arrows button{all:unset;cursor:pointer;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:rgba(28,19,64,.55);color:#fff}
 .arrows button:focus-visible{outline:2px solid var(--yellow)}
-.side{display:grid;grid-template-rows:1fr auto;gap:16px;min-width:0}
-.tile{border-radius:14px;padding:26px;display:flex;flex-direction:column;gap:14px;min-width:0}
-.tile-night{background:var(--night);color:#fff}
-.tile-night h3{font-size:1.25rem;font-weight:800}
-.tile-night ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
-.tile-night li{display:flex;gap:12px;align-items:center;padding:10px 0;border-top:1px solid rgba(255,255,255,.12);font-weight:500;font-size:.95rem}
-.tile-night li .ic{width:34px;height:34px;--c:var(--purple)}
-.tile-night li svg.i{width:18px;height:18px}
-.tile-beton{background:var(--surface-2)}
-.tile-beton h3{font-size:1.15rem;font-weight:800;color:var(--accent-text)}
-.tile-beton p{font-size:.92rem;color:var(--muted)}
-@media (max-width:960px){
-  .hero .wrap{grid-template-columns:1fr}
-  .side{grid-template-columns:1fr 1fr;grid-template-rows:auto}
-}
 @media (max-width:640px){
   .slider{min-height:520px}
   .slide{justify-content:flex-start;padding-top:32px}
@@ -145,7 +130,6 @@ nav.sub a.cta{margin-left:auto;color:var(--accent-text);font-weight:700}
   .s-white .art{width:52%;right:4%;bottom:70px}
   .s-yellow .art{width:70%;bottom:70px}
   .slines{display:none}
-  .side{grid-template-columns:1fr}
 }
 
 /* Sections */
@@ -208,26 +192,8 @@ section.sec{padding-block:72px}
 .cat-note{margin-top:18px;font-size:.85rem;color:var(--muted)}
 
 /* Process */
-.proc{background:var(--surface-2)}
-.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);border-top:2px solid var(--accent)}
-.steps li{padding:22px 18px 0 0;display:flex;flex-direction:column;gap:10px}
-.steps .n{display:inline-grid;place-items:center;width:44px;height:36px;background:var(--purple);color:var(--yellow);font-family:var(--f-head);font-weight:900;font-size:1rem}
-.steps h3{font-size:1.15rem;font-weight:800}
-.steps p{font-size:.9rem;color:var(--muted)}
-@media (max-width:960px){.steps{grid-template-columns:1fr;border-top:0}.steps li{padding:16px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:52px 1fr;column-gap:14px}.steps li .n{grid-row:span 2}}
 
 /* About */
-.about .txt{display:flex;flex-direction:column;gap:16px}
-.about h2{font-size:clamp(1.6rem,3vw,2.3rem);font-weight:800;line-height:1.12}
-.about .txt>p{color:var(--muted);max-width:60ch}
-.mission{border-left:4px solid var(--yellow);padding:4px 0 4px 16px;font-family:var(--f-head);font-weight:700;font-size:1.08rem;line-height:1.4}
-.mission b{color:var(--accent-text)}
-.values{margin-top:44px;border-top:1px solid var(--line)}
-.values .row{display:grid;grid-template-columns:48px minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line)}
-.values .row .n{font-family:var(--f-head);font-weight:800;font-size:.85rem;color:var(--accent-text)}
-.values .row h3{font-size:clamp(1.5rem,3.4vw,2.4rem);font-weight:900;color:var(--accent-text);line-height:1}
-.values .row p{color:var(--muted)}
-@media (max-width:860px){.values .row{grid-template-columns:36px 1fr}.values .row p{grid-column:2}}
 
 /* Request */
 .req{background:var(--night);color:#fff;position:relative;overflow:hidden}
@@ -343,6 +309,13 @@ body.dopen .drawer{transform:none}
   .toast{bottom:calc(80px + env(safe-area-inset-bottom,0px))}
 }
 
+/* Hamkorlar */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+.pcard{display:grid;place-items:center;min-height:110px;padding:18px;background:#fff;border:1px solid var(--line);border-radius:12px;text-decoration:none;color:#16141F;font-family:var(--f-head);font-weight:800;text-align:center;overflow-wrap:anywhere}
+.pcard img{max-width:100%;max-height:70px;object-fit:contain}
+a.pcard:hover{box-shadow:0 10px 28px rgba(28,19,64,.12)}
+@media (max-width:520px){.pgrid{grid-template-columns:1fr 1fr;gap:10px}}
+
 /* Shaxsiy kabinet */
 .acct-btn{grid-area:acct}
 body.has-acct .hd-main{grid-template-columns:auto 1fr auto auto auto;grid-template-areas:"logo search tools list acct"}
@@ -421,10 +394,6 @@ body.aopen .drawer.acct{transform:none;visibility:visible}
   <symbol id="i-clean" viewBox="0 0 24 24"><rect x="8" y="10" width="8" height="11" rx="1.5"/><path d="M10 10V7h4v3M14 7.5l4.5-2M10 7H7.5M20 3v1.5M21.5 6.5h-1"/></symbol>
   <symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 6h12v10H2zM14 9h4l3 3.5V16h-7"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></symbol>
   <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 15.5h6M9 9h2"/></symbol>
-  <symbol id="i-office" viewBox="0 0 24 24"><path d="M4 21V4h10v17M14 9h6v12M2 21h20"/><path d="M7.5 7.5h3M7.5 11h3M7.5 14.5h3M17 12.5v.01M17 16v.01"/></symbol>
-  <symbol id="i-factory" viewBox="0 0 24 24"><path d="M3 21V10l5 3V10l5 3V5h4l1 16zM2 21h20"/></symbol>
-  <symbol id="i-school" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5M22 9v6"/></symbol>
-  <symbol id="i-gov" viewBox="0 0 24 24"><path d="M3 9.5L12 4l9 5.5zM5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 21h18M3 18h18"/></symbol>
   <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 3h3.5l1.5 5-2.5 1.5a11 11 0 0 0 7 7L16 14l5 1.5V19a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></symbol>
   <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></symbol>
@@ -473,8 +442,7 @@ body.aopen .drawer.acct{transform:none;visibility:visible}
   <nav class="sub"><div class="wrap">
     <a href="#directions" data-i18n="nav_dirs"></a>
     <a href="#catalog" data-i18n="nav_catalog"></a>
-    <a href="#process" data-i18n="nav_process"></a>
-    <a href="#about" data-i18n="nav_about"></a>
+    <a href="#partners" data-i18n="partners_eyebrow" data-partners hidden></a>
     <a href="#contacts" data-i18n="nav_contacts"></a>
     <a href="#request" class="cta" data-i18n="nav_request"></a>
   </div></nav>
@@ -522,22 +490,6 @@ body.aopen .drawer.acct{transform:none;visibility:visible}
         <div class="dots" id="dots"></div>
         <div class="arrows"><button type="button" id="prev" aria-label="Previous"><svg class="i"><use href="#i-left"/></svg></button><button type="button" id="next" aria-label="Next"><svg class="i"><use href="#i-right"/></svg></button></div>
       </div>
-      <div class="side">
-        <div class="tile tile-night grid-bg">
-          <h3 data-i18n="who_t"></h3>
-          <ul>
-            <li><span class="ic"><svg class="i"><use href="#i-office"/></svg></span><span data-i18n="who1"></span></li>
-            <li><span class="ic"><svg class="i"><use href="#i-factory"/></svg></span><span data-i18n="who2"></span></li>
-            <li><span class="ic"><svg class="i"><use href="#i-school"/></svg></span><span data-i18n="who3"></span></li>
-            <li><span class="ic"><svg class="i"><use href="#i-gov"/></svg></span><span data-i18n="who4"></span></li>
-          </ul>
-        </div>
-        <div class="tile tile-beton">
-          <h3 data-i18n="side_t"></h3>
-          <p data-i18n="side_p"></p>
-          <div><a class="btn btn-p" href="#request" data-i18n="cta_send"></a></div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -561,35 +513,10 @@ body.aopen .drawer.acct{transform:none;visibility:visible}
     </div>
   </section>
 
-  <section class="sec proc" id="process">
+  <section class="sec partners" id="partners" hidden>
     <div class="wrap">
-      <div class="sec-head"><div class="l"><span class="eyebrow" data-i18n="proc_eyebrow"></span><h2 data-i18n="proc_title"></h2></div></div>
-      <ol class="steps">
-        <li><span class="n">01</span><h3 data-i18n="p1_t"></h3><p data-i18n="p1_d"></p></li>
-        <li><span class="n">02</span><h3 data-i18n="p2_t"></h3><p data-i18n="p2_d"></p></li>
-        <li><span class="n">03</span><h3 data-i18n="p3_t"></h3><p data-i18n="p3_d"></p></li>
-        <li><span class="n">04</span><h3 data-i18n="p4_t"></h3><p data-i18n="p4_d"></p></li>
-        <li><span class="n">05</span><h3 data-i18n="p5_t"></h3><p data-i18n="p5_d"></p></li>
-      </ol>
-    </div>
-  </section>
-
-  <section class="sec" id="about">
-    <div class="wrap">
-      <div class="about">
-        <div class="txt">
-          <span class="eyebrow" data-i18n="about_eyebrow"></span>
-          <h2 data-i18n="about_title"></h2>
-          <p data-i18n="about_p"></p>
-          <p class="mission" data-i18n-html="mission"></p>
-        </div>
-      </div>
-      <div class="values">
-        <div class="row"><span class="n">01</span><h3 data-i18n="v1"></h3><p data-i18n="v1d"></p></div>
-        <div class="row"><span class="n">02</span><h3 data-i18n="v2"></h3><p data-i18n="v2d"></p></div>
-        <div class="row"><span class="n">03</span><h3 data-i18n="v3"></h3><p data-i18n="v3d"></p></div>
-        <div class="row"><span class="n">04</span><h3 data-i18n="v4"></h3><p data-i18n="v4d"></p></div>
-      </div>
+      <div class="sec-head"><div class="l"><span class="eyebrow" data-i18n="partners_eyebrow"></span><h2 data-i18n="partners_title"></h2></div></div>
+      <div class="pgrid" id="pgrid"></div>
     </div>
   </section>
 
@@ -641,7 +568,7 @@ body.aopen .drawer.acct{transform:none;visibility:visible}
   <div class="bar"></div>
   <div class="wrap">
     <div class="fbrand"><div class="flogo"><svg viewBox="144 143 3712 919" aria-label="Spektr Stroy Invest"><use href="#lp"/></svg></div><p class="ftag" data-i18n="f_tag"></p></div>
-    <div><h4 data-i18n="f_company"></h4><ul><li><a href="#about" data-i18n="nav_about"></a></li><li><a href="#process" data-i18n="nav_process"></a></li><li><a href="#contacts" data-i18n="nav_contacts"></a></li></ul></div>
+    <div><h4 data-i18n="f_company"></h4><ul><li data-partners hidden><a href="#partners" data-i18n="partners_eyebrow"></a></li><li><a href="#contacts" data-i18n="nav_contacts"></a></li></ul></div>
     <div><h4 data-i18n="catalog"></h4><ul id="fCats"></ul></div>
     <div><h4 data-i18n="f_partners"></h4><ul><li><a href="#request" data-i18n="nav_request"></a></li><li data-i18n="f_pay"></li><li data-i18n="f_delivery"></li><li><a href="tel:+998781201200">+998 78 120 12 00</a></li></ul></div>
     <div class="bottom"><span>© 2026 «SPEKTR STROY INVEST» MChJ</span><span data-i18n="addr"></span></div>
@@ -715,6 +642,10 @@ body.aopen .drawer.acct{transform:none;visibility:visible}
    Ikkala qiymat bo'sh bo'lsa, kabinet saytda ko'rinmaydi. Qanday to'ldirish: README.md.
    anonKey ochiq kalit, kodda turishi mumkin. service_role kalitini HECH QACHON bu yerga yozmang. */
 const SUPABASE = { url: "https://iwuouayiomygwuoppfob.supabase.co", anonKey: "sb_publishable_-p3f3riV9eqd7hKI8YwAOQ_npfI74O3" };
+/* ===== SOZLAMA: Hamkorlar =====
+   Har bir hamkor: { name: "Nomi", logo: "img/partners/nomi.png", url: "https://..." }. logo va url ixtiyoriy.
+   Ro'yxat bo'sh bo'lsa, bo'lim saytda ko'rinmaydi. */
+const PARTNERS = [];
 const PHONE_MAIN = "+998 78 120 12 00";
 
 const DIRS = {
@@ -847,31 +778,18 @@ const P = [
 ];
 
 const T = {
-uz:{f_file:"Fayl biriktirish",f_file_btn:"Fayl tanlash",f_file_none:"Fayl tanlanmagan",f_file_hint:"Excel, CSV, PDF, Word yoki rasm, 10 MB gacha",err_file:"Bu turdagi fayl qabul qilinmaydi yoki u 10 MB dan katta",file_only:"Ro'yxat biriktirilgan faylda",ig_open:"Sahifani ochish",more:"Yana {n} tasini ko'rsatish",search_ph_s:"Mahsulot qidirish",ac_title:"Shaxsiy kabinet",ac_short:"Kabinet",ac_sub_out:"kirish",ac_in:"Kirish",ac_up:"Ro'yxatdan o'tish",ac_email:"Elektron pochta",ac_pass:"Parol",ac_pass_new:"Yangi parol (kamida 8 belgi)",ac_first:"Ism",ac_last:"Familiya",ac_forgot:"Parolni unutdingizmi?",ac_forgot_lead:"Elektron pochtangizni kiriting, parolni tiklash havolasini yuboramiz.",ac_forgot_send:"Havola yuborish",ac_forgot_done:"Agar bu pochta ro'yxatdan o'tgan bo'lsa, tiklash havolasi yuborildi. Pochtangizni tekshiring.",ac_back:"Orqaga",ac_reset_lead:"Yangi parolni kiriting.",ac_reset_done:"Parol yangilandi.",ac_save:"Saqlash",ac_saved_profile:"Ma'lumotlar saqlandi.",ac_out:"Chiqish",ac_profile:"Profil",ac_orders:"Buyurtmalar",ac_purchases:"Haridlar",ac_loading:"Yuklanmoqda...",ac_no_orders:"Hali buyurtmalar yo'q.",ac_no_purchases:"Hali yakunlangan haridlar yo'q. Buyurtma yetkazilgach, shu yerda ko'rinadi.",ac_to_catalog:"Katalogga o'tish",ac_load_fail:"Tarixni yuklab bo'lmadi. Keyinroq urinib ko'ring.",ac_st_new:"Yangi",ac_st_processing:"Jarayonda",ac_st_delivered:"Yetkazildi",ac_st_cancelled:"Bekor qilingan",ac_sum:"so'm",ac_confirm:"Elektron pochtangizga tasdiqlash xati yuborildi. Havolani bosing, so'ng kiring.",ac_e_email:"To'g'ri elektron pochta manzilini kiriting",ac_e_pass:"Parol kamida 8 belgidan iborat bo'lsin",ac_e_first:"Ismni kiriting",ac_e_last:"Familiyani kiriting",ac_e_cred:"Elektron pochta yoki parol noto'g'ri.",ac_e_unconf:"Avval elektron pochtangizdagi havola orqali manzilni tasdiqlang.",ac_e_exists:"Bu elektron pochta allaqachon ro'yxatdan o'tgan. Kirish bo'limidan foydalaning.",ac_e_rate:"Urinishlar juda ko'p. Birozdan so'ng qayta urining.",ac_e_gen:"Xizmat vaqtincha ishlamayapti. Keyinroq urinib ko'ring yoki qo'ng'iroq qiling: "+PHONE_MAIN,ac_rq_in:"Buyurtma kabinetingizda saqlanadi:",ac_rq_out:"Buyurtmalar tarixi saqlanishi uchun",ac_rq_login:"kabinetga kiring",ac_order_saved:"Buyurtma №{n} kabinetingizga saqlandi.",catalog:"Katalog",search_ph:"Mahsulot qidirish, masalan: gubka",list:"Buyurtma ro'yxati",list_sub:"tijorat taklifi uchun",
-nav_dirs:"Yo'nalishlar",nav_catalog:"Katalog",nav_process:"Ishlash tartibi",nav_about:"Kompaniya",nav_contacts:"Kontaktlar",nav_request:"Buyurtma berish",
+uz:{partners_eyebrow:"Hamkorlar",partners_title:"Bizning hamkorlarimiz",f_file:"Fayl biriktirish",f_file_btn:"Fayl tanlash",f_file_none:"Fayl tanlanmagan",f_file_hint:"Excel, CSV, PDF, Word yoki rasm, 10 MB gacha",err_file:"Bu turdagi fayl qabul qilinmaydi yoki u 10 MB dan katta",file_only:"Ro'yxat biriktirilgan faylda",ig_open:"Sahifani ochish",more:"Yana {n} tasini ko'rsatish",search_ph_s:"Mahsulot qidirish",ac_title:"Shaxsiy kabinet",ac_short:"Kabinet",ac_sub_out:"kirish",ac_in:"Kirish",ac_up:"Ro'yxatdan o'tish",ac_email:"Elektron pochta",ac_pass:"Parol",ac_pass_new:"Yangi parol (kamida 8 belgi)",ac_first:"Ism",ac_last:"Familiya",ac_forgot:"Parolni unutdingizmi?",ac_forgot_lead:"Elektron pochtangizni kiriting, parolni tiklash havolasini yuboramiz.",ac_forgot_send:"Havola yuborish",ac_forgot_done:"Agar bu pochta ro'yxatdan o'tgan bo'lsa, tiklash havolasi yuborildi. Pochtangizni tekshiring.",ac_back:"Orqaga",ac_reset_lead:"Yangi parolni kiriting.",ac_reset_done:"Parol yangilandi.",ac_save:"Saqlash",ac_saved_profile:"Ma'lumotlar saqlandi.",ac_out:"Chiqish",ac_profile:"Profil",ac_orders:"Buyurtmalar",ac_purchases:"Haridlar",ac_loading:"Yuklanmoqda...",ac_no_orders:"Hali buyurtmalar yo'q.",ac_no_purchases:"Hali yakunlangan haridlar yo'q. Buyurtma yetkazilgach, shu yerda ko'rinadi.",ac_to_catalog:"Katalogga o'tish",ac_load_fail:"Tarixni yuklab bo'lmadi. Keyinroq urinib ko'ring.",ac_st_new:"Yangi",ac_st_processing:"Jarayonda",ac_st_delivered:"Yetkazildi",ac_st_cancelled:"Bekor qilingan",ac_sum:"so'm",ac_confirm:"Elektron pochtangizga tasdiqlash xati yuborildi. Havolani bosing, so'ng kiring.",ac_e_email:"To'g'ri elektron pochta manzilini kiriting",ac_e_pass:"Parol kamida 8 belgidan iborat bo'lsin",ac_e_first:"Ismni kiriting",ac_e_last:"Familiyani kiriting",ac_e_cred:"Elektron pochta yoki parol noto'g'ri.",ac_e_unconf:"Avval elektron pochtangizdagi havola orqali manzilni tasdiqlang.",ac_e_exists:"Bu elektron pochta allaqachon ro'yxatdan o'tgan. Kirish bo'limidan foydalaning.",ac_e_rate:"Urinishlar juda ko'p. Birozdan so'ng qayta urining.",ac_e_gen:"Xizmat vaqtincha ishlamayapti. Keyinroq urinib ko'ring yoki qo'ng'iroq qiling: "+PHONE_MAIN,ac_rq_in:"Buyurtma kabinetingizda saqlanadi:",ac_rq_out:"Buyurtmalar tarixi saqlanishi uchun",ac_rq_login:"kabinetga kiring",ac_order_saved:"Buyurtma №{n} kabinetingizga saqlandi.",catalog:"Katalog",search_ph:"Mahsulot qidirish, masalan: gubka",list:"Buyurtma ro'yxati",list_sub:"tijorat taklifi uchun",
+nav_dirs:"Yo'nalishlar",nav_catalog:"Katalog",nav_contacts:"Kontaktlar",nav_request:"Buyurtma berish",
 pos:"pozitsiya",
 s1_eyebrow:"Korxonalar va davlat tashkilotlari uchun ta'minot",s1_l1:"Bitta hamkor.",s1_l2:"To'rt yo'nalish.",s1_l3:"Bitta shartnoma.",
 s1_p:"Tozalash vositalari, gubka va salfetkalar, paketlar, xo'jalik anjomlari. To'lov pul o'tkazish yo'li bilan.",
 cta_send:"Buyurtma berish",cta_catalog:"Katalogni ochish",
 s2_eyebrow:"To'lov",s2_h:"Pul o'tkazish",s2_tag:"yo'li bilan",s2_p:"Har bir yetkazib berish shartnoma va to'liq hujjatlar bilan.",
 s3_eyebrow:"Logistika",s3_h:"Obyektgacha yetkazamiz.",s3_p:"Mahsulot shartnomada kelishilgan muddatda obyektingizga yetkaziladi.",
-who_t:"Kimlar uchun",who1:"Qurilish va pudrat tashkilotlari",who2:"Ishlab chiqarish korxonalari",who3:"Ta'lim va tibbiyot muassasalari",who4:"Davlat idoralari",
-side_t:"Buyurtmangiz tayyormi?",side_p:"Pozitsiyalarni katalogdan tanlang yoki ro'yxatni o'zingiz yozib, buyurtma bering. Tijorat taklifini tayyorlaymiz.",
 dirs_eyebrow:"Yo'nalishlar",dirs_title:"To'rt yo'nalish, bitta ta'minotchi",to_cat:"Katalogga",
 cat_eyebrow:"Katalog",cat_title:"Mahsulotlar",cat_lead:"Pozitsiyalarni ro'yxatga qo'shing va bitta buyurtma bilan yuboring. Narx tijorat taklifida ko'rsatiladi.",
 all:"Hammasi",price:"Narx: tijorat taklifida",add:"Ro'yxatga",added:"Ro'yxatda",empty:"Bu nom bo'yicha pozitsiya topilmadi. Uni buyurtmada yozib qoldiring, tijorat taklifiga qo'shamiz.",
 cat_note:"Katalogda asosiy pozitsiyalar ko'rsatilgan, boshqa mahsulotlarga ham buyurtma bering.",
-proc_eyebrow:"Ishlash tartibi",proc_title:"Buyurtmadan yetkazib berishgacha besh qadam",
-p1_t:"Buyurtma",p1_d:"Buyurtmani sayt, telefon yoki elektron pochta orqali berasiz.",
-p2_t:"Tijorat taklifi",p2_d:"Narx va muddatlar ko'rsatilgan rasmiy taklif tayyorlaymiz.",
-p3_t:"Shartnoma",p3_d:"Miqdor, sifat va muddat shartnomada belgilanadi.",
-p4_t:"Pul o'tkazish",p4_d:"To'lov bank orqali, pul o'tkazish yo'li bilan amalga oshiriladi.",
-p5_t:"Yetkazib berish",p5_d:"Mahsulot obyektgacha to'liq hujjatlar bilan yetkaziladi.",
-about_eyebrow:"Kimmiz",about_title:"Korxonalar va davlat tashkilotlari uchun rasmiy ta'minotchi.",
-about_p:"Qurilish va pudrat tashkilotlari, ishlab chiqarish korxonalari, ta'lim va tibbiyot muassasalari, davlat idoralari bilan ishlaymiz. Har bir yetkazib berish shartnoma va to'liq hujjatlar bilan.",
-mission:"Korxona va davlat tashkilotlarini kerakli mahsulotlar bilan <b>rasmiy, shaffof va o'z vaqtida</b> ta'minlash.",
-v1:"Ishonchlilik",v1d:"Shartnomadagi miqdor, sifat va muddat so'zsiz bajariladi.",v2:"Shaffoflik",v2d:"Har bir yetkazib berish to'liq hujjatlar bilan.",
-v3:"Keng qamrov",v3d:"To'rt yo'nalish, bitta ta'minotchi.",v4:"Mas'uliyat",v4d:"Hamkorning byudjeti va vaqtini asraymiz.",
 req_eyebrow:"Buyurtma",req_quote:"Hurmatli hamkor! Buyurtma bering: tijorat taklifini tayyorlab, shartnoma asosida yetkazib beramiz.",
 req_sub:"Pozitsiyalarni katalogdan qo'shing yoki ro'yxatni qo'lda yozing.",req_inlist:"pozitsiya ro'yxatingizda",req_open:"Ro'yxatni ko'rish",
 f_org:"Tashkilot nomi",f_org_ph:"Tashkilot yoki korxona nomi",f_inn:"STIR",opt:"(ixtiyoriy)",f_name:"Mas'ul shaxs",f_name_ph:"Ism va familiya",f_phone:"Telefon",
@@ -886,31 +804,18 @@ f_tag:"Korxonalar va davlat tashkilotlari uchun ta'minot.",f_company:"Kompaniya"
 clear:"Tozalash",go_request:"Buyurtmaga o'tish",dr_empty:"Ro'yxat hozircha bo'sh. Katalogdan pozitsiyalarni qo'shing.",remove:"O'chirish",
 toast:"Ro'yxatga qo'shildi",theme_dark:"Qorong'u rejim",theme_light:"Yorug' rejim",bb_home:"Bosh sahifa",bb_list:"Ro'yxat",bb_contact:"Aloqa",list_head:"Katalogdan:"},
 
-ru:{f_file:"Прикрепить файл",f_file_btn:"Выбрать файл",f_file_none:"Файл не выбран",f_file_hint:"Excel, CSV, PDF, Word или фото, до 10 МБ",err_file:"Этот тип файла не принимается или файл больше 10 МБ",file_only:"Перечень в прикреплённом файле",ig_open:"Открыть страницу",more:"Показать ещё: {n}",search_ph_s:"Поиск товара",ac_title:"Личный кабинет",ac_short:"Кабинет",ac_sub_out:"вход",ac_in:"Войти",ac_up:"Регистрация",ac_email:"Электронная почта",ac_pass:"Пароль",ac_pass_new:"Новый пароль (минимум 8 символов)",ac_first:"Имя",ac_last:"Фамилия",ac_forgot:"Забыли пароль?",ac_forgot_lead:"Введите вашу электронную почту, мы отправим ссылку для восстановления пароля.",ac_forgot_send:"Отправить ссылку",ac_forgot_done:"Если эта почта зарегистрирована, ссылка отправлена. Проверьте почту.",ac_back:"Назад",ac_reset_lead:"Введите новый пароль.",ac_reset_done:"Пароль обновлён.",ac_save:"Сохранить",ac_saved_profile:"Данные сохранены.",ac_out:"Выйти",ac_profile:"Профиль",ac_orders:"Заказы",ac_purchases:"Покупки",ac_loading:"Загрузка...",ac_no_orders:"Заказов пока нет.",ac_no_purchases:"Завершённых покупок пока нет. Заказ появится здесь после доставки.",ac_to_catalog:"Перейти в каталог",ac_load_fail:"Не удалось загрузить историю. Попробуйте позже.",ac_st_new:"Новый",ac_st_processing:"В работе",ac_st_delivered:"Доставлен",ac_st_cancelled:"Отменён",ac_sum:"сум",ac_confirm:"На вашу почту отправлено письмо. Перейдите по ссылке, затем войдите.",ac_e_email:"Введите правильный адрес электронной почты",ac_e_pass:"Пароль должен содержать минимум 8 символов",ac_e_first:"Введите имя",ac_e_last:"Введите фамилию",ac_e_cred:"Неверная электронная почта или пароль.",ac_e_unconf:"Сначала подтвердите адрес по ссылке из письма.",ac_e_exists:"Эта почта уже зарегистрирована. Используйте вход.",ac_e_rate:"Слишком много попыток. Повторите немного позже.",ac_e_gen:"Сервис временно недоступен. Попробуйте позже или позвоните: "+PHONE_MAIN,ac_rq_in:"Заказ сохранится в вашем кабинете:",ac_rq_out:"Чтобы сохранять историю заказов,",ac_rq_login:"войдите в кабинет",ac_order_saved:"Заказ №{n} сохранён в вашем кабинете.",catalog:"Каталог",search_ph:"Поиск товара, например: губка",list:"Список заказа",list_sub:"для коммерческого предложения",
-nav_dirs:"Направления",nav_catalog:"Каталог",nav_process:"Порядок работы",nav_about:"О компании",nav_contacts:"Контакты",nav_request:"Оформить заказ",
+ru:{partners_eyebrow:"Партнёры",partners_title:"Наши партнёры",f_file:"Прикрепить файл",f_file_btn:"Выбрать файл",f_file_none:"Файл не выбран",f_file_hint:"Excel, CSV, PDF, Word или фото, до 10 МБ",err_file:"Этот тип файла не принимается или файл больше 10 МБ",file_only:"Перечень в прикреплённом файле",ig_open:"Открыть страницу",more:"Показать ещё: {n}",search_ph_s:"Поиск товара",ac_title:"Личный кабинет",ac_short:"Кабинет",ac_sub_out:"вход",ac_in:"Войти",ac_up:"Регистрация",ac_email:"Электронная почта",ac_pass:"Пароль",ac_pass_new:"Новый пароль (минимум 8 символов)",ac_first:"Имя",ac_last:"Фамилия",ac_forgot:"Забыли пароль?",ac_forgot_lead:"Введите вашу электронную почту, мы отправим ссылку для восстановления пароля.",ac_forgot_send:"Отправить ссылку",ac_forgot_done:"Если эта почта зарегистрирована, ссылка отправлена. Проверьте почту.",ac_back:"Назад",ac_reset_lead:"Введите новый пароль.",ac_reset_done:"Пароль обновлён.",ac_save:"Сохранить",ac_saved_profile:"Данные сохранены.",ac_out:"Выйти",ac_profile:"Профиль",ac_orders:"Заказы",ac_purchases:"Покупки",ac_loading:"Загрузка...",ac_no_orders:"Заказов пока нет.",ac_no_purchases:"Завершённых покупок пока нет. Заказ появится здесь после доставки.",ac_to_catalog:"Перейти в каталог",ac_load_fail:"Не удалось загрузить историю. Попробуйте позже.",ac_st_new:"Новый",ac_st_processing:"В работе",ac_st_delivered:"Доставлен",ac_st_cancelled:"Отменён",ac_sum:"сум",ac_confirm:"На вашу почту отправлено письмо. Перейдите по ссылке, затем войдите.",ac_e_email:"Введите правильный адрес электронной почты",ac_e_pass:"Пароль должен содержать минимум 8 символов",ac_e_first:"Введите имя",ac_e_last:"Введите фамилию",ac_e_cred:"Неверная электронная почта или пароль.",ac_e_unconf:"Сначала подтвердите адрес по ссылке из письма.",ac_e_exists:"Эта почта уже зарегистрирована. Используйте вход.",ac_e_rate:"Слишком много попыток. Повторите немного позже.",ac_e_gen:"Сервис временно недоступен. Попробуйте позже или позвоните: "+PHONE_MAIN,ac_rq_in:"Заказ сохранится в вашем кабинете:",ac_rq_out:"Чтобы сохранять историю заказов,",ac_rq_login:"войдите в кабинет",ac_order_saved:"Заказ №{n} сохранён в вашем кабинете.",catalog:"Каталог",search_ph:"Поиск товара, например: губка",list:"Список заказа",list_sub:"для коммерческого предложения",
+nav_dirs:"Направления",nav_catalog:"Каталог",nav_contacts:"Контакты",nav_request:"Оформить заказ",
 pos:"позиций",
 s1_eyebrow:"Снабжение предприятий и государственных организаций",s1_l1:"Один партнёр.",s1_l2:"Четыре направления.",s1_l3:"Один договор.",
 s1_p:"Чистящие средства, губки и салфетки, пакеты, хозинвентарь. Оплата перечислением.",
 cta_send:"Оформить заказ",cta_catalog:"Открыть каталог",
 s2_eyebrow:"Оплата",s2_h:"Перечислением",s2_tag:"по безналичному расчёту",s2_p:"Каждая поставка по договору и с полным пакетом документов.",
 s3_eyebrow:"Логистика",s3_h:"Доставим до объекта.",s3_p:"Товар доставляется на ваш объект в срок, согласованный в договоре.",
-who_t:"Для кого мы работаем",who1:"Строительные и подрядные организации",who2:"Производственные предприятия",who3:"Учреждения образования и здравоохранения",who4:"Государственные учреждения",
-side_t:"Заказ готов?",side_p:"Выберите позиции в каталоге или впишите перечень сами и оформите заказ. Подготовим коммерческое предложение.",
 dirs_eyebrow:"Направления",dirs_title:"Четыре направления, один поставщик",to_cat:"В каталог",
 cat_eyebrow:"Каталог",cat_title:"Продукция",cat_lead:"Добавляйте позиции в список и отправляйте одним заказом. Цена указывается в коммерческом предложении.",
 all:"Все",price:"Цена: в коммерческом предложении",add:"В список",added:"В списке",empty:"Позиция не найдена. Укажите её в заказе, и мы включим её в КП.",
 cat_note:"В каталоге показаны основные позиции, можно заказать и другие товары.",
-proc_eyebrow:"Порядок работы",proc_title:"Пять шагов от заказа до поставки",
-p1_t:"Заказ",p1_d:"Вы оформляете заказ через сайт, по телефону или электронной почте.",
-p2_t:"Коммерческое предложение",p2_d:"Готовим официальное предложение с ценами и сроками.",
-p3_t:"Договор",p3_d:"Количество, качество и сроки закрепляются в договоре.",
-p4_t:"Перечисление",p4_d:"Оплата через банк, по безналичному расчёту.",
-p5_t:"Поставка",p5_d:"Товар доставляется до объекта с полным пакетом документов.",
-about_eyebrow:"Кто мы",about_title:"Официальный поставщик для предприятий и государственных организаций.",
-about_p:"Работаем со строительными и подрядными организациями, производственными предприятиями, учреждениями образования и здравоохранения, государственными учреждениями. Каждая поставка по договору и с полным пакетом документов.",
-mission:"Обеспечивать предприятия и государственные организации необходимой продукцией <b>официально, прозрачно и в срок</b>.",
-v1:"Надёжность",v1d:"Количество, качество и сроки по договору выполняются безоговорочно.",v2:"Прозрачность",v2d:"Каждая поставка с полным пакетом документов.",
-v3:"Широкий охват",v3d:"Четыре направления, один поставщик.",v4:"Ответственность",v4d:"Бережём бюджет и время партнёра.",
 req_eyebrow:"Заказ",req_quote:"Уважаемый партнёр! Оформите заказ: подготовим КП и поставим по договору.",
 req_sub:"Добавьте позиции из каталога или впишите перечень вручную.",req_inlist:"позиций в вашем списке",req_open:"Открыть список",
 f_org:"Название организации",f_org_ph:"Название организации или предприятия",f_inn:"ИНН",opt:"(необязательно)",f_name:"Контактное лицо",f_name_ph:"Имя и фамилия",f_phone:"Телефон",
@@ -925,31 +830,18 @@ f_tag:"Снабжение предприятий и государственны
 clear:"Очистить",go_request:"Перейти к заказу",dr_empty:"Список пока пуст. Добавьте позиции из каталога.",remove:"Удалить",
 toast:"Добавлено в список",theme_dark:"Тёмная тема",theme_light:"Светлая тема",bb_home:"Главная",bb_list:"Список",bb_contact:"Связь",list_head:"Из каталога:"},
 
-en:{f_file:"Attach a file",f_file_btn:"Choose file",f_file_none:"No file chosen",f_file_hint:"Excel, CSV, PDF, Word or image, up to 10 MB",err_file:"This file type is not accepted or the file is larger than 10 MB",file_only:"The list is in the attached file",ig_open:"Open page",more:"Show {n} more",search_ph_s:"Search products",ac_title:"My account",ac_short:"Account",ac_sub_out:"sign in",ac_in:"Sign in",ac_up:"Register",ac_email:"Email",ac_pass:"Password",ac_pass_new:"New password (at least 8 characters)",ac_first:"First name",ac_last:"Last name",ac_forgot:"Forgot your password?",ac_forgot_lead:"Enter your email and we will send a password reset link.",ac_forgot_send:"Send link",ac_forgot_done:"If this email is registered, a reset link has been sent. Check your inbox.",ac_back:"Back",ac_reset_lead:"Enter a new password.",ac_reset_done:"Password updated.",ac_save:"Save",ac_saved_profile:"Details saved.",ac_out:"Sign out",ac_profile:"Profile",ac_orders:"Orders",ac_purchases:"Purchases",ac_loading:"Loading...",ac_no_orders:"No orders yet.",ac_no_purchases:"No completed purchases yet. An order appears here once delivered.",ac_to_catalog:"Go to catalog",ac_load_fail:"Could not load your history. Please try later.",ac_st_new:"New",ac_st_processing:"In progress",ac_st_delivered:"Delivered",ac_st_cancelled:"Cancelled",ac_sum:"UZS",ac_confirm:"A confirmation email was sent to your email. Follow the link, then sign in.",ac_e_email:"Enter a valid email address",ac_e_pass:"Password must be at least 8 characters",ac_e_first:"Enter your first name",ac_e_last:"Enter your last name",ac_e_cred:"Wrong email or password.",ac_e_unconf:"Please confirm your address using the link in your email first.",ac_e_exists:"This email is already registered. Please sign in.",ac_e_rate:"Too many attempts. Please try again shortly.",ac_e_gen:"The service is temporarily unavailable. Please try later or call "+PHONE_MAIN,ac_rq_in:"This order will be saved to your account:",ac_rq_out:"To keep your order history,",ac_rq_login:"sign in to your account",ac_order_saved:"Order #{n} was saved to your account.",catalog:"Catalog",search_ph:"Search products, e.g. sponge",list:"Order list",list_sub:"for a commercial offer",
-nav_dirs:"Product lines",nav_catalog:"Catalog",nav_process:"How we work",nav_about:"Company",nav_contacts:"Contacts",nav_request:"Place an order",
+en:{partners_eyebrow:"Partners",partners_title:"Our partners",f_file:"Attach a file",f_file_btn:"Choose file",f_file_none:"No file chosen",f_file_hint:"Excel, CSV, PDF, Word or image, up to 10 MB",err_file:"This file type is not accepted or the file is larger than 10 MB",file_only:"The list is in the attached file",ig_open:"Open page",more:"Show {n} more",search_ph_s:"Search products",ac_title:"My account",ac_short:"Account",ac_sub_out:"sign in",ac_in:"Sign in",ac_up:"Register",ac_email:"Email",ac_pass:"Password",ac_pass_new:"New password (at least 8 characters)",ac_first:"First name",ac_last:"Last name",ac_forgot:"Forgot your password?",ac_forgot_lead:"Enter your email and we will send a password reset link.",ac_forgot_send:"Send link",ac_forgot_done:"If this email is registered, a reset link has been sent. Check your inbox.",ac_back:"Back",ac_reset_lead:"Enter a new password.",ac_reset_done:"Password updated.",ac_save:"Save",ac_saved_profile:"Details saved.",ac_out:"Sign out",ac_profile:"Profile",ac_orders:"Orders",ac_purchases:"Purchases",ac_loading:"Loading...",ac_no_orders:"No orders yet.",ac_no_purchases:"No completed purchases yet. An order appears here once delivered.",ac_to_catalog:"Go to catalog",ac_load_fail:"Could not load your history. Please try later.",ac_st_new:"New",ac_st_processing:"In progress",ac_st_delivered:"Delivered",ac_st_cancelled:"Cancelled",ac_sum:"UZS",ac_confirm:"A confirmation email was sent to your email. Follow the link, then sign in.",ac_e_email:"Enter a valid email address",ac_e_pass:"Password must be at least 8 characters",ac_e_first:"Enter your first name",ac_e_last:"Enter your last name",ac_e_cred:"Wrong email or password.",ac_e_unconf:"Please confirm your address using the link in your email first.",ac_e_exists:"This email is already registered. Please sign in.",ac_e_rate:"Too many attempts. Please try again shortly.",ac_e_gen:"The service is temporarily unavailable. Please try later or call "+PHONE_MAIN,ac_rq_in:"This order will be saved to your account:",ac_rq_out:"To keep your order history,",ac_rq_login:"sign in to your account",ac_order_saved:"Order #{n} was saved to your account.",catalog:"Catalog",search_ph:"Search products, e.g. sponge",list:"Order list",list_sub:"for a commercial offer",
+nav_dirs:"Product lines",nav_catalog:"Catalog",nav_contacts:"Contacts",nav_request:"Place an order",
 pos:"items",
 s1_eyebrow:"Supply for companies and government organisations",s1_l1:"One partner.",s1_l2:"Four product lines.",s1_l3:"One contract.",
 s1_p:"Cleaning products, sponges and wipes, bags, cleaning tools. Payment by bank transfer.",
 cta_send:"Place an order",cta_catalog:"Open catalog",
 s2_eyebrow:"Payment",s2_h:"Bank transfer",s2_tag:"cashless payment",s2_p:"Every delivery comes with a contract and full documentation.",
 s3_eyebrow:"Logistics",s3_h:"Delivered to your site.",s3_p:"Goods arrive at your site within the timeframe agreed in the contract.",
-who_t:"Who we serve",who1:"Construction and contracting firms",who2:"Manufacturing companies",who3:"Education and healthcare institutions",who4:"Government agencies",
-side_t:"Is your order ready?",side_p:"Pick items from the catalog or type your own list and place an order. We will prepare a commercial offer.",
 dirs_eyebrow:"Product lines",dirs_title:"Four product lines, one supplier",to_cat:"To catalog",
 cat_eyebrow:"Catalog",cat_title:"Products",cat_lead:"Add items to your list and send them in one order. Prices are given in the commercial offer.",
 all:"All",price:"Price: in the commercial offer",add:"Add to list",added:"In list",empty:"No matching item. Mention it in your order and we will include it in the offer.",
 cat_note:"The catalog shows our main items; other products can be ordered too.",
-proc_eyebrow:"How we work",proc_title:"Five steps from order to delivery",
-p1_t:"Order",p1_d:"You place your order via the website, by phone or by email.",
-p2_t:"Commercial offer",p2_d:"We prepare a formal offer with prices and lead times.",
-p3_t:"Contract",p3_d:"Quantity, quality and deadlines are fixed in the contract.",
-p4_t:"Bank transfer",p4_d:"Payment is made through the bank by transfer.",
-p5_t:"Delivery",p5_d:"Goods are delivered to your site with full documentation.",
-about_eyebrow:"Who we are",about_title:"An official supplier for companies and government organisations.",
-about_p:"We work with construction and contracting firms, manufacturers, education and healthcare institutions, and government agencies. Every delivery comes with a contract and full documentation.",
-mission:"To supply companies and government organisations with the products they need, <b>officially, transparently and on time</b>.",
-v1:"Reliability",v1d:"Contracted quantity, quality and deadlines are met without exception.",v2:"Transparency",v2d:"Every delivery comes with full documentation.",
-v3:"Broad range",v3d:"Four product lines, one supplier.",v4:"Responsibility",v4d:"We protect our partner's budget and time.",
 req_eyebrow:"Order",req_quote:"Dear partner, place your order: we will prepare a commercial offer and deliver under contract.",
 req_sub:"Add items from the catalog or type your list by hand.",req_inlist:"items in your list",req_open:"View list",
 f_org:"Organisation name",f_org_ph:"Organisation or company name",f_inn:"Tax ID (STIR)",opt:"(optional)",f_name:"Contact person",f_name_ph:"First and last name",f_phone:"Phone",
@@ -1041,7 +933,15 @@ function applyLang(){
   $$(".langs button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
   $("#mapLink").href = "https://yandex.uz/maps/org/spektr_stroy_invest/120661517051/";
   $("#mapFrame").title = t("addr");
-  syncTheme(); renderDirs(); renderTabs(); renderCards(); renderDrawer(); renderFooterCats(); updateCounts(); acRender(); syncFile(); paintAcMsg(); paintStatus();
+  syncTheme(); renderDirs(); renderTabs(); renderCards(); renderDrawer(); renderFooterCats(); renderPartners(); updateCounts(); acRender(); syncFile(); paintAcMsg(); paintStatus();
+}
+function renderPartners(){
+  const on = PARTNERS.length > 0;
+  $("#partners").hidden = !on; $$("[data-partners]").forEach(el => el.hidden = !on);
+  $("#pgrid").innerHTML = PARTNERS.map(p => {
+    const inner = p.logo ? `<img src="${esc(p.logo)}" alt="${esc(p.name)}" loading="lazy">` : esc(p.name);
+    return p.url ? `<a class="pcard" href="${esc(p.url)}" target="_blank" rel="noopener">${inner}</a>` : `<div class="pcard">${inner}</div>`;
+  }).join("");
 }
 function renderDirs(){
   $("#dirs").innerHTML = Object.entries(DIRS).map(([k,v],i) =>
