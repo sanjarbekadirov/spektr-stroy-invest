@@ -943,7 +943,7 @@ function applyLang(){
   $$(".langs button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
   $("#mapLink").href = "https://yandex.uz/maps/org/spektr_stroy_invest/120661517051/";
   $("#mapFrame").title = t("addr");
-  syncTheme(); renderDirs(); renderTabs(); renderCards(); renderDrawer(); renderFooterCats(); updateCounts(); acRender(); syncFile();
+  syncTheme(); renderDirs(); renderTabs(); renderCards(); renderDrawer(); renderFooterCats(); updateCounts(); acRender(); syncFile(); paintAcMsg(); paintStatus();
 }
 function renderDirs(){
   $("#dirs").innerHTML = Object.entries(DIRS).map(([k,v],i) =>
@@ -1084,6 +1084,10 @@ $("#ofClear").addEventListener("click", () => { $("#ofile").value = ""; mark("fi
 $("#inn").addEventListener("input", e => e.target.value = e.target.value.replace(/\D/g,"").slice(0,9));
 
 /* submit */
+/* matn funksiya sifatida saqlanadi: til almashganda qayta chiziladi */
+let rqStatus = null;
+function paintStatus(){ if (!rqStatus) return; const st = $("#status"); st.className = "status " + rqStatus.cls; st.hidden = false; st.innerHTML = rqStatus.render(); }
+function showStatus(cls, render){ rqStatus = { cls, render }; paintStatus(); }
 function mark(id, ok){ $("#f-"+id).classList.toggle("bad", !ok); $("#f-"+id+" .err").hidden = ok; return ok; }
 $("#rq").addEventListener("submit", async e => {
   e.preventDefault();
@@ -1102,10 +1106,9 @@ $("#rq").addEventListener("submit", async e => {
       att.attachment_path = path; att.attachment_name = file.name.slice(-200);
     }
     const order = await acSaveOrder({ org, inn: $("#inn").value, contact_name: nm, phone: phone.value, address: $("#addr").value.trim(), request_text: pl || t("file_only"), lang, ...att });
-    st.className = "status ok"; st.hidden = false;
-    st.textContent = t("ok") + (order ? " " + t("ac_order_saved").replace("{n}", order.id) : "");
+    showStatus("ok", () => esc(t("ok") + (order ? " " + t("ac_order_saved").replace("{n}", order.id) : "")));
     e.target.reset(); phone.value = "+998 "; list = {}; save(); updateCounts(); renderDrawer(); renderCards(); acPrefill(); syncFile();
-  } catch(err){ console.error(err); st.className = "status warn"; st.hidden = false; st.innerHTML = esc(t("fail")) + `<pre>${esc(text)}</pre>`; }
+  } catch(err){ console.error(err); showStatus("warn", () => esc(t("fail")) + `<pre>${esc(text)}</pre>`); }
   finally { btn.disabled = false; btn.textContent = t("f_send"); }
 });
 
@@ -1128,7 +1131,9 @@ const SB_SRI = "sha384-GFr3yTh5lJznCbZfpTtXnwboFsxqtTQoeTZCRHhE0579KrRmlCzen5AA8
 const ac = { sb:null, user:null, profile:null, orders:null, failed:false, recovery:false, auth:"in", forgot:false, tab:"orders" };
 
 const fullName = () => ac.profile ? `${ac.profile.first_name} ${ac.profile.last_name}`.trim() : "";
-function acMsg(text, ok){ const m = $("#acMsg"); m.hidden = !text; m.className = "status " + (ok ? "ok" : "warn"); m.textContent = text || ""; if (text) m.scrollIntoView({block:"nearest"}); }
+let acMsgNow = null;
+function acMsg(render, ok){ acMsgNow = render ? { render, ok } : null; paintAcMsg(); if (render) $("#acMsg").scrollIntoView({block:"nearest"}); }
+function paintAcMsg(){ const m = $("#acMsg"), c = acMsgNow; m.hidden = !c; m.className = "status " + (c && c.ok ? "ok" : "warn"); m.textContent = c ? c.render() : ""; }
 function acErr(e){
   const c = (e && e.code) || "", m = String((e && e.message) || "");
   if (c === "invalid_credentials" || /invalid login/i.test(m)) return t("ac_e_cred");
@@ -1140,9 +1145,9 @@ function acErr(e){
 }
 async function acSubmit(form, fn){
   const b = form.querySelector('[type="submit"]');
-  if (!ac.sb) return acMsg(t("ac_e_gen"));
+  if (!ac.sb) return acMsg(() => t("ac_e_gen"));
   acMsg(""); b.disabled = true; b.textContent = t("sending");
-  try { await fn(); } catch(err){ console.error(err); acMsg(acErr(err)); }
+  try { await fn(); } catch(err){ console.error(err); acMsg(() => acErr(err)); }
   finally { b.disabled = false; b.textContent = t(b.dataset.i18n); }
 }
 const sbCheck = r => { if (r.error) throw r.error; return r.data; };
@@ -1211,7 +1216,7 @@ async function acSaveOrder(row){
 }
 function acOpen(){
   closeDrawer(); document.body.classList.add("aopen"); $("#acct").setAttribute("aria-hidden","false"); setTimeout(() => $("#acClose").focus(), 50);
-  if (!ac.sb) acMsg(t("ac_e_gen"));
+  if (!ac.sb) acMsg(() => t("ac_e_gen"));
   if (ac.user && ac.sb) acLoadOrders();
 }
 function acClose(){ document.body.classList.remove("aopen"); $("#acct").setAttribute("aria-hidden","true"); }
@@ -1242,22 +1247,22 @@ $("#acUp").addEventListener("submit", e => {
   acSubmit(e.target, async () => {
     const d = sbCheck(await ac.sb.auth.signUp({ email, password, options:{ data:{ first_name, last_name, phone: tel }, emailRedirectTo: redirectTo() } }));
     /* Email tasdiqlash yoqilganda, band manzil uchun Supabase xato emas, identities bo'sh user qaytaradi */
-    if (d.user && !d.session && !(d.user.identities || []).length) return acMsg(t("ac_e_exists"));
+    if (d.user && !d.session && !(d.user.identities || []).length) return acMsg(() => t("ac_e_exists"));
     e.target.reset(); $("#upPhone").value = "+998 ";
-    if (!d.session){ ac.auth = "in"; acRender(); acMsg(t("ac_confirm"), true); }
+    if (!d.session){ ac.auth = "in"; acRender(); acMsg(() => t("ac_confirm"), true); }
   });
 });
 $("#acForgot").addEventListener("submit", e => {
   e.preventDefault();
   const email = $("#fgEmail").value.trim().toLowerCase();
   if (!mark("fgEmail", EMAIL_RE.test(email))) return;
-  acSubmit(e.target, async () => { sbCheck(await ac.sb.auth.resetPasswordForEmail(email, { redirectTo: redirectTo() })); acMsg(t("ac_forgot_done"), true); });
+  acSubmit(e.target, async () => { sbCheck(await ac.sb.auth.resetPasswordForEmail(email, { redirectTo: redirectTo() })); acMsg(() => t("ac_forgot_done"), true); });
 });
 $("#acReset").addEventListener("submit", e => {
   e.preventDefault();
   const password = $("#rsPass").value;
   if (!mark("rsPass", password.length >= 8)) return;
-  acSubmit(e.target, async () => { sbCheck(await ac.sb.auth.updateUser({ password })); e.target.reset(); ac.recovery = false; acRender(); acMsg(t("ac_reset_done"), true); });
+  acSubmit(e.target, async () => { sbCheck(await ac.sb.auth.updateUser({ password })); e.target.reset(); ac.recovery = false; acRender(); acMsg(() => t("ac_reset_done"), true); });
 });
 $("#acProfile").addEventListener("submit", e => {
   e.preventDefault();
@@ -1266,7 +1271,7 @@ $("#acProfile").addEventListener("submit", e => {
   if (ok.includes(false)) return;
   acSubmit(e.target, async () => {
     ac.profile = sbCheck(await ac.sb.from("profiles").update({ first_name, last_name, phone: tel }).eq("id", ac.user.id).select().single());
-    acRender(); acMsg(t("ac_saved_profile"), true);
+    acRender(); acMsg(() => t("ac_saved_profile"), true);
   });
 });
 
