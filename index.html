@@ -200,7 +200,9 @@ section.sec{padding-block:72px}
 .card{border:1px solid var(--line);border-radius:12px;display:flex;flex-direction:column;overflow:hidden;min-width:0;background:var(--surface);transition:box-shadow .2s}
 .card:hover{box-shadow:0 10px 28px rgba(28,19,64,.1)}
 .card .media{background:var(--surface-2);aspect-ratio:16/10;display:grid;place-items:center;position:relative;max-width:100%}
-.card .media .code{position:absolute;top:10px;right:12px;font-size:.72rem;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums}
+.card .media{overflow:hidden}
+.card .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card .media .code{position:absolute;top:10px;right:10px;font-size:.72rem;font-weight:600;color:#fff;background:rgba(22,20,31,.72);padding:2px 7px;border-radius:5px;font-variant-numeric:tabular-nums}
 .card .media .dtag{position:absolute;top:10px;left:12px;display:flex;align-items:center;gap:6px;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .card .media .dtag i{width:8px;height:8px;border-radius:50%;background:var(--c)}
 .card .body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
@@ -645,7 +647,7 @@ body.aopen .drawer.acct{transform:none;visibility:visible}
     <div><h4 data-i18n="f_company"></h4><ul><li><a href="#about" data-i18n="nav_about"></a></li><li><a href="#process" data-i18n="nav_process"></a></li><li><a href="#contacts" data-i18n="nav_contacts"></a></li></ul></div>
     <div><h4 data-i18n="catalog"></h4><ul id="fCats"></ul></div>
     <div><h4 data-i18n="f_partners"></h4><ul><li><a href="#request" data-i18n="nav_request"></a></li><li data-i18n="f_pay"></li><li data-i18n="f_delivery"></li><li><a href="tel:+998781201200">+998 78 120 12 00</a></li></ul></div>
-    <div class="bottom"><span>© 2026 «SPEKTR STROY INVEST» MChJ</span><span data-i18n="addr"></span></div>
+    <div class="bottom"><span>© 2026 «SPEKTR STROY INVEST» MChJ</span><a href="credits.html" data-i18n="img_credits"></a><span data-i18n="addr"></span></div>
   </div>
 </footer>
 
@@ -762,22 +764,22 @@ const P = [
 ];
 
 const T = {
-uz:{search_ph_s:"Mahsulot qidirish",ac_title:"Shaxsiy kabinet",ac_short:"Kabinet",ac_sub_out:"kirish",ac_in:"Kirish",ac_up:"Ro'yxatdan o'tish",ac_email:"Elektron pochta",ac_pass:"Parol",ac_pass_new:"Yangi parol (kamida 8 belgi)",ac_first:"Ism",ac_last:"Familiya",ac_forgot:"Parolni unutdingizmi?",ac_forgot_lead:"Elektron pochtangizni kiriting, parolni tiklash havolasini yuboramiz.",ac_forgot_send:"Havola yuborish",ac_forgot_done:"Agar bu pochta ro'yxatdan o'tgan bo'lsa, tiklash havolasi yuborildi. Pochtangizni tekshiring.",ac_back:"Orqaga",ac_reset_lead:"Yangi parolni kiriting.",ac_reset_done:"Parol yangilandi.",ac_save:"Saqlash",ac_saved_profile:"Ma'lumotlar saqlandi.",ac_out:"Chiqish",ac_profile:"Profil",ac_orders:"Buyurtmalar",ac_purchases:"Haridlar",ac_loading:"Yuklanmoqda...",ac_no_orders:"Hali buyurtmalar yo'q.",ac_no_purchases:"Hali yakunlangan haridlar yo'q. Buyurtma yetkazilgach, shu yerda ko'rinadi.",ac_to_catalog:"Katalogga o'tish",ac_load_fail:"Tarixni yuklab bo'lmadi. Keyinroq urinib ko'ring.",ac_st_new:"Yangi",ac_st_processing:"Jarayonda",ac_st_delivered:"Yetkazildi",ac_st_cancelled:"Bekor qilingan",ac_sum:"so'm",ac_confirm:"Elektron pochtangizga tasdiqlash xati yuborildi. Havolani bosing, so'ng kiring.",ac_e_email:"To'g'ri elektron pochta manzilini kiriting",ac_e_pass:"Parol kamida 8 belgidan iborat bo'lsin",ac_e_first:"Ismni kiriting",ac_e_last:"Familiyani kiriting",ac_e_cred:"Elektron pochta yoki parol noto'g'ri.",ac_e_unconf:"Avval elektron pochtangizdagi havola orqali manzilni tasdiqlang.",ac_e_exists:"Bu elektron pochta allaqachon ro'yxatdan o'tgan. Kirish bo'limidan foydalaning.",ac_e_rate:"Urinishlar juda ko'p. Birozdan so'ng qayta urining.",ac_e_gen:"Xizmat vaqtincha ishlamayapti. Keyinroq urinib ko'ring yoki qo'ng'iroq qiling: "+PHONE_MAIN,ac_rq_in:"Buyurtma kabinetingizda saqlanadi:",ac_rq_out:"Buyurtmalar tarixi saqlanishi uchun",ac_rq_login:"kabinetga kiring",ac_order_saved:"Buyurtma №{n} kabinetingizga saqlandi.",top_hours:"Ish vaqti: 09:00-17:00",catalog:"Katalog",search_ph:"Mahsulot qidirish, masalan: sement",list:"So'rov ro'yxati",list_sub:"tijorat taklifi uchun",
-nav_dirs:"Yo'nalishlar",nav_catalog:"Katalog",nav_process:"Ishlash tartibi",nav_about:"Kompaniya",nav_contacts:"Kontaktlar",nav_request:"So'rov yuborish",
+uz:{img_credits:"Rasm manbalari",search_ph_s:"Mahsulot qidirish",ac_title:"Shaxsiy kabinet",ac_short:"Kabinet",ac_sub_out:"kirish",ac_in:"Kirish",ac_up:"Ro'yxatdan o'tish",ac_email:"Elektron pochta",ac_pass:"Parol",ac_pass_new:"Yangi parol (kamida 8 belgi)",ac_first:"Ism",ac_last:"Familiya",ac_forgot:"Parolni unutdingizmi?",ac_forgot_lead:"Elektron pochtangizni kiriting, parolni tiklash havolasini yuboramiz.",ac_forgot_send:"Havola yuborish",ac_forgot_done:"Agar bu pochta ro'yxatdan o'tgan bo'lsa, tiklash havolasi yuborildi. Pochtangizni tekshiring.",ac_back:"Orqaga",ac_reset_lead:"Yangi parolni kiriting.",ac_reset_done:"Parol yangilandi.",ac_save:"Saqlash",ac_saved_profile:"Ma'lumotlar saqlandi.",ac_out:"Chiqish",ac_profile:"Profil",ac_orders:"Buyurtmalar",ac_purchases:"Haridlar",ac_loading:"Yuklanmoqda...",ac_no_orders:"Hali buyurtmalar yo'q.",ac_no_purchases:"Hali yakunlangan haridlar yo'q. Buyurtma yetkazilgach, shu yerda ko'rinadi.",ac_to_catalog:"Katalogga o'tish",ac_load_fail:"Tarixni yuklab bo'lmadi. Keyinroq urinib ko'ring.",ac_st_new:"Yangi",ac_st_processing:"Jarayonda",ac_st_delivered:"Yetkazildi",ac_st_cancelled:"Bekor qilingan",ac_sum:"so'm",ac_confirm:"Elektron pochtangizga tasdiqlash xati yuborildi. Havolani bosing, so'ng kiring.",ac_e_email:"To'g'ri elektron pochta manzilini kiriting",ac_e_pass:"Parol kamida 8 belgidan iborat bo'lsin",ac_e_first:"Ismni kiriting",ac_e_last:"Familiyani kiriting",ac_e_cred:"Elektron pochta yoki parol noto'g'ri.",ac_e_unconf:"Avval elektron pochtangizdagi havola orqali manzilni tasdiqlang.",ac_e_exists:"Bu elektron pochta allaqachon ro'yxatdan o'tgan. Kirish bo'limidan foydalaning.",ac_e_rate:"Urinishlar juda ko'p. Birozdan so'ng qayta urining.",ac_e_gen:"Xizmat vaqtincha ishlamayapti. Keyinroq urinib ko'ring yoki qo'ng'iroq qiling: "+PHONE_MAIN,ac_rq_in:"Buyurtma kabinetingizda saqlanadi:",ac_rq_out:"Buyurtmalar tarixi saqlanishi uchun",ac_rq_login:"kabinetga kiring",ac_order_saved:"Buyurtma №{n} kabinetingizga saqlandi.",top_hours:"Ish vaqti: 09:00-17:00",catalog:"Katalog",search_ph:"Mahsulot qidirish, masalan: sement",list:"Buyurtma ro'yxati",list_sub:"tijorat taklifi uchun",
+nav_dirs:"Yo'nalishlar",nav_catalog:"Katalog",nav_process:"Ishlash tartibi",nav_about:"Kompaniya",nav_contacts:"Kontaktlar",nav_request:"Buyurtma berish",
 pos:"pozitsiya",
 s1_eyebrow:"Korxonalar va davlat tashkilotlari uchun ta'minot",s1_l1:"Bitta hamkor.",s1_l2:"To'rt yo'nalish.",s1_l3:"Bitta shartnoma.",
 s1_p:"Qurilish materiallari, maishiy mahsulotlar, santexnika jihozlari va tozalik vositalari. To'lov pul o'tkazish yo'li bilan.",
-cta_send:"Ro'yxat yuborish",cta_catalog:"Katalogni ochish",
+cta_send:"Buyurtma berish",cta_catalog:"Katalogni ochish",
 s2_eyebrow:"To'lov",s2_h:"Pul o'tkazish",s2_tag:"yo'li bilan",s2_p:"Har bir yetkazib berish shartnoma va to'liq hujjatlar bilan.",
 s3_eyebrow:"Logistika",s3_h:"Obyektgacha yetkazamiz.",s3_p:"Mahsulot shartnomada kelishilgan muddatda obyektingizga yetkaziladi.",
 who_t:"Kimlar uchun",who1:"Qurilish va pudrat tashkilotlari",who2:"Ishlab chiqarish korxonalari",who3:"Ta'lim va tibbiyot muassasalari",who4:"Davlat idoralari",
-side_t:"Ro'yxatingiz tayyormi?",side_p:"Pozitsiyalarni katalogdan tanlang yoki ro'yxatni to'g'ridan-to'g'ri yuboring. Tijorat taklifini tayyorlaymiz.",
+side_t:"Buyurtmangiz tayyormi?",side_p:"Pozitsiyalarni katalogdan tanlang yoki ro'yxatni o'zingiz yozib, buyurtma bering. Tijorat taklifini tayyorlaymiz.",
 dirs_eyebrow:"Yo'nalishlar",dirs_title:"To'rt yo'nalish, bitta ta'minotchi",to_cat:"Katalogga",
-cat_eyebrow:"Katalog",cat_title:"Mahsulotlar",cat_lead:"Pozitsiyalarni ro'yxatga qo'shing va bitta so'rov bilan yuboring. Narx tijorat taklifida ko'rsatiladi.",
-all:"Hammasi",price:"Narx: tijorat taklifida",add:"Ro'yxatga",added:"Ro'yxatda",empty:"Bu nom bo'yicha pozitsiya topilmadi. Uni so'rovda yozib qoldiring, tijorat taklifiga qo'shamiz.",
-cat_note:"Katalogda asosiy pozitsiyalar ko'rsatilgan. Boshqa mahsulotlar bo'yicha ham so'rov yuboring.",
-proc_eyebrow:"Ishlash tartibi",proc_title:"So'rovdan yetkazib berishgacha besh qadam",
-p1_t:"So'rov",p1_d:"Ro'yxatni sayt, telefon yoki elektron pochta orqali yuborasiz.",
+cat_eyebrow:"Katalog",cat_title:"Mahsulotlar",cat_lead:"Pozitsiyalarni ro'yxatga qo'shing va bitta buyurtma bilan yuboring. Narx tijorat taklifida ko'rsatiladi.",
+all:"Hammasi",price:"Narx: tijorat taklifida",add:"Ro'yxatga",added:"Ro'yxatda",empty:"Bu nom bo'yicha pozitsiya topilmadi. Uni buyurtmada yozib qoldiring, tijorat taklifiga qo'shamiz.",
+cat_note:"Katalogda asosiy pozitsiyalar ko'rsatilgan, boshqa mahsulotlarga ham buyurtma bering. Rasmlar namunaviy: haqiqiy mahsulot farq qilishi mumkin.",
+proc_eyebrow:"Ishlash tartibi",proc_title:"Buyurtmadan yetkazib berishgacha besh qadam",
+p1_t:"Buyurtma",p1_d:"Buyurtmani sayt, telefon yoki elektron pochta orqali berasiz.",
 p2_t:"Tijorat taklifi",p2_d:"Narx va muddatlar ko'rsatilgan rasmiy taklif tayyorlaymiz.",
 p3_t:"Shartnoma",p3_d:"Miqdor, sifat va muddat shartnomada belgilanadi.",
 p4_t:"Pul o'tkazish",p4_d:"To'lov bank orqali, pul o'tkazish yo'li bilan amalga oshiriladi.",
@@ -787,36 +789,36 @@ about_p:"Qurilish va pudrat tashkilotlari, ishlab chiqarish korxonalari, ta'lim 
 mission:"Korxona va davlat tashkilotlarini kerakli mahsulotlar bilan <b>rasmiy, shaffof va o'z vaqtida</b> ta'minlash.",
 v1:"Ishonchlilik",v1d:"Shartnomadagi miqdor, sifat va muddat so'zsiz bajariladi.",v2:"Shaffoflik",v2d:"Har bir yetkazib berish to'liq hujjatlar bilan.",
 v3:"Keng qamrov",v3d:"To'rt yo'nalish, bitta ta'minotchi.",v4:"Mas'uliyat",v4d:"Hamkorning byudjeti va vaqtini asraymiz.",
-req_eyebrow:"So'rov",req_quote:"Hurmatli hamkor! Ro'yxatni yuboring: tijorat taklifini tayyorlab, shartnoma asosida yetkazib beramiz.",
+req_eyebrow:"Buyurtma",req_quote:"Hurmatli hamkor! Buyurtma bering: tijorat taklifini tayyorlab, shartnoma asosida yetkazib beramiz.",
 req_sub:"Pozitsiyalarni katalogdan qo'shing yoki ro'yxatni qo'lda yozing.",req_inlist:"pozitsiya ro'yxatingizda",req_open:"Ro'yxatni ko'rish",
 f_org:"Tashkilot nomi",f_org_ph:"Tashkilot yoki korxona nomi",f_inn:"STIR",opt:"(ixtiyoriy)",f_name:"Mas'ul shaxs",f_name_ph:"Ism va familiya",f_phone:"Telefon",
-f_list:"Pozitsiyalar ro'yxati",f_list_ph:"Har bir qatorda: mahsulot, miqdor, o'lchov",f_addr:"Yetkazib berish manzili",f_send:"So'rov yuborish",
+f_list:"Pozitsiyalar ro'yxati",f_list_ph:"Har bir qatorda: mahsulot, miqdor, o'lchov",f_addr:"Yetkazib berish manzili",f_send:"Buyurtma berish",
 f_note:"Ma'lumotlaringiz faqat tijorat taklifini tayyorlash uchun ishlatiladi.",
 err_org:"Tashkilot nomini kiriting",err_name:"Mas'ul shaxs ismini kiriting",err_phone:"Raqamni +998 XX XXX XX XX ko'rinishida kiriting",err_list:"Kamida bitta pozitsiya yozing",
-ok:"Rahmat, so'rovingiz qabul qilindi. Menejer tijorat taklifi bo'yicha siz bilan bog'lanadi.",sending:"Yuborilmoqda...",
-fail:"So'rovni yuborib bo'lmadi. Iltimos, qo'ng'iroq qiling: "+PHONE_MAIN+". So'rov matni:",
+ok:"Rahmat, buyurtmangiz qabul qilindi. Menejer tijorat taklifi bo'yicha siz bilan bog'lanadi.",sending:"Yuborilmoqda...",
+fail:"Buyurtmani yuborib bo'lmadi. Iltimos, qo'ng'iroq qiling: "+PHONE_MAIN+". Buyurtma matni:",
 ct_eyebrow:"Kontaktlar",addr_k:"Manzil",addr:"Toshkent, Chilonzor tumani, Muqimiy ko'chasi 14/27",land:"Mo'ljal: Muqimiy va Chilonzor ko'chalari chorrahasi, Novza metrosi",
 hours_k:"Ish vaqti",hours:"Har kuni, 09:00-17:00",pay_note:"To'lov: pul o'tkazish yo'li bilan",mail_k:"E-pochta",map:"Xaritada ochish",copy:"Nusxa olish",copied:"Nusxa olindi",
 f_tag:"Korxonalar va davlat tashkilotlari uchun ta'minot.",f_company:"Kompaniya",f_partners:"Hamkorlarga",f_pay:"To'lov: pul o'tkazish",f_delivery:"Obyektgacha yetkazib berish",
-clear:"Tozalash",go_request:"So'rovga o'tish",dr_empty:"Ro'yxat hozircha bo'sh. Katalogdan pozitsiyalarni qo'shing.",remove:"O'chirish",
+clear:"Tozalash",go_request:"Buyurtmaga o'tish",dr_empty:"Ro'yxat hozircha bo'sh. Katalogdan pozitsiyalarni qo'shing.",remove:"O'chirish",
 toast:"Ro'yxatga qo'shildi",theme_dark:"Qorong'u rejim",theme_light:"Yorug' rejim",bb_home:"Bosh sahifa",bb_list:"Ro'yxat",bb_contact:"Aloqa",list_head:"Katalogdan:"},
 
-ru:{search_ph_s:"Поиск товара",ac_title:"Личный кабинет",ac_short:"Кабинет",ac_sub_out:"вход",ac_in:"Войти",ac_up:"Регистрация",ac_email:"Электронная почта",ac_pass:"Пароль",ac_pass_new:"Новый пароль (минимум 8 символов)",ac_first:"Имя",ac_last:"Фамилия",ac_forgot:"Забыли пароль?",ac_forgot_lead:"Введите вашу электронную почту, мы отправим ссылку для восстановления пароля.",ac_forgot_send:"Отправить ссылку",ac_forgot_done:"Если эта почта зарегистрирована, ссылка отправлена. Проверьте почту.",ac_back:"Назад",ac_reset_lead:"Введите новый пароль.",ac_reset_done:"Пароль обновлён.",ac_save:"Сохранить",ac_saved_profile:"Данные сохранены.",ac_out:"Выйти",ac_profile:"Профиль",ac_orders:"Заказы",ac_purchases:"Покупки",ac_loading:"Загрузка...",ac_no_orders:"Заказов пока нет.",ac_no_purchases:"Завершённых покупок пока нет. Заказ появится здесь после доставки.",ac_to_catalog:"Перейти в каталог",ac_load_fail:"Не удалось загрузить историю. Попробуйте позже.",ac_st_new:"Новый",ac_st_processing:"В работе",ac_st_delivered:"Доставлен",ac_st_cancelled:"Отменён",ac_sum:"сум",ac_confirm:"На вашу почту отправлено письмо. Перейдите по ссылке, затем войдите.",ac_e_email:"Введите правильный адрес электронной почты",ac_e_pass:"Пароль должен содержать минимум 8 символов",ac_e_first:"Введите имя",ac_e_last:"Введите фамилию",ac_e_cred:"Неверная электронная почта или пароль.",ac_e_unconf:"Сначала подтвердите адрес по ссылке из письма.",ac_e_exists:"Эта почта уже зарегистрирована. Используйте вход.",ac_e_rate:"Слишком много попыток. Повторите немного позже.",ac_e_gen:"Сервис временно недоступен. Попробуйте позже или позвоните: "+PHONE_MAIN,ac_rq_in:"Заказ сохранится в вашем кабинете:",ac_rq_out:"Чтобы сохранять историю заказов,",ac_rq_login:"войдите в кабинет",ac_order_saved:"Заказ №{n} сохранён в вашем кабинете.",top_hours:"Режим работы: 09:00-17:00",catalog:"Каталог",search_ph:"Поиск товара, например: цемент",list:"Список запроса",list_sub:"для коммерческого предложения",
-nav_dirs:"Направления",nav_catalog:"Каталог",nav_process:"Порядок работы",nav_about:"О компании",nav_contacts:"Контакты",nav_request:"Отправить запрос",
+ru:{img_credits:"Источники фото",search_ph_s:"Поиск товара",ac_title:"Личный кабинет",ac_short:"Кабинет",ac_sub_out:"вход",ac_in:"Войти",ac_up:"Регистрация",ac_email:"Электронная почта",ac_pass:"Пароль",ac_pass_new:"Новый пароль (минимум 8 символов)",ac_first:"Имя",ac_last:"Фамилия",ac_forgot:"Забыли пароль?",ac_forgot_lead:"Введите вашу электронную почту, мы отправим ссылку для восстановления пароля.",ac_forgot_send:"Отправить ссылку",ac_forgot_done:"Если эта почта зарегистрирована, ссылка отправлена. Проверьте почту.",ac_back:"Назад",ac_reset_lead:"Введите новый пароль.",ac_reset_done:"Пароль обновлён.",ac_save:"Сохранить",ac_saved_profile:"Данные сохранены.",ac_out:"Выйти",ac_profile:"Профиль",ac_orders:"Заказы",ac_purchases:"Покупки",ac_loading:"Загрузка...",ac_no_orders:"Заказов пока нет.",ac_no_purchases:"Завершённых покупок пока нет. Заказ появится здесь после доставки.",ac_to_catalog:"Перейти в каталог",ac_load_fail:"Не удалось загрузить историю. Попробуйте позже.",ac_st_new:"Новый",ac_st_processing:"В работе",ac_st_delivered:"Доставлен",ac_st_cancelled:"Отменён",ac_sum:"сум",ac_confirm:"На вашу почту отправлено письмо. Перейдите по ссылке, затем войдите.",ac_e_email:"Введите правильный адрес электронной почты",ac_e_pass:"Пароль должен содержать минимум 8 символов",ac_e_first:"Введите имя",ac_e_last:"Введите фамилию",ac_e_cred:"Неверная электронная почта или пароль.",ac_e_unconf:"Сначала подтвердите адрес по ссылке из письма.",ac_e_exists:"Эта почта уже зарегистрирована. Используйте вход.",ac_e_rate:"Слишком много попыток. Повторите немного позже.",ac_e_gen:"Сервис временно недоступен. Попробуйте позже или позвоните: "+PHONE_MAIN,ac_rq_in:"Заказ сохранится в вашем кабинете:",ac_rq_out:"Чтобы сохранять историю заказов,",ac_rq_login:"войдите в кабинет",ac_order_saved:"Заказ №{n} сохранён в вашем кабинете.",top_hours:"Режим работы: 09:00-17:00",catalog:"Каталог",search_ph:"Поиск товара, например: цемент",list:"Список заказа",list_sub:"для коммерческого предложения",
+nav_dirs:"Направления",nav_catalog:"Каталог",nav_process:"Порядок работы",nav_about:"О компании",nav_contacts:"Контакты",nav_request:"Оформить заказ",
 pos:"позиций",
 s1_eyebrow:"Снабжение предприятий и государственных организаций",s1_l1:"Один партнёр.",s1_l2:"Четыре направления.",s1_l3:"Один договор.",
 s1_p:"Строительные материалы, бытовые товары, сантехническое оборудование и чистящие средства. Оплата перечислением.",
-cta_send:"Отправить перечень",cta_catalog:"Открыть каталог",
+cta_send:"Оформить заказ",cta_catalog:"Открыть каталог",
 s2_eyebrow:"Оплата",s2_h:"Перечислением",s2_tag:"по безналичному расчёту",s2_p:"Каждая поставка по договору и с полным пакетом документов.",
 s3_eyebrow:"Логистика",s3_h:"Доставим до объекта.",s3_p:"Товар доставляется на ваш объект в срок, согласованный в договоре.",
 who_t:"Для кого мы работаем",who1:"Строительные и подрядные организации",who2:"Производственные предприятия",who3:"Учреждения образования и здравоохранения",who4:"Государственные учреждения",
-side_t:"Перечень готов?",side_p:"Выберите позиции в каталоге или отправьте перечень напрямую. Подготовим коммерческое предложение.",
+side_t:"Заказ готов?",side_p:"Выберите позиции в каталоге или впишите перечень сами и оформите заказ. Подготовим коммерческое предложение.",
 dirs_eyebrow:"Направления",dirs_title:"Четыре направления, один поставщик",to_cat:"В каталог",
-cat_eyebrow:"Каталог",cat_title:"Продукция",cat_lead:"Добавляйте позиции в список и отправляйте одним запросом. Цена указывается в коммерческом предложении.",
-all:"Все",price:"Цена: в коммерческом предложении",add:"В список",added:"В списке",empty:"Позиция не найдена. Укажите её в запросе, и мы включим её в КП.",
-cat_note:"В каталоге показаны основные позиции. Присылайте запросы и по другим товарам.",
-proc_eyebrow:"Порядок работы",proc_title:"Пять шагов от запроса до поставки",
-p1_t:"Запрос",p1_d:"Вы отправляете перечень через сайт, по телефону или электронной почте.",
+cat_eyebrow:"Каталог",cat_title:"Продукция",cat_lead:"Добавляйте позиции в список и отправляйте одним заказом. Цена указывается в коммерческом предложении.",
+all:"Все",price:"Цена: в коммерческом предложении",add:"В список",added:"В списке",empty:"Позиция не найдена. Укажите её в заказе, и мы включим её в КП.",
+cat_note:"В каталоге показаны основные позиции, можно заказать и другие товары. Фото примерные: реальный товар может отличаться.",
+proc_eyebrow:"Порядок работы",proc_title:"Пять шагов от заказа до поставки",
+p1_t:"Заказ",p1_d:"Вы оформляете заказ через сайт, по телефону или электронной почте.",
 p2_t:"Коммерческое предложение",p2_d:"Готовим официальное предложение с ценами и сроками.",
 p3_t:"Договор",p3_d:"Количество, качество и сроки закрепляются в договоре.",
 p4_t:"Перечисление",p4_d:"Оплата через банк, по безналичному расчёту.",
@@ -826,36 +828,36 @@ about_p:"Работаем со строительными и подрядным�
 mission:"Обеспечивать предприятия и государственные организации необходимой продукцией <b>официально, прозрачно и в срок</b>.",
 v1:"Надёжность",v1d:"Количество, качество и сроки по договору выполняются безоговорочно.",v2:"Прозрачность",v2d:"Каждая поставка с полным пакетом документов.",
 v3:"Широкий охват",v3d:"Четыре направления, один поставщик.",v4:"Ответственность",v4d:"Бережём бюджет и время партнёра.",
-req_eyebrow:"Запрос",req_quote:"Уважаемый партнёр! Пришлите перечень: подготовим КП и поставим по договору.",
+req_eyebrow:"Заказ",req_quote:"Уважаемый партнёр! Оформите заказ: подготовим КП и поставим по договору.",
 req_sub:"Добавьте позиции из каталога или впишите перечень вручную.",req_inlist:"позиций в вашем списке",req_open:"Открыть список",
 f_org:"Название организации",f_org_ph:"Название организации или предприятия",f_inn:"ИНН",opt:"(необязательно)",f_name:"Контактное лицо",f_name_ph:"Имя и фамилия",f_phone:"Телефон",
-f_list:"Перечень позиций",f_list_ph:"В каждой строке: товар, количество, единица",f_addr:"Адрес доставки",f_send:"Отправить запрос",
+f_list:"Перечень позиций",f_list_ph:"В каждой строке: товар, количество, единица",f_addr:"Адрес доставки",f_send:"Оформить заказ",
 f_note:"Ваши данные используются только для подготовки коммерческого предложения.",
 err_org:"Укажите название организации",err_name:"Укажите контактное лицо",err_phone:"Введите номер в формате +998 XX XXX XX XX",err_list:"Укажите хотя бы одну позицию",
-ok:"Спасибо, запрос принят. Менеджер свяжется с вами по коммерческому предложению.",sending:"Отправка...",
-fail:"Не удалось отправить запрос. Пожалуйста, позвоните: "+PHONE_MAIN+". Текст запроса:",
+ok:"Спасибо, заказ принят. Менеджер свяжется с вами по коммерческому предложению.",sending:"Отправка...",
+fail:"Не удалось отправить заказ. Пожалуйста, позвоните: "+PHONE_MAIN+". Текст заказа:",
 ct_eyebrow:"Контакты",addr_k:"Адрес",addr:"Ташкент, Чиланзарский район, ул. Мукими 14/27",land:"Ориентир: перекрёсток улиц Мукими и Чиланзар, метро «Новза»",
 hours_k:"Режим работы",hours:"Ежедневно, 09:00-17:00",pay_note:"Оплата: перечислением",mail_k:"Эл. почта",map:"Открыть на карте",copy:"Копировать",copied:"Скопировано",
 f_tag:"Снабжение предприятий и государственных организаций.",f_company:"Компания",f_partners:"Партнёрам",f_pay:"Оплата: перечислением",f_delivery:"Доставка до объекта",
-clear:"Очистить",go_request:"Перейти к запросу",dr_empty:"Список пока пуст. Добавьте позиции из каталога.",remove:"Удалить",
+clear:"Очистить",go_request:"Перейти к заказу",dr_empty:"Список пока пуст. Добавьте позиции из каталога.",remove:"Удалить",
 toast:"Добавлено в список",theme_dark:"Тёмная тема",theme_light:"Светлая тема",bb_home:"Главная",bb_list:"Список",bb_contact:"Связь",list_head:"Из каталога:"},
 
-en:{search_ph_s:"Search products",ac_title:"My account",ac_short:"Account",ac_sub_out:"sign in",ac_in:"Sign in",ac_up:"Register",ac_email:"Email",ac_pass:"Password",ac_pass_new:"New password (at least 8 characters)",ac_first:"First name",ac_last:"Last name",ac_forgot:"Forgot your password?",ac_forgot_lead:"Enter your email and we will send a password reset link.",ac_forgot_send:"Send link",ac_forgot_done:"If this email is registered, a reset link has been sent. Check your inbox.",ac_back:"Back",ac_reset_lead:"Enter a new password.",ac_reset_done:"Password updated.",ac_save:"Save",ac_saved_profile:"Details saved.",ac_out:"Sign out",ac_profile:"Profile",ac_orders:"Orders",ac_purchases:"Purchases",ac_loading:"Loading...",ac_no_orders:"No orders yet.",ac_no_purchases:"No completed purchases yet. An order appears here once delivered.",ac_to_catalog:"Go to catalog",ac_load_fail:"Could not load your history. Please try later.",ac_st_new:"New",ac_st_processing:"In progress",ac_st_delivered:"Delivered",ac_st_cancelled:"Cancelled",ac_sum:"UZS",ac_confirm:"A confirmation email was sent to your email. Follow the link, then sign in.",ac_e_email:"Enter a valid email address",ac_e_pass:"Password must be at least 8 characters",ac_e_first:"Enter your first name",ac_e_last:"Enter your last name",ac_e_cred:"Wrong email or password.",ac_e_unconf:"Please confirm your address using the link in your email first.",ac_e_exists:"This email is already registered. Please sign in.",ac_e_rate:"Too many attempts. Please try again shortly.",ac_e_gen:"The service is temporarily unavailable. Please try later or call "+PHONE_MAIN,ac_rq_in:"This order will be saved to your account:",ac_rq_out:"To keep your order history,",ac_rq_login:"sign in to your account",ac_order_saved:"Order #{n} was saved to your account.",top_hours:"Hours: 09:00-17:00",catalog:"Catalog",search_ph:"Search products, e.g. cement",list:"Request list",list_sub:"for a commercial offer",
-nav_dirs:"Product lines",nav_catalog:"Catalog",nav_process:"How we work",nav_about:"Company",nav_contacts:"Contacts",nav_request:"Send a request",
+en:{img_credits:"Image credits",search_ph_s:"Search products",ac_title:"My account",ac_short:"Account",ac_sub_out:"sign in",ac_in:"Sign in",ac_up:"Register",ac_email:"Email",ac_pass:"Password",ac_pass_new:"New password (at least 8 characters)",ac_first:"First name",ac_last:"Last name",ac_forgot:"Forgot your password?",ac_forgot_lead:"Enter your email and we will send a password reset link.",ac_forgot_send:"Send link",ac_forgot_done:"If this email is registered, a reset link has been sent. Check your inbox.",ac_back:"Back",ac_reset_lead:"Enter a new password.",ac_reset_done:"Password updated.",ac_save:"Save",ac_saved_profile:"Details saved.",ac_out:"Sign out",ac_profile:"Profile",ac_orders:"Orders",ac_purchases:"Purchases",ac_loading:"Loading...",ac_no_orders:"No orders yet.",ac_no_purchases:"No completed purchases yet. An order appears here once delivered.",ac_to_catalog:"Go to catalog",ac_load_fail:"Could not load your history. Please try later.",ac_st_new:"New",ac_st_processing:"In progress",ac_st_delivered:"Delivered",ac_st_cancelled:"Cancelled",ac_sum:"UZS",ac_confirm:"A confirmation email was sent to your email. Follow the link, then sign in.",ac_e_email:"Enter a valid email address",ac_e_pass:"Password must be at least 8 characters",ac_e_first:"Enter your first name",ac_e_last:"Enter your last name",ac_e_cred:"Wrong email or password.",ac_e_unconf:"Please confirm your address using the link in your email first.",ac_e_exists:"This email is already registered. Please sign in.",ac_e_rate:"Too many attempts. Please try again shortly.",ac_e_gen:"The service is temporarily unavailable. Please try later or call "+PHONE_MAIN,ac_rq_in:"This order will be saved to your account:",ac_rq_out:"To keep your order history,",ac_rq_login:"sign in to your account",ac_order_saved:"Order #{n} was saved to your account.",top_hours:"Hours: 09:00-17:00",catalog:"Catalog",search_ph:"Search products, e.g. cement",list:"Order list",list_sub:"for a commercial offer",
+nav_dirs:"Product lines",nav_catalog:"Catalog",nav_process:"How we work",nav_about:"Company",nav_contacts:"Contacts",nav_request:"Place an order",
 pos:"items",
 s1_eyebrow:"Supply for companies and government organisations",s1_l1:"One partner.",s1_l2:"Four product lines.",s1_l3:"One contract.",
 s1_p:"Building materials, household goods, plumbing fixtures and cleaning supplies. Payment by bank transfer.",
-cta_send:"Send your list",cta_catalog:"Open catalog",
+cta_send:"Place an order",cta_catalog:"Open catalog",
 s2_eyebrow:"Payment",s2_h:"Bank transfer",s2_tag:"cashless payment",s2_p:"Every delivery comes with a contract and full documentation.",
 s3_eyebrow:"Logistics",s3_h:"Delivered to your site.",s3_p:"Goods arrive at your site within the timeframe agreed in the contract.",
 who_t:"Who we serve",who1:"Construction and contracting firms",who2:"Manufacturing companies",who3:"Education and healthcare institutions",who4:"Government agencies",
-side_t:"Have your list ready?",side_p:"Pick items from the catalog or send your list directly. We will prepare a commercial offer.",
+side_t:"Is your order ready?",side_p:"Pick items from the catalog or type your own list and place an order. We will prepare a commercial offer.",
 dirs_eyebrow:"Product lines",dirs_title:"Four product lines, one supplier",to_cat:"To catalog",
-cat_eyebrow:"Catalog",cat_title:"Products",cat_lead:"Add items to your list and send them in one request. Prices are given in the commercial offer.",
-all:"All",price:"Price: in the commercial offer",add:"Add to list",added:"In list",empty:"No matching item. Mention it in your request and we will include it in the offer.",
-cat_note:"The catalog shows our main items. Requests for other products are welcome.",
-proc_eyebrow:"How we work",proc_title:"Five steps from request to delivery",
-p1_t:"Request",p1_d:"You send your list via the website, by phone or by email.",
+cat_eyebrow:"Catalog",cat_title:"Products",cat_lead:"Add items to your list and send them in one order. Prices are given in the commercial offer.",
+all:"All",price:"Price: in the commercial offer",add:"Add to list",added:"In list",empty:"No matching item. Mention it in your order and we will include it in the offer.",
+cat_note:"The catalog shows our main items; other products can be ordered too. Photos are illustrative: the actual product may differ.",
+proc_eyebrow:"How we work",proc_title:"Five steps from order to delivery",
+p1_t:"Order",p1_d:"You place your order via the website, by phone or by email.",
 p2_t:"Commercial offer",p2_d:"We prepare a formal offer with prices and lead times.",
 p3_t:"Contract",p3_d:"Quantity, quality and deadlines are fixed in the contract.",
 p4_t:"Bank transfer",p4_d:"Payment is made through the bank by transfer.",
@@ -865,18 +867,18 @@ about_p:"We work with construction and contracting firms, manufacturers, educati
 mission:"To supply companies and government organisations with the products they need, <b>officially, transparently and on time</b>.",
 v1:"Reliability",v1d:"Contracted quantity, quality and deadlines are met without exception.",v2:"Transparency",v2d:"Every delivery comes with full documentation.",
 v3:"Broad range",v3d:"Four product lines, one supplier.",v4:"Responsibility",v4d:"We protect our partner's budget and time.",
-req_eyebrow:"Request",req_quote:"Dear partner, send us your list: we will prepare a commercial offer and deliver under contract.",
+req_eyebrow:"Order",req_quote:"Dear partner, place your order: we will prepare a commercial offer and deliver under contract.",
 req_sub:"Add items from the catalog or type your list by hand.",req_inlist:"items in your list",req_open:"View list",
 f_org:"Organisation name",f_org_ph:"Organisation or company name",f_inn:"Tax ID (STIR)",opt:"(optional)",f_name:"Contact person",f_name_ph:"First and last name",f_phone:"Phone",
-f_list:"List of items",f_list_ph:"One per line: product, quantity, unit",f_addr:"Delivery address",f_send:"Send request",
+f_list:"List of items",f_list_ph:"One per line: product, quantity, unit",f_addr:"Delivery address",f_send:"Place order",
 f_note:"Your details are used only to prepare the commercial offer.",
 err_org:"Enter the organisation name",err_name:"Enter the contact person",err_phone:"Enter the number as +998 XX XXX XX XX",err_list:"Add at least one item",
-ok:"Thank you, your request was received. A manager will contact you about the commercial offer.",sending:"Sending...",
-fail:"The request could not be sent. Please call "+PHONE_MAIN+". Request text:",
+ok:"Thank you, your order was received. A manager will contact you about the commercial offer.",sending:"Sending...",
+fail:"The order could not be sent. Please call "+PHONE_MAIN+". Order text:",
 ct_eyebrow:"Contacts",addr_k:"Address",addr:"14/27 Mukimi Street, Chilanzar district, Tashkent",land:"Landmark: corner of Mukimi and Chilanzar streets, Novza metro",
 hours_k:"Hours",hours:"Daily, 09:00-17:00",pay_note:"Payment: bank transfer",mail_k:"Email",map:"Open in maps",copy:"Copy",copied:"Copied",
 f_tag:"Supply for companies and government organisations.",f_company:"Company",f_partners:"For partners",f_pay:"Payment: bank transfer",f_delivery:"Delivery to your site",
-clear:"Clear",go_request:"Go to request",dr_empty:"Your list is empty. Add items from the catalog.",remove:"Remove",
+clear:"Clear",go_request:"Go to order",dr_empty:"Your list is empty. Add items from the catalog.",remove:"Remove",
 toast:"Added to list",theme_dark:"Dark mode",theme_light:"Light mode",bb_home:"Home",bb_list:"List",bb_contact:"Contact",list_head:"From catalog:"}
 };
 
@@ -968,7 +970,7 @@ function renderCards(){
   if (!res.length){ $("#cards").innerHTML = `<div class="empty">${t("empty")}</div>`; return; }
   $("#cards").innerHTML = res.map(p => { const D = DIRS[p.dir], inL = list[p.id];
     return `<article class="card" data-id="${p.id}">
-      <div class="media"><span class="code">${p.id}</span><span class="ic lg" style="--c:${D.c};--fg:${D.fg}">${icon(D.icon)}</span></div>
+      <div class="media"><span class="ic lg" style="--c:${D.c};--fg:${D.fg}">${icon(D.icon)}</span><img src="img/products/${p.id}.jpg" alt="${esc(p.n[lang])}" width="640" height="400" loading="lazy" decoding="async" onerror="this.remove()"><span class="code">${p.id}</span></div>
       <div class="body" style="--c:${D.c}"><span class="dt"><i></i>${D.n[lang]}</span><h3>${p.n[lang]}</h3><p class="spec">${p.s[lang]}</p><p class="price">${t("price")}</p></div>
       <div class="act">
         <div class="stepper"><button type="button" data-step="-1" aria-label="-">−</button><input type="number" min="1" value="${inL || 1}" aria-label="qty"><span class="u">${U[p.u][lang]}</span><button type="button" data-step="1" aria-label="+">+</button></div>
@@ -1078,7 +1080,7 @@ $("#rq").addEventListener("submit", async e => {
   const org = $("#org").value.trim(), nm = $("#pname").value.trim(), ph = phone.value.replace(/\D/g,""), pl = $("#plist").value.trim();
   const v = [mark("org", org.length >= 2), mark("name", nm.length >= 2), mark("phone", ph.length === 12), mark("list", pl.length >= 2)];
   if (v.includes(false)){ const first = ["org","pname","phone","plist"][v.indexOf(false)]; $("#"+first).focus(); return; }
-  const text = `🏢 Yangi so'rov (sayt)\nTashkilot: ${org}\nSTIR: ${$("#inn").value || "-"}\nMas'ul shaxs: ${nm}\nTelefon: ${phone.value}\nManzil: ${$("#addr").value.trim() || "-"}\nTil: ${lang.toUpperCase()}\n\nPozitsiyalar:\n${pl}`;
+  const text = `🏢 Yangi buyurtma (sayt)\nTashkilot: ${org}\nSTIR: ${$("#inn").value || "-"}\nMas'ul shaxs: ${nm}\nTelefon: ${phone.value}\nManzil: ${$("#addr").value.trim() || "-"}\nTil: ${lang.toUpperCase()}\n\nPozitsiyalar:\n${pl}`;
   const st = $("#status"), btn = $("#send");
   btn.disabled = true; btn.textContent = t("sending");
   try {
