@@ -28,7 +28,7 @@
 [hidden]{display:none!important}
 html,body{margin:0}
 img,svg{max-width:100%}
-html{scroll-behavior:smooth;scroll-padding-top:150px}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--hd-h,150px) + 12px)}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
 body{background:var(--bg);color:var(--text);font-family:var(--f-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
@@ -81,7 +81,7 @@ form.search input{flex:1;min-width:0;border:0;padding:11px 14px;font:inherit;bac
 form.search input:focus{outline:none}
 form.search:focus-within{box-shadow:0 0 0 3px rgba(65,42,157,.18)}
 form.search button{border:0;background:var(--accent);color:#fff;padding:0 18px;cursor:pointer;display:flex;align-items:center}
-.list-btn{grid-area:list;all:unset;cursor:pointer;display:flex;align-items:center;gap:10px;font-weight:600;padding:8px 10px;border-radius:8px;position:relative}
+.list-btn{all:unset;grid-area:list;cursor:pointer;display:flex;align-items:center;gap:10px;font-weight:600;padding:8px 10px;border-radius:8px;position:relative}
 .list-btn:hover{background:var(--surface-2)}
 .list-btn:focus-visible{outline:3px solid var(--yellow)}
 .list-btn .ico{position:relative;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--surface-2);color:var(--accent-text)}
@@ -121,7 +121,7 @@ nav.sub a.cta{margin-left:auto;color:var(--accent-text);font-weight:700}
 .slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:18px;padding:44px clamp(24px,5vw,56px);opacity:0;visibility:hidden;transition:opacity .5s,visibility .5s}
 .slide.on{opacity:1;visibility:visible}
 .slide>*{position:relative;z-index:1;max-width:600px}
-.slide h1,.slide h2{font-weight:900;line-height:1.04;font-size:clamp(1.9rem,4vw,3.15rem)}
+.slide h1,.slide h2{font-weight:900;line-height:1.16;font-size:clamp(1.9rem,4vw,3.15rem)}
 .slide p{font-size:1.02rem;max-width:46ch}
 .slide .ctas{display:flex;gap:12px;flex-wrap:wrap}
 .s-purple{background:var(--purple);color:#fff}
@@ -352,7 +352,16 @@ body.dopen .drawer{transform:none}
 body.has-acct .hd-main{grid-template-columns:auto auto 1fr auto auto;grid-template-areas:"logo cat search acct list"}
 @media (max-width:1100px){.acct-btn .lbl{display:none}}
 @media (max-width:900px){body.has-acct .hd-main{grid-template-columns:auto 1fr auto auto;grid-template-areas:"logo . acct list" "cat search search search"}}
-@media (max-width:760px){body.has-acct .tabbar{grid-template-columns:repeat(5,1fr)}}
+@media (max-width:760px){
+  body.has-acct .tabbar{grid-template-columns:repeat(5,1fr)}
+  /* Katalog, ro'yxat va kabinet pastki menyuda bor, sarlavhada faqat logo va qidiruv qoladi */
+  .hd-main,body.has-acct .hd-main{grid-template-columns:auto minmax(0,1fr);grid-template-areas:"logo search";gap:10px;padding-block:8px}
+  .hd-main .cat-btn,.hd-main .list-btn{display:none}
+  .logo .full{display:none}.logo .compact{display:block;height:20px}
+  form.search input{padding:9px 10px;text-overflow:ellipsis}
+  form.search button{padding:0 12px}
+  nav.sub a{padding:8px 0}
+}
 .drawer.acct{visibility:hidden;transition:transform .3s,visibility .3s}
 body.dopen .drawer.acct{transform:translateX(102%)}
 body.aopen .ovl{opacity:1;visibility:visible}
@@ -452,7 +461,7 @@ body.aopen .drawer.acct{transform:none;visibility:visible}
       <svg class="i g"><use href="#i-grid"/></svg><svg class="i x"><use href="#i-x"/></svg><span class="t" data-i18n="catalog"></span>
     </button>
     <form class="search" id="hSearch" role="search">
-      <input id="hq" type="search" autocomplete="off" data-i18n-ph="search_ph" aria-label="Search">
+      <input id="hq" type="search" autocomplete="off" data-i18n-ph="search_ph_s" aria-label="Search">
       <button type="submit" aria-label="Search"><svg class="i"><use href="#i-search"/></svg></button>
     </form>
     <button class="list-btn acct-btn" type="button" id="acBtn" hidden>
@@ -753,7 +762,7 @@ const P = [
 ];
 
 const T = {
-uz:{ac_title:"Shaxsiy kabinet",ac_short:"Kabinet",ac_sub_out:"kirish",ac_in:"Kirish",ac_up:"Ro'yxatdan o'tish",ac_email:"Elektron pochta",ac_pass:"Parol",ac_pass_new:"Yangi parol (kamida 8 belgi)",ac_first:"Ism",ac_last:"Familiya",ac_forgot:"Parolni unutdingizmi?",ac_forgot_lead:"Elektron pochtangizni kiriting, parolni tiklash havolasini yuboramiz.",ac_forgot_send:"Havola yuborish",ac_forgot_done:"Agar bu pochta ro'yxatdan o'tgan bo'lsa, tiklash havolasi yuborildi. Pochtangizni tekshiring.",ac_back:"Orqaga",ac_reset_lead:"Yangi parolni kiriting.",ac_reset_done:"Parol yangilandi.",ac_save:"Saqlash",ac_saved_profile:"Ma'lumotlar saqlandi.",ac_out:"Chiqish",ac_profile:"Profil",ac_orders:"Buyurtmalar",ac_purchases:"Haridlar",ac_loading:"Yuklanmoqda...",ac_no_orders:"Hali buyurtmalar yo'q.",ac_no_purchases:"Hali yakunlangan haridlar yo'q. Buyurtma yetkazilgach, shu yerda ko'rinadi.",ac_to_catalog:"Katalogga o'tish",ac_load_fail:"Tarixni yuklab bo'lmadi. Keyinroq urinib ko'ring.",ac_st_new:"Yangi",ac_st_processing:"Jarayonda",ac_st_delivered:"Yetkazildi",ac_st_cancelled:"Bekor qilingan",ac_sum:"so'm",ac_confirm:"Elektron pochtangizga tasdiqlash xati yuborildi. Havolani bosing, so'ng kiring.",ac_e_email:"To'g'ri elektron pochta manzilini kiriting",ac_e_pass:"Parol kamida 8 belgidan iborat bo'lsin",ac_e_first:"Ismni kiriting",ac_e_last:"Familiyani kiriting",ac_e_cred:"Elektron pochta yoki parol noto'g'ri.",ac_e_unconf:"Avval elektron pochtangizdagi havola orqali manzilni tasdiqlang.",ac_e_exists:"Bu elektron pochta allaqachon ro'yxatdan o'tgan. Kirish bo'limidan foydalaning.",ac_e_rate:"Urinishlar juda ko'p. Birozdan so'ng qayta urining.",ac_e_gen:"Xizmat vaqtincha ishlamayapti. Keyinroq urinib ko'ring yoki qo'ng'iroq qiling: "+PHONE_MAIN,ac_rq_in:"Buyurtma kabinetingizda saqlanadi:",ac_rq_out:"Buyurtmalar tarixi saqlanishi uchun",ac_rq_login:"kabinetga kiring",ac_order_saved:"Buyurtma №{n} kabinetingizga saqlandi.",top_hours:"Ish vaqti: 09:00-17:00",catalog:"Katalog",search_ph:"Mahsulot qidirish, masalan: sement",list:"So'rov ro'yxati",list_sub:"tijorat taklifi uchun",
+uz:{search_ph_s:"Mahsulot qidirish",ac_title:"Shaxsiy kabinet",ac_short:"Kabinet",ac_sub_out:"kirish",ac_in:"Kirish",ac_up:"Ro'yxatdan o'tish",ac_email:"Elektron pochta",ac_pass:"Parol",ac_pass_new:"Yangi parol (kamida 8 belgi)",ac_first:"Ism",ac_last:"Familiya",ac_forgot:"Parolni unutdingizmi?",ac_forgot_lead:"Elektron pochtangizni kiriting, parolni tiklash havolasini yuboramiz.",ac_forgot_send:"Havola yuborish",ac_forgot_done:"Agar bu pochta ro'yxatdan o'tgan bo'lsa, tiklash havolasi yuborildi. Pochtangizni tekshiring.",ac_back:"Orqaga",ac_reset_lead:"Yangi parolni kiriting.",ac_reset_done:"Parol yangilandi.",ac_save:"Saqlash",ac_saved_profile:"Ma'lumotlar saqlandi.",ac_out:"Chiqish",ac_profile:"Profil",ac_orders:"Buyurtmalar",ac_purchases:"Haridlar",ac_loading:"Yuklanmoqda...",ac_no_orders:"Hali buyurtmalar yo'q.",ac_no_purchases:"Hali yakunlangan haridlar yo'q. Buyurtma yetkazilgach, shu yerda ko'rinadi.",ac_to_catalog:"Katalogga o'tish",ac_load_fail:"Tarixni yuklab bo'lmadi. Keyinroq urinib ko'ring.",ac_st_new:"Yangi",ac_st_processing:"Jarayonda",ac_st_delivered:"Yetkazildi",ac_st_cancelled:"Bekor qilingan",ac_sum:"so'm",ac_confirm:"Elektron pochtangizga tasdiqlash xati yuborildi. Havolani bosing, so'ng kiring.",ac_e_email:"To'g'ri elektron pochta manzilini kiriting",ac_e_pass:"Parol kamida 8 belgidan iborat bo'lsin",ac_e_first:"Ismni kiriting",ac_e_last:"Familiyani kiriting",ac_e_cred:"Elektron pochta yoki parol noto'g'ri.",ac_e_unconf:"Avval elektron pochtangizdagi havola orqali manzilni tasdiqlang.",ac_e_exists:"Bu elektron pochta allaqachon ro'yxatdan o'tgan. Kirish bo'limidan foydalaning.",ac_e_rate:"Urinishlar juda ko'p. Birozdan so'ng qayta urining.",ac_e_gen:"Xizmat vaqtincha ishlamayapti. Keyinroq urinib ko'ring yoki qo'ng'iroq qiling: "+PHONE_MAIN,ac_rq_in:"Buyurtma kabinetingizda saqlanadi:",ac_rq_out:"Buyurtmalar tarixi saqlanishi uchun",ac_rq_login:"kabinetga kiring",ac_order_saved:"Buyurtma №{n} kabinetingizga saqlandi.",top_hours:"Ish vaqti: 09:00-17:00",catalog:"Katalog",search_ph:"Mahsulot qidirish, masalan: sement",list:"So'rov ro'yxati",list_sub:"tijorat taklifi uchun",
 nav_dirs:"Yo'nalishlar",nav_catalog:"Katalog",nav_process:"Ishlash tartibi",nav_about:"Kompaniya",nav_contacts:"Kontaktlar",nav_request:"So'rov yuborish",
 pos:"pozitsiya",
 s1_eyebrow:"Korxonalar va davlat tashkilotlari uchun ta'minot",s1_l1:"Bitta hamkor.",s1_l2:"To'rt yo'nalish.",s1_l3:"Bitta shartnoma.",
@@ -792,7 +801,7 @@ f_tag:"Korxonalar va davlat tashkilotlari uchun ta'minot.",f_company:"Kompaniya"
 clear:"Tozalash",go_request:"So'rovga o'tish",dr_empty:"Ro'yxat hozircha bo'sh. Katalogdan pozitsiyalarni qo'shing.",remove:"O'chirish",
 toast:"Ro'yxatga qo'shildi",theme_dark:"Qorong'u rejim",theme_light:"Yorug' rejim",bb_home:"Bosh sahifa",bb_list:"Ro'yxat",bb_contact:"Aloqa",list_head:"Katalogdan:"},
 
-ru:{ac_title:"Личный кабинет",ac_short:"Кабинет",ac_sub_out:"вход",ac_in:"Войти",ac_up:"Регистрация",ac_email:"Электронная почта",ac_pass:"Пароль",ac_pass_new:"Новый пароль (минимум 8 символов)",ac_first:"Имя",ac_last:"Фамилия",ac_forgot:"Забыли пароль?",ac_forgot_lead:"Введите вашу электронную почту, мы отправим ссылку для восстановления пароля.",ac_forgot_send:"Отправить ссылку",ac_forgot_done:"Если эта почта зарегистрирована, ссылка отправлена. Проверьте почту.",ac_back:"Назад",ac_reset_lead:"Введите новый пароль.",ac_reset_done:"Пароль обновлён.",ac_save:"Сохранить",ac_saved_profile:"Данные сохранены.",ac_out:"Выйти",ac_profile:"Профиль",ac_orders:"Заказы",ac_purchases:"Покупки",ac_loading:"Загрузка...",ac_no_orders:"Заказов пока нет.",ac_no_purchases:"Завершённых покупок пока нет. Заказ появится здесь после доставки.",ac_to_catalog:"Перейти в каталог",ac_load_fail:"Не удалось загрузить историю. Попробуйте позже.",ac_st_new:"Новый",ac_st_processing:"В работе",ac_st_delivered:"Доставлен",ac_st_cancelled:"Отменён",ac_sum:"сум",ac_confirm:"На вашу почту отправлено письмо. Перейдите по ссылке, затем войдите.",ac_e_email:"Введите правильный адрес электронной почты",ac_e_pass:"Пароль должен содержать минимум 8 символов",ac_e_first:"Введите имя",ac_e_last:"Введите фамилию",ac_e_cred:"Неверная электронная почта или пароль.",ac_e_unconf:"Сначала подтвердите адрес по ссылке из письма.",ac_e_exists:"Эта почта уже зарегистрирована. Используйте вход.",ac_e_rate:"Слишком много попыток. Повторите немного позже.",ac_e_gen:"Сервис временно недоступен. Попробуйте позже или позвоните: "+PHONE_MAIN,ac_rq_in:"Заказ сохранится в вашем кабинете:",ac_rq_out:"Чтобы сохранять историю заказов,",ac_rq_login:"войдите в кабинет",ac_order_saved:"Заказ №{n} сохранён в вашем кабинете.",top_hours:"Режим работы: 09:00-17:00",catalog:"Каталог",search_ph:"Поиск товара, например: цемент",list:"Список запроса",list_sub:"для коммерческого предложения",
+ru:{search_ph_s:"Поиск товара",ac_title:"Личный кабинет",ac_short:"Кабинет",ac_sub_out:"вход",ac_in:"Войти",ac_up:"Регистрация",ac_email:"Электронная почта",ac_pass:"Пароль",ac_pass_new:"Новый пароль (минимум 8 символов)",ac_first:"Имя",ac_last:"Фамилия",ac_forgot:"Забыли пароль?",ac_forgot_lead:"Введите вашу электронную почту, мы отправим ссылку для восстановления пароля.",ac_forgot_send:"Отправить ссылку",ac_forgot_done:"Если эта почта зарегистрирована, ссылка отправлена. Проверьте почту.",ac_back:"Назад",ac_reset_lead:"Введите новый пароль.",ac_reset_done:"Пароль обновлён.",ac_save:"Сохранить",ac_saved_profile:"Данные сохранены.",ac_out:"Выйти",ac_profile:"Профиль",ac_orders:"Заказы",ac_purchases:"Покупки",ac_loading:"Загрузка...",ac_no_orders:"Заказов пока нет.",ac_no_purchases:"Завершённых покупок пока нет. Заказ появится здесь после доставки.",ac_to_catalog:"Перейти в каталог",ac_load_fail:"Не удалось загрузить историю. Попробуйте позже.",ac_st_new:"Новый",ac_st_processing:"В работе",ac_st_delivered:"Доставлен",ac_st_cancelled:"Отменён",ac_sum:"сум",ac_confirm:"На вашу почту отправлено письмо. Перейдите по ссылке, затем войдите.",ac_e_email:"Введите правильный адрес электронной почты",ac_e_pass:"Пароль должен содержать минимум 8 символов",ac_e_first:"Введите имя",ac_e_last:"Введите фамилию",ac_e_cred:"Неверная электронная почта или пароль.",ac_e_unconf:"Сначала подтвердите адрес по ссылке из письма.",ac_e_exists:"Эта почта уже зарегистрирована. Используйте вход.",ac_e_rate:"Слишком много попыток. Повторите немного позже.",ac_e_gen:"Сервис временно недоступен. Попробуйте позже или позвоните: "+PHONE_MAIN,ac_rq_in:"Заказ сохранится в вашем кабинете:",ac_rq_out:"Чтобы сохранять историю заказов,",ac_rq_login:"войдите в кабинет",ac_order_saved:"Заказ №{n} сохранён в вашем кабинете.",top_hours:"Режим работы: 09:00-17:00",catalog:"Каталог",search_ph:"Поиск товара, например: цемент",list:"Список запроса",list_sub:"для коммерческого предложения",
 nav_dirs:"Направления",nav_catalog:"Каталог",nav_process:"Порядок работы",nav_about:"О компании",nav_contacts:"Контакты",nav_request:"Отправить запрос",
 pos:"позиций",
 s1_eyebrow:"Снабжение предприятий и государственных организаций",s1_l1:"Один партнёр.",s1_l2:"Четыре направления.",s1_l3:"Один договор.",
@@ -831,7 +840,7 @@ f_tag:"Снабжение предприятий и государственны
 clear:"Очистить",go_request:"Перейти к запросу",dr_empty:"Список пока пуст. Добавьте позиции из каталога.",remove:"Удалить",
 toast:"Добавлено в список",theme_dark:"Тёмная тема",theme_light:"Светлая тема",bb_home:"Главная",bb_list:"Список",bb_contact:"Связь",list_head:"Из каталога:"},
 
-en:{ac_title:"My account",ac_short:"Account",ac_sub_out:"sign in",ac_in:"Sign in",ac_up:"Register",ac_email:"Email",ac_pass:"Password",ac_pass_new:"New password (at least 8 characters)",ac_first:"First name",ac_last:"Last name",ac_forgot:"Forgot your password?",ac_forgot_lead:"Enter your email and we will send a password reset link.",ac_forgot_send:"Send link",ac_forgot_done:"If this email is registered, a reset link has been sent. Check your inbox.",ac_back:"Back",ac_reset_lead:"Enter a new password.",ac_reset_done:"Password updated.",ac_save:"Save",ac_saved_profile:"Details saved.",ac_out:"Sign out",ac_profile:"Profile",ac_orders:"Orders",ac_purchases:"Purchases",ac_loading:"Loading...",ac_no_orders:"No orders yet.",ac_no_purchases:"No completed purchases yet. An order appears here once delivered.",ac_to_catalog:"Go to catalog",ac_load_fail:"Could not load your history. Please try later.",ac_st_new:"New",ac_st_processing:"In progress",ac_st_delivered:"Delivered",ac_st_cancelled:"Cancelled",ac_sum:"UZS",ac_confirm:"A confirmation email was sent to your email. Follow the link, then sign in.",ac_e_email:"Enter a valid email address",ac_e_pass:"Password must be at least 8 characters",ac_e_first:"Enter your first name",ac_e_last:"Enter your last name",ac_e_cred:"Wrong email or password.",ac_e_unconf:"Please confirm your address using the link in your email first.",ac_e_exists:"This email is already registered. Please sign in.",ac_e_rate:"Too many attempts. Please try again shortly.",ac_e_gen:"The service is temporarily unavailable. Please try later or call "+PHONE_MAIN,ac_rq_in:"This order will be saved to your account:",ac_rq_out:"To keep your order history,",ac_rq_login:"sign in to your account",ac_order_saved:"Order #{n} was saved to your account.",top_hours:"Hours: 09:00-17:00",catalog:"Catalog",search_ph:"Search products, e.g. cement",list:"Request list",list_sub:"for a commercial offer",
+en:{search_ph_s:"Search products",ac_title:"My account",ac_short:"Account",ac_sub_out:"sign in",ac_in:"Sign in",ac_up:"Register",ac_email:"Email",ac_pass:"Password",ac_pass_new:"New password (at least 8 characters)",ac_first:"First name",ac_last:"Last name",ac_forgot:"Forgot your password?",ac_forgot_lead:"Enter your email and we will send a password reset link.",ac_forgot_send:"Send link",ac_forgot_done:"If this email is registered, a reset link has been sent. Check your inbox.",ac_back:"Back",ac_reset_lead:"Enter a new password.",ac_reset_done:"Password updated.",ac_save:"Save",ac_saved_profile:"Details saved.",ac_out:"Sign out",ac_profile:"Profile",ac_orders:"Orders",ac_purchases:"Purchases",ac_loading:"Loading...",ac_no_orders:"No orders yet.",ac_no_purchases:"No completed purchases yet. An order appears here once delivered.",ac_to_catalog:"Go to catalog",ac_load_fail:"Could not load your history. Please try later.",ac_st_new:"New",ac_st_processing:"In progress",ac_st_delivered:"Delivered",ac_st_cancelled:"Cancelled",ac_sum:"UZS",ac_confirm:"A confirmation email was sent to your email. Follow the link, then sign in.",ac_e_email:"Enter a valid email address",ac_e_pass:"Password must be at least 8 characters",ac_e_first:"Enter your first name",ac_e_last:"Enter your last name",ac_e_cred:"Wrong email or password.",ac_e_unconf:"Please confirm your address using the link in your email first.",ac_e_exists:"This email is already registered. Please sign in.",ac_e_rate:"Too many attempts. Please try again shortly.",ac_e_gen:"The service is temporarily unavailable. Please try later or call "+PHONE_MAIN,ac_rq_in:"This order will be saved to your account:",ac_rq_out:"To keep your order history,",ac_rq_login:"sign in to your account",ac_order_saved:"Order #{n} was saved to your account.",top_hours:"Hours: 09:00-17:00",catalog:"Catalog",search_ph:"Search products, e.g. cement",list:"Request list",list_sub:"for a commercial offer",
 nav_dirs:"Product lines",nav_catalog:"Catalog",nav_process:"How we work",nav_about:"Company",nav_contacts:"Contacts",nav_request:"Send a request",
 pos:"items",
 s1_eyebrow:"Supply for companies and government organisations",s1_l1:"One partner.",s1_l2:"Four product lines.",s1_l3:"One contract.",
@@ -1266,6 +1275,10 @@ function acInit(){
 acInit();
 
 applyLang();
+
+/* bo'limga o'tganda sarlavha uning boshini yopmasin */
+const syncHd = () => document.documentElement.style.setProperty("--hd-h", $("#hd").offsetHeight + "px");
+syncHd(); new ResizeObserver(syncHd).observe($("#hd"));
 </script>
 
 </body>
