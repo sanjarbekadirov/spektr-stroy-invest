@@ -9,6 +9,8 @@ Brendbuk v2.0 asosida: Montserrat + Inter, Spektr Binafsha #412A9D, Signal Sariq
 
 Buyurtmalar Supabase'dagi `orders` jadvaliga tushadi va `supabase/telegram.sql` orqali Telegram guruhiga yuboriladi. Bot tokeni faqat Supabase Vault'da saqlanadi, uni saytga yozmang.
 
+Buyurtmaga biriktirilgan fayllar `order-files` yopiq omboriga tushadi va `supabase/functions/order-file` orqali guruhga hujjat bo'lib yuboriladi (sozlash: `supabase/fayl.sql`).
+
 ## Shaxsiy kabinet
 
 Kabinet (ro'yxatdan o'tish, kirish, buyurtmalar va haridlar tarixi) Supabase bazasida ishlaydi. `SUPABASE` sozlamasi bo'sh bo'lsa, kabinet saytda ko'rinmaydi.
