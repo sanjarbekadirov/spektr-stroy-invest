@@ -703,10 +703,6 @@ body.aopen .drawer.acct{transform:none;visibility:visible}
 <div class="toast" id="toast" role="status"><svg class="i"><use href="#i-check"/></svg><span id="toastT"></span></div>
 
 <script>
-/* ===== SOZLAMA: Telegram bot =====
-   Arizalar Telegram'ga tushishi uchun quyidagini to'ldiring.
-   Tavsiya: tokenni kodda saqlamang, Cloudflare Worker relay manzilini relayUrl ga yozing. */
-const TELEGRAM = { token: "", chatId: "", relayUrl: "" };
 /* ===== SOZLAMA: Shaxsiy kabinet (Supabase) =====
    Ikkala qiymat bo'sh bo'lsa, kabinet saytda ko'rinmaydi. Qanday to'ldirish: README.md.
    anonKey ochiq kalit, kodda turishi mumkin. service_role kalitini HECH QACHON bu yerga yozmang. */
@@ -757,7 +753,7 @@ const P = [
 ];
 
 const T = {
-uz:{ac_title:"Shaxsiy kabinet",ac_short:"Kabinet",ac_sub_out:"kirish",ac_in:"Kirish",ac_up:"Ro'yxatdan o'tish",ac_email:"Elektron pochta",ac_pass:"Parol",ac_pass_new:"Yangi parol (kamida 8 belgi)",ac_first:"Ism",ac_last:"Familiya",ac_forgot:"Parolni unutdingizmi?",ac_forgot_lead:"Elektron pochtangizni kiriting, parolni tiklash havolasini yuboramiz.",ac_forgot_send:"Havola yuborish",ac_forgot_done:"Agar bu pochta ro'yxatdan o'tgan bo'lsa, tiklash havolasi yuborildi. Pochtangizni tekshiring.",ac_back:"Orqaga",ac_reset_lead:"Yangi parolni kiriting.",ac_reset_done:"Parol yangilandi.",ac_save:"Saqlash",ac_saved_profile:"Ma'lumotlar saqlandi.",ac_out:"Chiqish",ac_profile:"Profil",ac_orders:"Buyurtmalar",ac_purchases:"Haridlar",ac_loading:"Yuklanmoqda...",ac_no_orders:"Hali buyurtmalar yo'q.",ac_no_purchases:"Hali yakunlangan haridlar yo'q. Buyurtma yetkazilgach, shu yerda ko'rinadi.",ac_to_catalog:"Katalogga o'tish",ac_load_fail:"Tarixni yuklab bo'lmadi. Keyinroq urinib ko'ring.",ac_st_new:"Yangi",ac_st_processing:"Jarayonda",ac_st_delivered:"Yetkazildi",ac_st_cancelled:"Bekor qilingan",ac_sum:"so'm",ac_confirm:"Elektron pochtangizga tasdiqlash xati yuborildi. Havolani bosing, so'ng kiring.",ac_e_email:"To'g'ri elektron pochta manzilini kiriting",ac_e_pass:"Parol kamida 8 belgidan iborat bo'lsin",ac_e_first:"Ismni kiriting",ac_e_last:"Familiyani kiriting",ac_e_cred:"Elektron pochta yoki parol noto'g'ri.",ac_e_unconf:"Avval elektron pochtangizdagi havola orqali manzilni tasdiqlang.",ac_e_exists:"Bu elektron pochta allaqachon ro'yxatdan o'tgan. Kirish bo'limidan foydalaning.",ac_e_rate:"Urinishlar juda ko'p. Birozdan so'ng qayta urining.",ac_e_gen:"Xizmat vaqtincha ishlamayapti. Keyinroq urinib ko'ring yoki qo'ng'iroq qiling: "+PHONE_MAIN,ac_rq_in:"Buyurtma kabinetingizda saqlanadi:",ac_rq_out:"Buyurtmalar tarixi saqlanishi uchun",ac_rq_login:"kabinetga kiring",ac_order_saved:"Buyurtma №{n} kabinetingizga saqlandi.",ac_order_unsaved:"Ammo buyurtmani kabinetga saqlab bo'lmadi.",top_hours:"Ish vaqti: 09:00-17:00",catalog:"Katalog",search_ph:"Mahsulot qidirish, masalan: sement",list:"So'rov ro'yxati",list_sub:"tijorat taklifi uchun",
+uz:{ac_title:"Shaxsiy kabinet",ac_short:"Kabinet",ac_sub_out:"kirish",ac_in:"Kirish",ac_up:"Ro'yxatdan o'tish",ac_email:"Elektron pochta",ac_pass:"Parol",ac_pass_new:"Yangi parol (kamida 8 belgi)",ac_first:"Ism",ac_last:"Familiya",ac_forgot:"Parolni unutdingizmi?",ac_forgot_lead:"Elektron pochtangizni kiriting, parolni tiklash havolasini yuboramiz.",ac_forgot_send:"Havola yuborish",ac_forgot_done:"Agar bu pochta ro'yxatdan o'tgan bo'lsa, tiklash havolasi yuborildi. Pochtangizni tekshiring.",ac_back:"Orqaga",ac_reset_lead:"Yangi parolni kiriting.",ac_reset_done:"Parol yangilandi.",ac_save:"Saqlash",ac_saved_profile:"Ma'lumotlar saqlandi.",ac_out:"Chiqish",ac_profile:"Profil",ac_orders:"Buyurtmalar",ac_purchases:"Haridlar",ac_loading:"Yuklanmoqda...",ac_no_orders:"Hali buyurtmalar yo'q.",ac_no_purchases:"Hali yakunlangan haridlar yo'q. Buyurtma yetkazilgach, shu yerda ko'rinadi.",ac_to_catalog:"Katalogga o'tish",ac_load_fail:"Tarixni yuklab bo'lmadi. Keyinroq urinib ko'ring.",ac_st_new:"Yangi",ac_st_processing:"Jarayonda",ac_st_delivered:"Yetkazildi",ac_st_cancelled:"Bekor qilingan",ac_sum:"so'm",ac_confirm:"Elektron pochtangizga tasdiqlash xati yuborildi. Havolani bosing, so'ng kiring.",ac_e_email:"To'g'ri elektron pochta manzilini kiriting",ac_e_pass:"Parol kamida 8 belgidan iborat bo'lsin",ac_e_first:"Ismni kiriting",ac_e_last:"Familiyani kiriting",ac_e_cred:"Elektron pochta yoki parol noto'g'ri.",ac_e_unconf:"Avval elektron pochtangizdagi havola orqali manzilni tasdiqlang.",ac_e_exists:"Bu elektron pochta allaqachon ro'yxatdan o'tgan. Kirish bo'limidan foydalaning.",ac_e_rate:"Urinishlar juda ko'p. Birozdan so'ng qayta urining.",ac_e_gen:"Xizmat vaqtincha ishlamayapti. Keyinroq urinib ko'ring yoki qo'ng'iroq qiling: "+PHONE_MAIN,ac_rq_in:"Buyurtma kabinetingizda saqlanadi:",ac_rq_out:"Buyurtmalar tarixi saqlanishi uchun",ac_rq_login:"kabinetga kiring",ac_order_saved:"Buyurtma №{n} kabinetingizga saqlandi.",top_hours:"Ish vaqti: 09:00-17:00",catalog:"Katalog",search_ph:"Mahsulot qidirish, masalan: sement",list:"So'rov ro'yxati",list_sub:"tijorat taklifi uchun",
 nav_dirs:"Yo'nalishlar",nav_catalog:"Katalog",nav_process:"Ishlash tartibi",nav_about:"Kompaniya",nav_contacts:"Kontaktlar",nav_request:"So'rov yuborish",
 pos:"pozitsiya",
 s1_eyebrow:"Korxonalar va davlat tashkilotlari uchun ta'minot",s1_l1:"Bitta hamkor.",s1_l2:"To'rt yo'nalish.",s1_l3:"Bitta shartnoma.",
@@ -789,7 +785,6 @@ f_list:"Pozitsiyalar ro'yxati",f_list_ph:"Har bir qatorda: mahsulot, miqdor, o'l
 f_note:"Ma'lumotlaringiz faqat tijorat taklifini tayyorlash uchun ishlatiladi.",
 err_org:"Tashkilot nomini kiriting",err_name:"Mas'ul shaxs ismini kiriting",err_phone:"Raqamni +998 XX XXX XX XX ko'rinishida kiriting",err_list:"Kamida bitta pozitsiya yozing",
 ok:"Rahmat, so'rovingiz qabul qilindi. Menejer tijorat taklifi bo'yicha siz bilan bog'lanadi.",sending:"Yuborilmoqda...",
-demo:"Sayt sinov rejimida: Telegram bot hali ulanmagan, so'rov yuborilmadi. Iltimos, qo'ng'iroq qiling: "+PHONE_MAIN+". So'rov matni:",
 fail:"So'rovni yuborib bo'lmadi. Iltimos, qo'ng'iroq qiling: "+PHONE_MAIN+". So'rov matni:",
 ct_eyebrow:"Kontaktlar",addr_k:"Manzil",addr:"Toshkent, Chilonzor tumani, Muqimiy ko'chasi 14/27",land:"Mo'ljal: Muqimiy va Chilonzor ko'chalari chorrahasi, Novza metrosi",
 hours_k:"Ish vaqti",hours:"Har kuni, 09:00-17:00",pay_note:"To'lov: pul o'tkazish yo'li bilan",mail_k:"E-pochta",map:"Xaritada ochish",copy:"Nusxa olish",copied:"Nusxa olindi",
@@ -797,7 +792,7 @@ f_tag:"Korxonalar va davlat tashkilotlari uchun ta'minot.",f_company:"Kompaniya"
 clear:"Tozalash",go_request:"So'rovga o'tish",dr_empty:"Ro'yxat hozircha bo'sh. Katalogdan pozitsiyalarni qo'shing.",remove:"O'chirish",
 toast:"Ro'yxatga qo'shildi",theme_dark:"Qorong'u rejim",theme_light:"Yorug' rejim",bb_home:"Bosh sahifa",bb_list:"Ro'yxat",bb_contact:"Aloqa",list_head:"Katalogdan:"},
 
-ru:{ac_title:"Личный кабинет",ac_short:"Кабинет",ac_sub_out:"вход",ac_in:"Войти",ac_up:"Регистрация",ac_email:"Электронная почта",ac_pass:"Пароль",ac_pass_new:"Новый пароль (минимум 8 символов)",ac_first:"Имя",ac_last:"Фамилия",ac_forgot:"Забыли пароль?",ac_forgot_lead:"Введите вашу электронную почту, мы отправим ссылку для восстановления пароля.",ac_forgot_send:"Отправить ссылку",ac_forgot_done:"Если эта почта зарегистрирована, ссылка отправлена. Проверьте почту.",ac_back:"Назад",ac_reset_lead:"Введите новый пароль.",ac_reset_done:"Пароль обновлён.",ac_save:"Сохранить",ac_saved_profile:"Данные сохранены.",ac_out:"Выйти",ac_profile:"Профиль",ac_orders:"Заказы",ac_purchases:"Покупки",ac_loading:"Загрузка...",ac_no_orders:"Заказов пока нет.",ac_no_purchases:"Завершённых покупок пока нет. Заказ появится здесь после доставки.",ac_to_catalog:"Перейти в каталог",ac_load_fail:"Не удалось загрузить историю. Попробуйте позже.",ac_st_new:"Новый",ac_st_processing:"В работе",ac_st_delivered:"Доставлен",ac_st_cancelled:"Отменён",ac_sum:"сум",ac_confirm:"На вашу почту отправлено письмо. Перейдите по ссылке, затем войдите.",ac_e_email:"Введите правильный адрес электронной почты",ac_e_pass:"Пароль должен содержать минимум 8 символов",ac_e_first:"Введите имя",ac_e_last:"Введите фамилию",ac_e_cred:"Неверная электронная почта или пароль.",ac_e_unconf:"Сначала подтвердите адрес по ссылке из письма.",ac_e_exists:"Эта почта уже зарегистрирована. Используйте вход.",ac_e_rate:"Слишком много попыток. Повторите немного позже.",ac_e_gen:"Сервис временно недоступен. Попробуйте позже или позвоните: "+PHONE_MAIN,ac_rq_in:"Заказ сохранится в вашем кабинете:",ac_rq_out:"Чтобы сохранять историю заказов,",ac_rq_login:"войдите в кабинет",ac_order_saved:"Заказ №{n} сохранён в вашем кабинете.",ac_order_unsaved:"Но заказ не удалось сохранить в кабинете.",top_hours:"Режим работы: 09:00-17:00",catalog:"Каталог",search_ph:"Поиск товара, например: цемент",list:"Список запроса",list_sub:"для коммерческого предложения",
+ru:{ac_title:"Личный кабинет",ac_short:"Кабинет",ac_sub_out:"вход",ac_in:"Войти",ac_up:"Регистрация",ac_email:"Электронная почта",ac_pass:"Пароль",ac_pass_new:"Новый пароль (минимум 8 символов)",ac_first:"Имя",ac_last:"Фамилия",ac_forgot:"Забыли пароль?",ac_forgot_lead:"Введите вашу электронную почту, мы отправим ссылку для восстановления пароля.",ac_forgot_send:"Отправить ссылку",ac_forgot_done:"Если эта почта зарегистрирована, ссылка отправлена. Проверьте почту.",ac_back:"Назад",ac_reset_lead:"Введите новый пароль.",ac_reset_done:"Пароль обновлён.",ac_save:"Сохранить",ac_saved_profile:"Данные сохранены.",ac_out:"Выйти",ac_profile:"Профиль",ac_orders:"Заказы",ac_purchases:"Покупки",ac_loading:"Загрузка...",ac_no_orders:"Заказов пока нет.",ac_no_purchases:"Завершённых покупок пока нет. Заказ появится здесь после доставки.",ac_to_catalog:"Перейти в каталог",ac_load_fail:"Не удалось загрузить историю. Попробуйте позже.",ac_st_new:"Новый",ac_st_processing:"В работе",ac_st_delivered:"Доставлен",ac_st_cancelled:"Отменён",ac_sum:"сум",ac_confirm:"На вашу почту отправлено письмо. Перейдите по ссылке, затем войдите.",ac_e_email:"Введите правильный адрес электронной почты",ac_e_pass:"Пароль должен содержать минимум 8 символов",ac_e_first:"Введите имя",ac_e_last:"Введите фамилию",ac_e_cred:"Неверная электронная почта или пароль.",ac_e_unconf:"Сначала подтвердите адрес по ссылке из письма.",ac_e_exists:"Эта почта уже зарегистрирована. Используйте вход.",ac_e_rate:"Слишком много попыток. Повторите немного позже.",ac_e_gen:"Сервис временно недоступен. Попробуйте позже или позвоните: "+PHONE_MAIN,ac_rq_in:"Заказ сохранится в вашем кабинете:",ac_rq_out:"Чтобы сохранять историю заказов,",ac_rq_login:"войдите в кабинет",ac_order_saved:"Заказ №{n} сохранён в вашем кабинете.",top_hours:"Режим работы: 09:00-17:00",catalog:"Каталог",search_ph:"Поиск товара, например: цемент",list:"Список запроса",list_sub:"для коммерческого предложения",
 nav_dirs:"Направления",nav_catalog:"Каталог",nav_process:"Порядок работы",nav_about:"О компании",nav_contacts:"Контакты",nav_request:"Отправить запрос",
 pos:"позиций",
 s1_eyebrow:"Снабжение предприятий и государственных организаций",s1_l1:"Один партнёр.",s1_l2:"Четыре направления.",s1_l3:"Один договор.",
@@ -829,7 +824,6 @@ f_list:"Перечень позиций",f_list_ph:"В каждой строке
 f_note:"Ваши данные используются только для подготовки коммерческого предложения.",
 err_org:"Укажите название организации",err_name:"Укажите контактное лицо",err_phone:"Введите номер в формате +998 XX XXX XX XX",err_list:"Укажите хотя бы одну позицию",
 ok:"Спасибо, запрос принят. Менеджер свяжется с вами по коммерческому предложению.",sending:"Отправка...",
-demo:"Сайт в тестовом режиме: Telegram-бот ещё не подключён, запрос не отправлен. Пожалуйста, позвоните: "+PHONE_MAIN+". Текст запроса:",
 fail:"Не удалось отправить запрос. Пожалуйста, позвоните: "+PHONE_MAIN+". Текст запроса:",
 ct_eyebrow:"Контакты",addr_k:"Адрес",addr:"Ташкент, Чиланзарский район, ул. Мукими 14/27",land:"Ориентир: перекрёсток улиц Мукими и Чиланзар, метро «Новза»",
 hours_k:"Режим работы",hours:"Ежедневно, 09:00-17:00",pay_note:"Оплата: перечислением",mail_k:"Эл. почта",map:"Открыть на карте",copy:"Копировать",copied:"Скопировано",
@@ -837,7 +831,7 @@ f_tag:"Снабжение предприятий и государственны
 clear:"Очистить",go_request:"Перейти к запросу",dr_empty:"Список пока пуст. Добавьте позиции из каталога.",remove:"Удалить",
 toast:"Добавлено в список",theme_dark:"Тёмная тема",theme_light:"Светлая тема",bb_home:"Главная",bb_list:"Список",bb_contact:"Связь",list_head:"Из каталога:"},
 
-en:{ac_title:"My account",ac_short:"Account",ac_sub_out:"sign in",ac_in:"Sign in",ac_up:"Register",ac_email:"Email",ac_pass:"Password",ac_pass_new:"New password (at least 8 characters)",ac_first:"First name",ac_last:"Last name",ac_forgot:"Forgot your password?",ac_forgot_lead:"Enter your email and we will send a password reset link.",ac_forgot_send:"Send link",ac_forgot_done:"If this email is registered, a reset link has been sent. Check your inbox.",ac_back:"Back",ac_reset_lead:"Enter a new password.",ac_reset_done:"Password updated.",ac_save:"Save",ac_saved_profile:"Details saved.",ac_out:"Sign out",ac_profile:"Profile",ac_orders:"Orders",ac_purchases:"Purchases",ac_loading:"Loading...",ac_no_orders:"No orders yet.",ac_no_purchases:"No completed purchases yet. An order appears here once delivered.",ac_to_catalog:"Go to catalog",ac_load_fail:"Could not load your history. Please try later.",ac_st_new:"New",ac_st_processing:"In progress",ac_st_delivered:"Delivered",ac_st_cancelled:"Cancelled",ac_sum:"UZS",ac_confirm:"A confirmation email was sent to your email. Follow the link, then sign in.",ac_e_email:"Enter a valid email address",ac_e_pass:"Password must be at least 8 characters",ac_e_first:"Enter your first name",ac_e_last:"Enter your last name",ac_e_cred:"Wrong email or password.",ac_e_unconf:"Please confirm your address using the link in your email first.",ac_e_exists:"This email is already registered. Please sign in.",ac_e_rate:"Too many attempts. Please try again shortly.",ac_e_gen:"The service is temporarily unavailable. Please try later or call "+PHONE_MAIN,ac_rq_in:"This order will be saved to your account:",ac_rq_out:"To keep your order history,",ac_rq_login:"sign in to your account",ac_order_saved:"Order #{n} was saved to your account.",ac_order_unsaved:"However, the order could not be saved to your account.",top_hours:"Hours: 09:00-17:00",catalog:"Catalog",search_ph:"Search products, e.g. cement",list:"Request list",list_sub:"for a commercial offer",
+en:{ac_title:"My account",ac_short:"Account",ac_sub_out:"sign in",ac_in:"Sign in",ac_up:"Register",ac_email:"Email",ac_pass:"Password",ac_pass_new:"New password (at least 8 characters)",ac_first:"First name",ac_last:"Last name",ac_forgot:"Forgot your password?",ac_forgot_lead:"Enter your email and we will send a password reset link.",ac_forgot_send:"Send link",ac_forgot_done:"If this email is registered, a reset link has been sent. Check your inbox.",ac_back:"Back",ac_reset_lead:"Enter a new password.",ac_reset_done:"Password updated.",ac_save:"Save",ac_saved_profile:"Details saved.",ac_out:"Sign out",ac_profile:"Profile",ac_orders:"Orders",ac_purchases:"Purchases",ac_loading:"Loading...",ac_no_orders:"No orders yet.",ac_no_purchases:"No completed purchases yet. An order appears here once delivered.",ac_to_catalog:"Go to catalog",ac_load_fail:"Could not load your history. Please try later.",ac_st_new:"New",ac_st_processing:"In progress",ac_st_delivered:"Delivered",ac_st_cancelled:"Cancelled",ac_sum:"UZS",ac_confirm:"A confirmation email was sent to your email. Follow the link, then sign in.",ac_e_email:"Enter a valid email address",ac_e_pass:"Password must be at least 8 characters",ac_e_first:"Enter your first name",ac_e_last:"Enter your last name",ac_e_cred:"Wrong email or password.",ac_e_unconf:"Please confirm your address using the link in your email first.",ac_e_exists:"This email is already registered. Please sign in.",ac_e_rate:"Too many attempts. Please try again shortly.",ac_e_gen:"The service is temporarily unavailable. Please try later or call "+PHONE_MAIN,ac_rq_in:"This order will be saved to your account:",ac_rq_out:"To keep your order history,",ac_rq_login:"sign in to your account",ac_order_saved:"Order #{n} was saved to your account.",top_hours:"Hours: 09:00-17:00",catalog:"Catalog",search_ph:"Search products, e.g. cement",list:"Request list",list_sub:"for a commercial offer",
 nav_dirs:"Product lines",nav_catalog:"Catalog",nav_process:"How we work",nav_about:"Company",nav_contacts:"Contacts",nav_request:"Send a request",
 pos:"items",
 s1_eyebrow:"Supply for companies and government organisations",s1_l1:"One partner.",s1_l2:"Four product lines.",s1_l3:"One contract.",
@@ -869,7 +863,6 @@ f_list:"List of items",f_list_ph:"One per line: product, quantity, unit",f_addr:
 f_note:"Your details are used only to prepare the commercial offer.",
 err_org:"Enter the organisation name",err_name:"Enter the contact person",err_phone:"Enter the number as +998 XX XXX XX XX",err_list:"Add at least one item",
 ok:"Thank you, your request was received. A manager will contact you about the commercial offer.",sending:"Sending...",
-demo:"The site is in test mode: the Telegram bot is not connected yet, so the request was not sent. Please call "+PHONE_MAIN+". Request text:",
 fail:"The request could not be sent. Please call "+PHONE_MAIN+". Request text:",
 ct_eyebrow:"Contacts",addr_k:"Address",addr:"14/27 Mukimi Street, Chilanzar district, Tashkent",land:"Landmark: corner of Mukimi and Chilanzar streets, Novza metro",
 hours_k:"Hours",hours:"Daily, 09:00-17:00",pay_note:"Payment: bank transfer",mail_k:"Email",map:"Open in maps",copy:"Copy",copied:"Copied",
@@ -1078,28 +1071,14 @@ $("#rq").addEventListener("submit", async e => {
   if (v.includes(false)){ const first = ["org","pname","phone","plist"][v.indexOf(false)]; $("#"+first).focus(); return; }
   const text = `🏢 Yangi so'rov (sayt)\nTashkilot: ${org}\nSTIR: ${$("#inn").value || "-"}\nMas'ul shaxs: ${nm}\nTelefon: ${phone.value}\nManzil: ${$("#addr").value.trim() || "-"}\nTil: ${lang.toUpperCase()}\n\nPozitsiyalar:\n${pl}`;
   const st = $("#status"), btn = $("#send");
-  const tgOn = !!(TELEGRAM.relayUrl || (TELEGRAM.token && TELEGRAM.chatId));
-  if (!tgOn && !ac.user){ st.className = "status warn"; st.hidden = false; st.innerHTML = esc(t("demo")) + `<pre>${esc(text)}</pre>`; return; }
   btn.disabled = true; btn.textContent = t("sending");
   try {
-    let order = null, sent = false;
-    if (ac.user){
-      try { order = await acSaveOrder({ org, inn: $("#inn").value, contact_name: nm, phone: phone.value, address: $("#addr").value.trim(), request_text: pl, lang }); }
-      catch(err){ console.error(err); }
-    }
-    if (tgOn){
-      try {
-        const url = TELEGRAM.relayUrl || `https://api.telegram.org/bot${TELEGRAM.token}/sendMessage`;
-        const res = await fetch(url, { method:"POST", body: new URLSearchParams({ chat_id: TELEGRAM.chatId, text: order ? `№${order.id} · ${ac.user.email}\n${text}` : text }) });
-        if (!res.ok) throw new Error(res.status);
-        sent = true;
-      } catch(err){ console.error(err); }
-    }
-    if (!order && !sent) throw new Error("not delivered");
+    if (!ac.sb) throw new Error("Supabase client not loaded");
+    const order = await acSaveOrder({ org, inn: $("#inn").value, contact_name: nm, phone: phone.value, address: $("#addr").value.trim(), request_text: pl, lang });
     st.className = "status ok"; st.hidden = false;
-    st.textContent = t("ok") + (order ? " " + t("ac_order_saved").replace("{n}", order.id) : ac.user ? " " + t("ac_order_unsaved") : "");
+    st.textContent = t("ok") + (order ? " " + t("ac_order_saved").replace("{n}", order.id) : "");
     e.target.reset(); phone.value = "+998 "; list = {}; save(); updateCounts(); renderDrawer(); renderCards(); acPrefill();
-  } catch(err){ st.className = "status warn"; st.hidden = false; st.innerHTML = esc(t("fail")) + `<pre>${esc(text)}</pre>`; }
+  } catch(err){ console.error(err); st.className = "status warn"; st.hidden = false; st.innerHTML = esc(t("fail")) + `<pre>${esc(text)}</pre>`; }
   finally { btn.disabled = false; btn.textContent = t("f_send"); }
 });
 
@@ -1196,6 +1175,8 @@ async function acLoadUser(){
   acLoadOrders();
 }
 async function acSaveOrder(row){
+  /* Kirmagan mijoz qatorni o'qiy olmaydi, shuning uchun raqam qaytmaydi */
+  if (!ac.user){ sbCheck(await ac.sb.from("orders").insert(row)); return null; }
   const order = sbCheck(await ac.sb.from("orders").insert(row).select().single());
   if (ac.orders) ac.orders.unshift(order);
   acRender();

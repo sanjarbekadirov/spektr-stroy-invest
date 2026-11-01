@@ -6,7 +6,7 @@ Brendbuk v2.0 asosida: Montserrat + Inter, Spektr Binafsha #412A9D, Signal Sariq
 - `index.html`: butun sayt (UZ / RU / EN), katalog, so'rov ro'yxati, so'rov formasi
 - `logo.svg`, `logo-s.svg`: vektor logotip va S belgisi
 
-So'rovlar Telegram'ga tushishi uchun `index.html` ichidagi `TELEGRAM` sozlamasini to'ldiring (relay orqali tavsiya etiladi).
+So'rovlar Supabase'dagi `orders` jadvaliga tushadi va `supabase/telegram.sql` orqali Telegram guruhiga yuboriladi. Bot tokeni faqat Supabase Vault'da saqlanadi, uni saytga yozmang.
 
 ## Shaxsiy kabinet
 
