@@ -316,7 +316,10 @@ body.dopen .drawer{transform:none}
 .dr-item .ic{width:40px;height:40px}
 .dr-item .ic svg.i{width:20px;height:20px}
 .dr-item h4{font-family:var(--f-body);font-size:.92rem;font-weight:600;line-height:1.3}
-.dr-item .rm{all:unset;cursor:pointer;font-size:.78rem;color:var(--muted);text-decoration:underline;margin-top:4px;display:inline-block}
+.dr-item .rm{all:unset;cursor:pointer;display:grid;place-items:center;width:32px;height:32px;margin:2px 0 0 -6px;border-radius:6px;color:var(--muted)}
+.dr-item .rm:hover{background:var(--surface-2);color:var(--err)}
+.dr-item .rm:focus-visible{outline:3px solid var(--yellow)}
+.dr-item .rm svg.i{width:18px;height:18px}
 .dr-item .stepper{height:36px}
 .dr-item .stepper input{width:36px}
 .dr-empty{padding:40px 10px;text-align:center;color:var(--muted)}
@@ -440,6 +443,7 @@ body.aopen .drawer.acct{transform:none;visibility:visible}
   <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></symbol>
   <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
   <symbol id="i-insta" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17 7v.01"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v5M14 11v5"/></symbol>
   <symbol id="i-house" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7M5.5 9.5V20h13V9.5"/></symbol>
 </svg>
 
@@ -977,7 +981,7 @@ function renderDrawer(){
   if (!ids.length){ $("#drList").innerHTML = `<div class="dr-empty">${t("dr_empty")}</div>`; return; }
   $("#drList").innerHTML = ids.map(id => { const p = P.find(x => x.id === id); if (!p) return ""; const D = DIRS[p.dir];
     return `<div class="dr-item" data-id="${id}"><span class="ic" style="--c:${D.c};--fg:${D.fg}">${icon(D.icon)}</span>
-      <div><h4>${p.n[lang]}</h4><button type="button" class="rm" data-rm>${t("remove")}</button></div>
+      <div><h4>${p.n[lang]}</h4><button type="button" class="rm" data-rm aria-label="${esc(t("remove"))}" title="${esc(t("remove"))}">${icon("i-trash")}</button></div>
       <div class="stepper"><button type="button" data-dstep="-1" aria-label="-">−</button><input type="number" min="1" value="${list[id]}" aria-label="qty"><span class="u">${U[p.u][lang]}</span><button type="button" data-dstep="1" aria-label="+">+</button></div></div>`; }).join("");
 }
 function renderFooterCats(){ $("#fCats").innerHTML = Object.entries(DIRS).map(([k,v]) => `<li><a href="#catalog" data-dir="${k}">${v.n[lang]}</a></li>`).join(""); }
@@ -1021,13 +1025,19 @@ $("#moreBtn").addEventListener("click", () => { showAll = true; renderCards(); $
 $("#cards").addEventListener("click", e => {
   const card = e.target.closest(".card"); if (!card) return; const id = card.dataset.id, inp = card.querySelector("input");
   const st = e.target.closest("[data-step]");
-  if (st){ inp.value = Math.max(1, (parseInt(inp.value) || 1) + +st.dataset.step); if (list[id]){ list[id] = +inp.value; save(); renderDrawer(); } return; }
+  if (st){
+    const next = (parseInt(inp.value) || 1) + +st.dataset.step;
+    /* ro'yxatdagi mahsulotda 1 dan pastga tushish uni ro'yxatdan olib tashlaydi */
+    if (next < 1 && list[id]){ delete list[id]; save(); updateCounts(); renderDrawer(); renderCards(); return; }
+    inp.value = Math.max(1, next); if (list[id]){ list[id] = +inp.value; save(); renderDrawer(); } return;
+  }
   if (e.target.closest("[data-add]")){
     if (list[id]){ openDrawer(); return; }
     list[id] = Math.max(1, parseInt(inp.value) || 1); save(); updateCounts(); renderDrawer(); renderCards(); toast(t("toast"));
   }
 });
 $("#cards").addEventListener("change", e => { const card = e.target.closest(".card"); if (!card || e.target.tagName !== "INPUT") return;
+  if (parseInt(e.target.value) === 0 && list[card.dataset.id]){ delete list[card.dataset.id]; save(); updateCounts(); renderDrawer(); renderCards(); return; }
   e.target.value = Math.max(1, parseInt(e.target.value) || 1); if (list[card.dataset.id]){ list[card.dataset.id] = +e.target.value; save(); renderDrawer(); } });
 
 /* drawer */
@@ -1037,11 +1047,20 @@ function closeDrawer(){ document.body.classList.remove("dopen"); $("#drawer").se
 $("#drClose").addEventListener("click", closeDrawer); $("#ovl").addEventListener("click", closeDrawer);
 $("#drList").addEventListener("click", e => {
   const it = e.target.closest(".dr-item"); if (!it) return; const id = it.dataset.id;
-  if (e.target.closest("[data-rm]")){ delete list[id]; save(); updateCounts(); renderDrawer(); renderCards(); return; }
+  const removeItem = () => { delete list[id]; save(); updateCounts(); renderDrawer(); renderCards(); };
+  if (e.target.closest("[data-rm]")) return removeItem();
   const st = e.target.closest("[data-dstep]");
-  if (st){ list[id] = Math.max(1, list[id] + +st.dataset.dstep); it.querySelector("input").value = list[id]; save(); renderCards(); }
+  if (st){
+    const next = list[id] + +st.dataset.dstep;
+    if (next < 1) return removeItem();
+    list[id] = next; it.querySelector("input").value = next; save(); renderCards();
+  }
 });
-$("#drList").addEventListener("change", e => { const it = e.target.closest(".dr-item"); if (!it) return; list[it.dataset.id] = Math.max(1, parseInt(e.target.value) || 1); e.target.value = list[it.dataset.id]; save(); renderCards(); });
+$("#drList").addEventListener("change", e => { const it = e.target.closest(".dr-item"); if (!it) return;
+  const q = parseInt(e.target.value), id = it.dataset.id;
+  if (q === 0){ delete list[id]; save(); updateCounts(); renderDrawer(); renderCards(); return; }
+  list[id] = Math.max(1, q || 1); e.target.value = list[id]; save(); renderCards();
+});
 $("#drClear").addEventListener("click", () => { list = {}; save(); updateCounts(); renderDrawer(); renderCards(); });
 function listText(){ return Object.entries(list).map(([id,q]) => { const p = P.find(x => x.id === id); return p ? `${p.n[lang]} (${id}): ${q} ${U[p.u][lang]}` : ""; }).filter(Boolean).join("\n"); }
 $("#drGo").addEventListener("click", () => {
