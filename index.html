@@ -236,10 +236,6 @@ section.sec{padding-block:72px}
 @media (max-width:960px){.steps{grid-template-columns:1fr;border-top:0}.steps li{padding:16px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:52px 1fr;column-gap:14px}.steps li .n{grid-row:span 2}}
 
 /* About */
-.about{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:start}
-.b2{font-family:var(--f-head);font-weight:900;font-size:clamp(4.5rem,13vw,10rem);line-height:.86;letter-spacing:-.03em}
-.b2 span{display:block;color:var(--accent-text)}
-.b2 span+span{color:var(--lav)}
 .about .txt{display:flex;flex-direction:column;gap:16px}
 .about h2{font-size:clamp(1.6rem,3vw,2.3rem);font-weight:800;line-height:1.12}
 .about .txt>p{color:var(--muted);max-width:60ch}
@@ -250,7 +246,7 @@ section.sec{padding-block:72px}
 .values .row .n{font-family:var(--f-head);font-weight:800;font-size:.85rem;color:var(--accent-text)}
 .values .row h3{font-size:clamp(1.5rem,3.4vw,2.4rem);font-weight:900;color:var(--accent-text);line-height:1}
 .values .row p{color:var(--muted)}
-@media (max-width:860px){.about{grid-template-columns:1fr;gap:28px}.values .row{grid-template-columns:36px 1fr}.values .row p{grid-column:2}}
+@media (max-width:860px){.values .row{grid-template-columns:36px 1fr}.values .row p{grid-column:2}}
 
 /* Request */
 .req{background:var(--night);color:#fff;position:relative;overflow:hidden}
@@ -592,7 +588,6 @@ body.aopen .drawer.acct{transform:none;visibility:visible}
   <section class="sec" id="about">
     <div class="wrap">
       <div class="about">
-        <div class="b2" aria-hidden="true"><span>B2B</span><span>B2G</span></div>
         <div class="txt">
           <span class="eyebrow" data-i18n="about_eyebrow"></span>
           <h2 data-i18n="about_title"></h2>
