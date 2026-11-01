@@ -7,3 +7,15 @@ Brendbuk v2.0 asosida: Montserrat + Inter, Spektr Binafsha #412A9D, Signal Sariq
 - `logo.svg`, `logo-s.svg`: vektor logotip va S belgisi
 
 So'rovlar Telegram'ga tushishi uchun `index.html` ichidagi `TELEGRAM` sozlamasini to'ldiring (relay orqali tavsiya etiladi).
+
+## Shaxsiy kabinet
+
+Kabinet (ro'yxatdan o'tish, kirish, buyurtmalar va haridlar tarixi) Supabase bazasida ishlaydi. `SUPABASE` sozlamasi bo'sh bo'lsa, kabinet saytda ko'rinmaydi.
+
+1. [supabase.com](https://supabase.com) da yangi loyiha oching.
+2. **SQL Editor** ga `supabase/schema.sql` ni butunlay qo'yib, ishga tushiring.
+3. **Authentication > URL Configuration**: Site URL va Redirect URLs ga `https://sanjarbekadirov.github.io/spektr-stroy-invest/` ni yozing.
+4. **Authentication > Emails > SMTP Settings**: o'z SMTP'ingizni ulang. Busiz tasdiqlash va parolni tiklash xatlari mijozlarga bormaydi.
+5. **Project Settings > API**: Project URL va anon/publishable kalitni `index.html` dagi `SUPABASE` ga yozing. `service_role` kalitini saytga hech qachon yozmang.
+
+Buyurtma holati: **Table Editor > orders** da `status` (`new`, `processing`, `delivered`, `cancelled`) va `amount` (so'mda) ni o'zgartiring. `delivered` bo'lgan buyurtma mijozning "Haridlar" bo'limida ko'rinadi.

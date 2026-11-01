@@ -346,6 +346,47 @@ body.dopen .drawer{transform:none}
   .tabbar .badge{top:4px;right:calc(50% - 22px)}
   .toast{bottom:calc(80px + env(safe-area-inset-bottom,0px))}
 }
+
+/* Shaxsiy kabinet */
+.acct-btn{grid-area:acct}
+body.has-acct .hd-main{grid-template-columns:auto auto 1fr auto auto;grid-template-areas:"logo cat search acct list"}
+@media (max-width:1100px){.acct-btn .lbl{display:none}}
+@media (max-width:900px){body.has-acct .hd-main{grid-template-columns:auto 1fr auto auto;grid-template-areas:"logo . acct list" "cat search search search"}}
+@media (max-width:760px){body.has-acct .tabbar{grid-template-columns:repeat(5,1fr)}}
+.drawer.acct{visibility:hidden;transition:transform .3s,visibility .3s}
+body.dopen .drawer.acct{transform:translateX(102%)}
+body.aopen .ovl{opacity:1;visibility:visible}
+body.aopen .drawer.acct{transform:none;visibility:visible}
+.ac-body{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:16px}
+.ac-form{display:flex;flex-direction:column;gap:14px}
+.ac-form .btn{width:100%}
+.ac-form .btn:disabled{opacity:.6;cursor:default}
+.ac-lead{font-size:.92rem;color:var(--muted)}
+.ac-link{all:unset;cursor:pointer;font-size:.88rem;font-weight:600;color:var(--accent-text);text-decoration:underline;text-underline-offset:3px}
+.ac-link:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.ac-tabs{display:flex;gap:4px;background:var(--surface-2);border-radius:8px;padding:4px}
+.ac-tabs button{all:unset;cursor:pointer;flex:1;text-align:center;font-size:.88rem;font-weight:600;padding:9px 6px;border-radius:6px;color:var(--muted)}
+.ac-tabs button[aria-selected="true"]{background:var(--bg);color:var(--accent-text)}
+.ac-tabs button:focus-visible{outline:3px solid var(--yellow)}
+.ac-who{display:flex;align-items:center;gap:12px;min-width:0}
+.ac-who .ava{flex:none;width:48px;height:48px;border-radius:50%;background:var(--purple);color:#fff;display:grid;place-items:center;font-family:var(--f-head);font-weight:800}
+.ac-who div{min-width:0}
+.ac-who b{display:block;font-family:var(--f-head);overflow-wrap:anywhere}
+.ac-who small{display:block;color:var(--muted);font-size:.82rem;overflow-wrap:anywhere}
+.ord{border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px}
+.ord+.ord{margin-top:10px}
+.ord-h{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.ord-h b{font-family:var(--f-head);font-variant-numeric:tabular-nums}
+.ord-st{font-size:.74rem;font-weight:700;padding:3px 9px;border-radius:20px;background:var(--surface-2);white-space:nowrap}
+.ord-st.st-processing{background:var(--yellow);color:var(--night)}
+.ord-st.st-delivered{background:var(--ok-bg);color:var(--ok)}
+.ord-st.st-cancelled{color:var(--muted)}
+.ord small{color:var(--muted);font-size:.8rem}
+.ord-org{font-weight:600;font-size:.92rem;overflow-wrap:anywhere}
+.ord pre{font:500 .84rem/1.5 var(--f-body);white-space:pre-wrap;overflow-wrap:anywhere;margin:0}
+.ord-sum{font-weight:700;font-variant-numeric:tabular-nums}
+.ac-empty{text-align:center;color:var(--muted);font-size:.92rem;padding:28px 8px}
+.rq-ac{grid-column:1/-1;font-size:.86rem;background:var(--surface-2);border-radius:8px;padding:10px 14px}
 </style>
 </head>
 <body>
@@ -384,6 +425,7 @@ body.dopen .drawer{transform:none}
   <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
   <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></symbol>
   <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
   <symbol id="i-house" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7M5.5 9.5V20h13V9.5"/></symbol>
 </svg>
 
@@ -413,6 +455,10 @@ body.dopen .drawer{transform:none}
       <input id="hq" type="search" autocomplete="off" data-i18n-ph="search_ph" aria-label="Search">
       <button type="submit" aria-label="Search"><svg class="i"><use href="#i-search"/></svg></button>
     </form>
+    <button class="list-btn acct-btn" type="button" id="acBtn" hidden>
+      <span class="ico"><svg class="i"><use href="#i-user"/></svg></span>
+      <span class="lbl"><span data-i18n="ac_title"></span><small id="acBtnSub"></small></span>
+    </button>
     <button class="list-btn" type="button" id="listBtn" aria-label="List">
       <span class="ico"><svg class="i"><use href="#i-list"/></svg><span class="badge" data-n="0">0</span></span>
       <span class="lbl"><span data-i18n="list"></span><small data-i18n="list_sub"></small></span>
@@ -559,6 +605,7 @@ body.dopen .drawer{transform:none}
         <div class="field full" id="f-phone"><label for="phone" data-i18n="f_phone"></label><input id="phone" type="tel" inputmode="tel" autocomplete="tel" value="+998 "><span class="err" hidden data-i18n="err_phone"></span></div>
         <div class="field full" id="f-list"><label for="plist" data-i18n="f_list"></label><textarea id="plist" data-i18n-ph="f_list_ph"></textarea><span class="err" hidden data-i18n="err_list"></span></div>
         <div class="field full"><label for="addr"><span data-i18n="f_addr"></span> <span class="opt" data-i18n="opt"></span></label><input id="addr" autocomplete="street-address"></div>
+        <div class="rq-ac" id="rqAc" hidden></div>
         <div class="ff"><button class="btn btn-y" type="submit" id="send" data-i18n="f_send"></button><small data-i18n="f_note"></small></div>
         <div class="status" id="status" hidden></div>
       </form>
@@ -598,6 +645,7 @@ body.dopen .drawer{transform:none}
   <a href="#catalog"><svg class="i"><use href="#i-grid"/></svg><span data-i18n="catalog"></span></a>
   <button type="button" id="listBtn2"><svg class="i"><use href="#i-list"/></svg><span class="badge" data-n="0">0</span><span data-i18n="bb_list"></span></button>
   <a href="#contacts"><svg class="i"><use href="#i-phone"/></svg><span data-i18n="bb_contact"></span></a>
+  <button type="button" id="acBtn2" hidden><svg class="i"><use href="#i-user"/></svg><span data-i18n="ac_short"></span></button>
 </nav>
 
 <div class="ovl" id="ovl"></div>
@@ -606,6 +654,52 @@ body.dopen .drawer{transform:none}
   <div class="dr-list" id="drList"></div>
   <div class="dr-f"><button class="clear" type="button" id="drClear" data-i18n="clear"></button><button class="btn btn-y" type="button" id="drGo" data-i18n="go_request"></button></div>
 </aside>
+<aside class="drawer acct" id="acct" aria-labelledby="acT" aria-hidden="true">
+  <div class="dr-h"><h3 id="acT" data-i18n="ac_title"></h3><button class="x-btn" type="button" id="acClose" aria-label="Close"><svg class="i"><use href="#i-x"/></svg></button></div>
+  <div class="ac-body">
+    <div class="status" id="acMsg" role="status" hidden></div>
+    <div id="acAuth" class="ac-form" hidden>
+      <div class="ac-tabs" role="tablist"><button type="button" role="tab" data-ac-auth="in" data-i18n="ac_in"></button><button type="button" role="tab" data-ac-auth="up" data-i18n="ac_up"></button></div>
+      <form class="ac-form" id="acIn" novalidate>
+        <div class="field" id="f-inEmail"><label for="inEmail" data-i18n="ac_email"></label><input id="inEmail" type="email" inputmode="email" autocomplete="email" placeholder="ism@example.com"><span class="err" hidden data-i18n="ac_e_email"></span></div>
+        <div class="field" id="f-inPass"><label for="inPass" data-i18n="ac_pass"></label><input id="inPass" type="password" autocomplete="current-password"><span class="err" hidden data-i18n="ac_e_pass"></span></div>
+        <button class="btn btn-p" type="submit" data-i18n="ac_in"></button>
+        <button class="ac-link" type="button" id="acForgotBtn" data-i18n="ac_forgot"></button>
+      </form>
+      <form class="ac-form" id="acUp" novalidate hidden>
+        <div class="field" id="f-upFirst"><label for="upFirst" data-i18n="ac_first"></label><input id="upFirst" autocomplete="given-name"><span class="err" hidden data-i18n="ac_e_first"></span></div>
+        <div class="field" id="f-upLast"><label for="upLast" data-i18n="ac_last"></label><input id="upLast" autocomplete="family-name"><span class="err" hidden data-i18n="ac_e_last"></span></div>
+        <div class="field" id="f-upEmail"><label for="upEmail" data-i18n="ac_email"></label><input id="upEmail" type="email" inputmode="email" autocomplete="email" placeholder="ism@example.com"><span class="err" hidden data-i18n="ac_e_email"></span></div>
+        <div class="field" id="f-upPhone"><label for="upPhone" data-i18n="f_phone"></label><input id="upPhone" type="tel" inputmode="tel" autocomplete="tel" value="+998 "><span class="err" hidden data-i18n="err_phone"></span></div>
+        <div class="field" id="f-upPass"><label for="upPass" data-i18n="ac_pass_new"></label><input id="upPass" type="password" autocomplete="new-password"><span class="err" hidden data-i18n="ac_e_pass"></span></div>
+        <button class="btn btn-p" type="submit" data-i18n="ac_up"></button>
+      </form>
+    </div>
+    <form class="ac-form" id="acForgot" novalidate hidden>
+      <p class="ac-lead" data-i18n="ac_forgot_lead"></p>
+      <div class="field" id="f-fgEmail"><label for="fgEmail" data-i18n="ac_email"></label><input id="fgEmail" type="email" inputmode="email" autocomplete="email" placeholder="ism@example.com"><span class="err" hidden data-i18n="ac_e_email"></span></div>
+      <button class="btn btn-p" type="submit" data-i18n="ac_forgot_send"></button>
+      <button class="ac-link" type="button" id="acBack" data-i18n="ac_back"></button>
+    </form>
+    <form class="ac-form" id="acReset" novalidate hidden>
+      <p class="ac-lead" data-i18n="ac_reset_lead"></p>
+      <div class="field" id="f-rsPass"><label for="rsPass" data-i18n="ac_pass_new"></label><input id="rsPass" type="password" autocomplete="new-password"><span class="err" hidden data-i18n="ac_e_pass"></span></div>
+      <button class="btn btn-p" type="submit" data-i18n="ac_save"></button>
+    </form>
+    <div id="acHome" class="ac-form" hidden>
+      <div class="ac-who"><span class="ava" id="acAva"></span><div><b id="acName"></b><small id="acMail"></small></div></div>
+      <div class="ac-tabs" role="tablist"><button type="button" role="tab" data-ac-tab="orders"></button><button type="button" role="tab" data-ac-tab="purchases"></button><button type="button" role="tab" data-ac-tab="profile" data-i18n="ac_profile"></button></div>
+      <div id="acOrders"></div>
+      <form class="ac-form" id="acProfile" novalidate hidden>
+        <div class="field" id="f-pfFirst"><label for="pfFirst" data-i18n="ac_first"></label><input id="pfFirst" autocomplete="given-name"><span class="err" hidden data-i18n="ac_e_first"></span></div>
+        <div class="field" id="f-pfLast"><label for="pfLast" data-i18n="ac_last"></label><input id="pfLast" autocomplete="family-name"><span class="err" hidden data-i18n="ac_e_last"></span></div>
+        <div class="field" id="f-pfPhone"><label for="pfPhone" data-i18n="f_phone"></label><input id="pfPhone" type="tel" inputmode="tel" autocomplete="tel" value="+998 "><span class="err" hidden data-i18n="err_phone"></span></div>
+        <button class="btn btn-p" type="submit" data-i18n="ac_save"></button>
+        <button class="ac-link" type="button" id="acOut" data-i18n="ac_out"></button>
+      </form>
+    </div>
+  </div>
+</aside>
 <div class="toast" id="toast" role="status"><svg class="i"><use href="#i-check"/></svg><span id="toastT"></span></div>
 
 <script>
@@ -613,6 +707,10 @@ body.dopen .drawer{transform:none}
    Arizalar Telegram'ga tushishi uchun quyidagini to'ldiring.
    Tavsiya: tokenni kodda saqlamang, Cloudflare Worker relay manzilini relayUrl ga yozing. */
 const TELEGRAM = { token: "", chatId: "", relayUrl: "" };
+/* ===== SOZLAMA: Shaxsiy kabinet (Supabase) =====
+   Ikkala qiymat bo'sh bo'lsa, kabinet saytda ko'rinmaydi. Qanday to'ldirish: README.md.
+   anonKey ochiq kalit, kodda turishi mumkin. service_role kalitini HECH QACHON bu yerga yozmang. */
+const SUPABASE = { url: "https://iwuouayiomygwuoppfob.supabase.co", anonKey: "sb_publishable_-p3f3riV9eqd7hKI8YwAOQ_npfI74O3" };
 const PHONE_MAIN = "+998 78 120 12 00";
 
 const DIRS = {
@@ -659,7 +757,7 @@ const P = [
 ];
 
 const T = {
-uz:{top_hours:"Ish vaqti: 09:00-17:00",catalog:"Katalog",search_ph:"Mahsulot qidirish, masalan: sement",list:"So'rov ro'yxati",list_sub:"tijorat taklifi uchun",
+uz:{ac_title:"Shaxsiy kabinet",ac_short:"Kabinet",ac_sub_out:"kirish",ac_in:"Kirish",ac_up:"Ro'yxatdan o'tish",ac_email:"Elektron pochta",ac_pass:"Parol",ac_pass_new:"Yangi parol (kamida 8 belgi)",ac_first:"Ism",ac_last:"Familiya",ac_forgot:"Parolni unutdingizmi?",ac_forgot_lead:"Elektron pochtangizni kiriting, parolni tiklash havolasini yuboramiz.",ac_forgot_send:"Havola yuborish",ac_forgot_done:"Agar bu pochta ro'yxatdan o'tgan bo'lsa, tiklash havolasi yuborildi. Pochtangizni tekshiring.",ac_back:"Orqaga",ac_reset_lead:"Yangi parolni kiriting.",ac_reset_done:"Parol yangilandi.",ac_save:"Saqlash",ac_saved_profile:"Ma'lumotlar saqlandi.",ac_out:"Chiqish",ac_profile:"Profil",ac_orders:"Buyurtmalar",ac_purchases:"Haridlar",ac_loading:"Yuklanmoqda...",ac_no_orders:"Hali buyurtmalar yo'q.",ac_no_purchases:"Hali yakunlangan haridlar yo'q. Buyurtma yetkazilgach, shu yerda ko'rinadi.",ac_to_catalog:"Katalogga o'tish",ac_load_fail:"Tarixni yuklab bo'lmadi. Keyinroq urinib ko'ring.",ac_st_new:"Yangi",ac_st_processing:"Jarayonda",ac_st_delivered:"Yetkazildi",ac_st_cancelled:"Bekor qilingan",ac_sum:"so'm",ac_confirm:"Elektron pochtangizga tasdiqlash xati yuborildi. Havolani bosing, so'ng kiring.",ac_e_email:"To'g'ri elektron pochta manzilini kiriting",ac_e_pass:"Parol kamida 8 belgidan iborat bo'lsin",ac_e_first:"Ismni kiriting",ac_e_last:"Familiyani kiriting",ac_e_cred:"Elektron pochta yoki parol noto'g'ri.",ac_e_unconf:"Avval elektron pochtangizdagi havola orqali manzilni tasdiqlang.",ac_e_exists:"Bu elektron pochta allaqachon ro'yxatdan o'tgan. Kirish bo'limidan foydalaning.",ac_e_rate:"Urinishlar juda ko'p. Birozdan so'ng qayta urining.",ac_e_gen:"Xizmat vaqtincha ishlamayapti. Keyinroq urinib ko'ring yoki qo'ng'iroq qiling: "+PHONE_MAIN,ac_rq_in:"Buyurtma kabinetingizda saqlanadi:",ac_rq_out:"Buyurtmalar tarixi saqlanishi uchun",ac_rq_login:"kabinetga kiring",ac_order_saved:"Buyurtma №{n} kabinetingizga saqlandi.",ac_order_unsaved:"Ammo buyurtmani kabinetga saqlab bo'lmadi.",top_hours:"Ish vaqti: 09:00-17:00",catalog:"Katalog",search_ph:"Mahsulot qidirish, masalan: sement",list:"So'rov ro'yxati",list_sub:"tijorat taklifi uchun",
 nav_dirs:"Yo'nalishlar",nav_catalog:"Katalog",nav_process:"Ishlash tartibi",nav_about:"Kompaniya",nav_contacts:"Kontaktlar",nav_request:"So'rov yuborish",
 pos:"pozitsiya",
 s1_eyebrow:"Korxonalar va davlat tashkilotlari uchun ta'minot",s1_l1:"Bitta hamkor.",s1_l2:"To'rt yo'nalish.",s1_l3:"Bitta shartnoma.",
@@ -699,7 +797,7 @@ f_tag:"Korxonalar va davlat tashkilotlari uchun ta'minot.",f_company:"Kompaniya"
 clear:"Tozalash",go_request:"So'rovga o'tish",dr_empty:"Ro'yxat hozircha bo'sh. Katalogdan pozitsiyalarni qo'shing.",remove:"O'chirish",
 toast:"Ro'yxatga qo'shildi",theme_dark:"Qorong'u rejim",theme_light:"Yorug' rejim",bb_home:"Bosh sahifa",bb_list:"Ro'yxat",bb_contact:"Aloqa",list_head:"Katalogdan:"},
 
-ru:{top_hours:"Режим работы: 09:00-17:00",catalog:"Каталог",search_ph:"Поиск товара, например: цемент",list:"Список запроса",list_sub:"для коммерческого предложения",
+ru:{ac_title:"Личный кабинет",ac_short:"Кабинет",ac_sub_out:"вход",ac_in:"Войти",ac_up:"Регистрация",ac_email:"Электронная почта",ac_pass:"Пароль",ac_pass_new:"Новый пароль (минимум 8 символов)",ac_first:"Имя",ac_last:"Фамилия",ac_forgot:"Забыли пароль?",ac_forgot_lead:"Введите вашу электронную почту, мы отправим ссылку для восстановления пароля.",ac_forgot_send:"Отправить ссылку",ac_forgot_done:"Если эта почта зарегистрирована, ссылка отправлена. Проверьте почту.",ac_back:"Назад",ac_reset_lead:"Введите новый пароль.",ac_reset_done:"Пароль обновлён.",ac_save:"Сохранить",ac_saved_profile:"Данные сохранены.",ac_out:"Выйти",ac_profile:"Профиль",ac_orders:"Заказы",ac_purchases:"Покупки",ac_loading:"Загрузка...",ac_no_orders:"Заказов пока нет.",ac_no_purchases:"Завершённых покупок пока нет. Заказ появится здесь после доставки.",ac_to_catalog:"Перейти в каталог",ac_load_fail:"Не удалось загрузить историю. Попробуйте позже.",ac_st_new:"Новый",ac_st_processing:"В работе",ac_st_delivered:"Доставлен",ac_st_cancelled:"Отменён",ac_sum:"сум",ac_confirm:"На вашу почту отправлено письмо. Перейдите по ссылке, затем войдите.",ac_e_email:"Введите правильный адрес электронной почты",ac_e_pass:"Пароль должен содержать минимум 8 символов",ac_e_first:"Введите имя",ac_e_last:"Введите фамилию",ac_e_cred:"Неверная электронная почта или пароль.",ac_e_unconf:"Сначала подтвердите адрес по ссылке из письма.",ac_e_exists:"Эта почта уже зарегистрирована. Используйте вход.",ac_e_rate:"Слишком много попыток. Повторите немного позже.",ac_e_gen:"Сервис временно недоступен. Попробуйте позже или позвоните: "+PHONE_MAIN,ac_rq_in:"Заказ сохранится в вашем кабинете:",ac_rq_out:"Чтобы сохранять историю заказов,",ac_rq_login:"войдите в кабинет",ac_order_saved:"Заказ №{n} сохранён в вашем кабинете.",ac_order_unsaved:"Но заказ не удалось сохранить в кабинете.",top_hours:"Режим работы: 09:00-17:00",catalog:"Каталог",search_ph:"Поиск товара, например: цемент",list:"Список запроса",list_sub:"для коммерческого предложения",
 nav_dirs:"Направления",nav_catalog:"Каталог",nav_process:"Порядок работы",nav_about:"О компании",nav_contacts:"Контакты",nav_request:"Отправить запрос",
 pos:"позиций",
 s1_eyebrow:"Снабжение предприятий и государственных организаций",s1_l1:"Один партнёр.",s1_l2:"Четыре направления.",s1_l3:"Один договор.",
@@ -739,7 +837,7 @@ f_tag:"Снабжение предприятий и государственны
 clear:"Очистить",go_request:"Перейти к запросу",dr_empty:"Список пока пуст. Добавьте позиции из каталога.",remove:"Удалить",
 toast:"Добавлено в список",theme_dark:"Тёмная тема",theme_light:"Светлая тема",bb_home:"Главная",bb_list:"Список",bb_contact:"Связь",list_head:"Из каталога:"},
 
-en:{top_hours:"Hours: 09:00-17:00",catalog:"Catalog",search_ph:"Search products, e.g. cement",list:"Request list",list_sub:"for a commercial offer",
+en:{ac_title:"My account",ac_short:"Account",ac_sub_out:"sign in",ac_in:"Sign in",ac_up:"Register",ac_email:"Email",ac_pass:"Password",ac_pass_new:"New password (at least 8 characters)",ac_first:"First name",ac_last:"Last name",ac_forgot:"Forgot your password?",ac_forgot_lead:"Enter your email and we will send a password reset link.",ac_forgot_send:"Send link",ac_forgot_done:"If this email is registered, a reset link has been sent. Check your inbox.",ac_back:"Back",ac_reset_lead:"Enter a new password.",ac_reset_done:"Password updated.",ac_save:"Save",ac_saved_profile:"Details saved.",ac_out:"Sign out",ac_profile:"Profile",ac_orders:"Orders",ac_purchases:"Purchases",ac_loading:"Loading...",ac_no_orders:"No orders yet.",ac_no_purchases:"No completed purchases yet. An order appears here once delivered.",ac_to_catalog:"Go to catalog",ac_load_fail:"Could not load your history. Please try later.",ac_st_new:"New",ac_st_processing:"In progress",ac_st_delivered:"Delivered",ac_st_cancelled:"Cancelled",ac_sum:"UZS",ac_confirm:"A confirmation email was sent to your email. Follow the link, then sign in.",ac_e_email:"Enter a valid email address",ac_e_pass:"Password must be at least 8 characters",ac_e_first:"Enter your first name",ac_e_last:"Enter your last name",ac_e_cred:"Wrong email or password.",ac_e_unconf:"Please confirm your address using the link in your email first.",ac_e_exists:"This email is already registered. Please sign in.",ac_e_rate:"Too many attempts. Please try again shortly.",ac_e_gen:"The service is temporarily unavailable. Please try later or call "+PHONE_MAIN,ac_rq_in:"This order will be saved to your account:",ac_rq_out:"To keep your order history,",ac_rq_login:"sign in to your account",ac_order_saved:"Order #{n} was saved to your account.",ac_order_unsaved:"However, the order could not be saved to your account.",top_hours:"Hours: 09:00-17:00",catalog:"Catalog",search_ph:"Search products, e.g. cement",list:"Request list",list_sub:"for a commercial offer",
 nav_dirs:"Product lines",nav_catalog:"Catalog",nav_process:"How we work",nav_about:"Company",nav_contacts:"Contacts",nav_request:"Send a request",
 pos:"items",
 s1_eyebrow:"Supply for companies and government organisations",s1_l1:"One partner.",s1_l2:"Four product lines.",s1_l3:"One contract.",
@@ -845,7 +943,7 @@ function applyLang(){
   $$("[data-i18n-html]").forEach(el => el.innerHTML = t(el.dataset.i18nHtml));
   $$(".langs button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
   $("#mapLink").href = "https://yandex.uz/maps/?text=" + encodeURIComponent("Toshkent, Muqimiy ko'chasi 14");
-  syncTheme(); renderMega(); renderDirs(); renderTabs(); renderCards(); renderDrawer(); renderFooterCats(); updateCounts();
+  syncTheme(); renderMega(); renderDirs(); renderTabs(); renderCards(); renderDrawer(); renderFooterCats(); updateCounts(); acRender();
 }
 function renderMega(){
   $("#megaList").innerHTML = Object.entries(DIRS).map(([k,v]) =>
@@ -912,7 +1010,7 @@ document.addEventListener("click", e => {
   if (dl && (dl.closest("#megaList") || dl.closest("#dirs") || dl.closest("#fCats"))){ e.preventDefault(); setDir(dl.dataset.dir, true); }
   if (dl && dl.closest("#tabs")) setDir(dl.dataset.dir, false);
 });
-document.addEventListener("keydown", e => { if (e.key === "Escape"){ closeMega(); closeDrawer(); } });
+document.addEventListener("keydown", e => { if (e.key === "Escape"){ closeMega(); closeDrawer(); acClose(); } });
 $("#hSearch").addEventListener("submit", e => { e.preventDefault(); query = $("#hq").value; $("#q").value = query; dir = "all"; renderTabs(); renderCards(); $("#catalog").scrollIntoView(); });
 $("#q").addEventListener("input", () => { query = $("#q").value; $("#hq").value = query; renderCards(); });
 
@@ -963,11 +1061,12 @@ go(0); auto();
 
 /* phone mask */
 const phone = $("#phone");
-phone.addEventListener("input", () => {
+function maskPhone(phone){ phone.addEventListener("input", () => {
   let d = phone.value.replace(/\D/g, ""); if (!d.startsWith("998")) d = "998" + d; d = d.slice(0,12); const r = d.slice(3);
   let o = "+998"; if (r.length) o += " " + r.slice(0,2); if (r.length > 2) o += " " + r.slice(2,5); if (r.length > 5) o += " " + r.slice(5,7); if (r.length > 7) o += " " + r.slice(7,9);
   phone.value = o;
-});
+}); }
+maskPhone(phone);
 $("#inn").addEventListener("input", e => e.target.value = e.target.value.replace(/\D/g,"").slice(0,9));
 
 /* submit */
@@ -979,14 +1078,27 @@ $("#rq").addEventListener("submit", async e => {
   if (v.includes(false)){ const first = ["org","pname","phone","plist"][v.indexOf(false)]; $("#"+first).focus(); return; }
   const text = `🏢 Yangi so'rov (sayt)\nTashkilot: ${org}\nSTIR: ${$("#inn").value || "-"}\nMas'ul shaxs: ${nm}\nTelefon: ${phone.value}\nManzil: ${$("#addr").value.trim() || "-"}\nTil: ${lang.toUpperCase()}\n\nPozitsiyalar:\n${pl}`;
   const st = $("#status"), btn = $("#send");
-  if (!(TELEGRAM.relayUrl || (TELEGRAM.token && TELEGRAM.chatId))){ st.className = "status warn"; st.hidden = false; st.innerHTML = esc(t("demo")) + `<pre>${esc(text)}</pre>`; return; }
+  const tgOn = !!(TELEGRAM.relayUrl || (TELEGRAM.token && TELEGRAM.chatId));
+  if (!tgOn && !ac.user){ st.className = "status warn"; st.hidden = false; st.innerHTML = esc(t("demo")) + `<pre>${esc(text)}</pre>`; return; }
   btn.disabled = true; btn.textContent = t("sending");
   try {
-    const url = TELEGRAM.relayUrl || `https://api.telegram.org/bot${TELEGRAM.token}/sendMessage`;
-    const res = await fetch(url, { method:"POST", body: new URLSearchParams({ chat_id: TELEGRAM.chatId, text }) });
-    if (!res.ok) throw new Error(res.status);
-    st.className = "status ok"; st.hidden = false; st.textContent = t("ok");
-    e.target.reset(); phone.value = "+998 "; list = {}; save(); updateCounts(); renderDrawer(); renderCards();
+    let order = null, sent = false;
+    if (ac.user){
+      try { order = await acSaveOrder({ org, inn: $("#inn").value, contact_name: nm, phone: phone.value, address: $("#addr").value.trim(), request_text: pl, lang }); }
+      catch(err){ console.error(err); }
+    }
+    if (tgOn){
+      try {
+        const url = TELEGRAM.relayUrl || `https://api.telegram.org/bot${TELEGRAM.token}/sendMessage`;
+        const res = await fetch(url, { method:"POST", body: new URLSearchParams({ chat_id: TELEGRAM.chatId, text: order ? `№${order.id} · ${ac.user.email}\n${text}` : text }) });
+        if (!res.ok) throw new Error(res.status);
+        sent = true;
+      } catch(err){ console.error(err); }
+    }
+    if (!order && !sent) throw new Error("not delivered");
+    st.className = "status ok"; st.hidden = false;
+    st.textContent = t("ok") + (order ? " " + t("ac_order_saved").replace("{n}", order.id) : ac.user ? " " + t("ac_order_unsaved") : "");
+    e.target.reset(); phone.value = "+998 "; list = {}; save(); updateCounts(); renderDrawer(); renderCards(); acPrefill();
   } catch(err){ st.className = "status warn"; st.hidden = false; st.innerHTML = esc(t("fail")) + `<pre>${esc(text)}</pre>`; }
   finally { btn.disabled = false; btn.textContent = t("f_send"); }
 });
@@ -1002,6 +1114,175 @@ document.addEventListener("click", e => {
 const tabLinks = [...$$(".tabbar a")];
 const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting){ const id = en.target.dataset.tab; tabLinks.forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#" + id)); } }), {rootMargin:"-45% 0px -50% 0px"});
 [["home","top"],["catalog","catalog"],["contacts","contacts"]].forEach(([id,h]) => { const el = document.getElementById(id); if (el){ el.dataset.tab = h; io.observe(el); } });
+
+/* ---------- shaxsiy kabinet ---------- */
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const SB_SRC = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js";
+const SB_SRI = "sha384-GFr3yTh5lJznCbZfpTtXnwboFsxqtTQoeTZCRHhE0579KrRmlCzen5AA8ohaB5ug";
+const ac = { sb:null, user:null, profile:null, orders:null, failed:false, recovery:false, auth:"in", forgot:false, tab:"orders" };
+
+const fullName = () => ac.profile ? `${ac.profile.first_name} ${ac.profile.last_name}`.trim() : "";
+function acMsg(text, ok){ const m = $("#acMsg"); m.hidden = !text; m.className = "status " + (ok ? "ok" : "warn"); m.textContent = text || ""; if (text) m.scrollIntoView({block:"nearest"}); }
+function acErr(e){
+  const c = (e && e.code) || "", m = String((e && e.message) || "");
+  if (c === "invalid_credentials" || /invalid login/i.test(m)) return t("ac_e_cred");
+  if (c === "email_not_confirmed" || /not confirmed/i.test(m)) return t("ac_e_unconf");
+  if (c === "user_already_exists" || /already registered/i.test(m)) return t("ac_e_exists");
+  if ((e && e.status === 429) || /rate limit/i.test(m)) return t("ac_e_rate");
+  if (c === "weak_password") return t("ac_e_pass");
+  return t("ac_e_gen");
+}
+async function acSubmit(form, fn){
+  const b = form.querySelector('[type="submit"]');
+  if (!ac.sb) return acMsg(t("ac_e_gen"));
+  acMsg(""); b.disabled = true; b.textContent = t("sending");
+  try { await fn(); } catch(err){ console.error(err); acMsg(acErr(err)); }
+  finally { b.disabled = false; b.textContent = t(b.dataset.i18n); }
+}
+const sbCheck = r => { if (r.error) throw r.error; return r.data; };
+
+function acRender(){
+  const signed = !!ac.user, view = ac.recovery ? "reset" : signed ? "home" : ac.forgot ? "forgot" : "auth";
+  $("#acAuth").hidden = view !== "auth"; $("#acForgot").hidden = view !== "forgot"; $("#acReset").hidden = view !== "reset"; $("#acHome").hidden = view !== "home";
+  $("#acIn").hidden = ac.auth !== "in"; $("#acUp").hidden = ac.auth !== "up";
+  $$("[data-ac-auth]").forEach(b => b.setAttribute("aria-selected", b.dataset.acAuth === ac.auth));
+  $("#acBtnSub").textContent = signed ? (fullName() || ac.user.email) : t("ac_sub_out");
+  const rq = $("#rqAc");
+  if (SUPABASE.url && SUPABASE.anonKey){
+    rq.hidden = false;
+    rq.innerHTML = signed ? `${esc(t("ac_rq_in"))} <b>${esc(ac.user.email)}</b>` : `${esc(t("ac_rq_out"))} <button class="ac-link" type="button" id="rqLogin">${esc(t("ac_rq_login"))}</button>`;
+  }
+  if (!signed) return;
+  const nm = fullName();
+  $("#acAva").textContent = (nm || ac.user.email).charAt(0).toUpperCase();
+  $("#acName").textContent = nm; $("#acMail").textContent = ac.user.email;
+  const all = ac.orders || [], done = all.filter(o => o.status === "delivered");
+  $$("[data-ac-tab]").forEach(b => {
+    const k = b.dataset.acTab;
+    b.setAttribute("aria-selected", k === ac.tab);
+    if (k === "orders") b.textContent = t("ac_orders") + (ac.orders ? ` (${all.length})` : "");
+    if (k === "purchases") b.textContent = t("ac_purchases") + (ac.orders ? ` (${done.length})` : "");
+  });
+  $("#acProfile").hidden = ac.tab !== "profile"; $("#acOrders").hidden = ac.tab === "profile";
+  if (ac.tab === "profile") return;
+  const box = $("#acOrders"), rows = ac.tab === "purchases" ? done : all;
+  if (ac.failed && !ac.orders) box.innerHTML = `<div class="ac-empty">${esc(t("ac_load_fail"))}</div>`;
+  else if (!ac.orders) box.innerHTML = `<div class="ac-empty">${esc(t("ac_loading"))}</div>`;
+  else if (!rows.length) box.innerHTML = `<div class="ac-empty"><p>${esc(t(ac.tab === "purchases" ? "ac_no_purchases" : "ac_no_orders"))}</p><p style="margin-top:12px"><a class="ac-link" href="#catalog" data-ac-go>${esc(t("ac_to_catalog"))}</a></p></div>`;
+  else box.innerHTML = rows.map(o => {
+    const known = ["new","processing","delivered","cancelled"].includes(o.status);
+    const when = new Date(o.created_at).toLocaleDateString("ru-RU");
+    return `<article class="ord"><div class="ord-h"><b>№ ${esc(o.id)}</b><span class="ord-st${known ? " st-" + o.status : ""}">${esc(known ? t("ac_st_" + o.status) : o.status)}</span></div><small>${esc(when)}</small><div class="ord-org">${esc(o.org)}</div><pre>${esc(o.request_text)}</pre>${o.amount != null ? `<div class="ord-sum">${esc(Number(o.amount).toLocaleString("ru-RU"))} ${esc(t("ac_sum"))}</div>` : ""}</article>`;
+  }).join("");
+}
+function acPrefill(){
+  if (!ac.profile) return;
+  if (!$("#pname").value.trim()) $("#pname").value = fullName();
+  if (phone.value.replace(/\D/g,"").length <= 3 && ac.profile.phone) phone.value = ac.profile.phone;
+}
+async function acLoadOrders(){
+  ac.failed = false; acRender();
+  try {
+    ac.orders = sbCheck(await ac.sb.from("orders").select("*").order("created_at", { ascending:false }));
+  } catch(err){ console.error(err); ac.failed = true; }
+  acRender();
+}
+async function acLoadUser(){
+  try {
+    ac.profile = sbCheck(await ac.sb.from("profiles").select("*").eq("id", ac.user.id).single());
+    $("#pfFirst").value = ac.profile.first_name; $("#pfLast").value = ac.profile.last_name; $("#pfPhone").value = ac.profile.phone || "+998 ";
+    acPrefill();
+  } catch(err){ console.error(err); }
+  acLoadOrders();
+}
+async function acSaveOrder(row){
+  const order = sbCheck(await ac.sb.from("orders").insert(row).select().single());
+  if (ac.orders) ac.orders.unshift(order);
+  acRender();
+  return order;
+}
+function acOpen(){
+  closeDrawer(); document.body.classList.add("aopen"); $("#acct").setAttribute("aria-hidden","false"); setTimeout(() => $("#acClose").focus(), 50);
+  if (!ac.sb) acMsg(t("ac_e_gen"));
+  if (ac.user && ac.sb) acLoadOrders();
+}
+function acClose(){ document.body.classList.remove("aopen"); $("#acct").setAttribute("aria-hidden","true"); }
+
+["#acBtn","#acBtn2"].forEach(s => $(s).addEventListener("click", acOpen));
+$("#acClose").addEventListener("click", acClose); $("#ovl").addEventListener("click", acClose);
+["#upPhone","#pfPhone"].forEach(s => maskPhone($(s)));
+document.addEventListener("click", e => { if (e.target.closest("#rqLogin")) acOpen(); if (e.target.closest("[data-ac-go]")) acClose(); });
+$$("[data-ac-auth]").forEach(b => b.addEventListener("click", () => { ac.auth = b.dataset.acAuth; acMsg(""); acRender(); }));
+$$("[data-ac-tab]").forEach(b => b.addEventListener("click", () => { ac.tab = b.dataset.acTab; acMsg(""); acRender(); }));
+$("#acForgotBtn").addEventListener("click", () => { ac.forgot = true; $("#fgEmail").value = $("#inEmail").value; acMsg(""); acRender(); });
+$("#acBack").addEventListener("click", () => { ac.forgot = false; acMsg(""); acRender(); });
+$("#acOut").addEventListener("click", async () => { if (ac.sb) await ac.sb.auth.signOut({ scope:"local" }); });
+
+const redirectTo = () => location.origin + location.pathname;
+$("#acIn").addEventListener("submit", e => {
+  e.preventDefault();
+  const email = $("#inEmail").value.trim().toLowerCase(), password = $("#inPass").value;
+  const ok = [mark("inEmail", EMAIL_RE.test(email)), mark("inPass", password.length > 0)];
+  if (ok.includes(false)) return;
+  acSubmit(e.target, async () => { sbCheck(await ac.sb.auth.signInWithPassword({ email, password })); e.target.reset(); });
+});
+$("#acUp").addEventListener("submit", e => {
+  e.preventDefault();
+  const first_name = $("#upFirst").value.trim(), last_name = $("#upLast").value.trim(), email = $("#upEmail").value.trim().toLowerCase(), tel = $("#upPhone").value, password = $("#upPass").value;
+  const ok = [mark("upFirst", first_name.length >= 2), mark("upLast", last_name.length >= 2), mark("upEmail", EMAIL_RE.test(email)), mark("upPhone", tel.replace(/\D/g,"").length === 12), mark("upPass", password.length >= 8)];
+  if (ok.includes(false)) return;
+  acSubmit(e.target, async () => {
+    const d = sbCheck(await ac.sb.auth.signUp({ email, password, options:{ data:{ first_name, last_name, phone: tel }, emailRedirectTo: redirectTo() } }));
+    /* Email tasdiqlash yoqilganda, band manzil uchun Supabase xato emas, identities bo'sh user qaytaradi */
+    if (d.user && !d.session && !(d.user.identities || []).length) return acMsg(t("ac_e_exists"));
+    e.target.reset(); $("#upPhone").value = "+998 ";
+    if (!d.session){ ac.auth = "in"; acRender(); acMsg(t("ac_confirm"), true); }
+  });
+});
+$("#acForgot").addEventListener("submit", e => {
+  e.preventDefault();
+  const email = $("#fgEmail").value.trim().toLowerCase();
+  if (!mark("fgEmail", EMAIL_RE.test(email))) return;
+  acSubmit(e.target, async () => { sbCheck(await ac.sb.auth.resetPasswordForEmail(email, { redirectTo: redirectTo() })); acMsg(t("ac_forgot_done"), true); });
+});
+$("#acReset").addEventListener("submit", e => {
+  e.preventDefault();
+  const password = $("#rsPass").value;
+  if (!mark("rsPass", password.length >= 8)) return;
+  acSubmit(e.target, async () => { sbCheck(await ac.sb.auth.updateUser({ password })); e.target.reset(); ac.recovery = false; acRender(); acMsg(t("ac_reset_done"), true); });
+});
+$("#acProfile").addEventListener("submit", e => {
+  e.preventDefault();
+  const first_name = $("#pfFirst").value.trim(), last_name = $("#pfLast").value.trim(), tel = $("#pfPhone").value;
+  const ok = [mark("pfFirst", first_name.length >= 2), mark("pfLast", last_name.length >= 2), mark("pfPhone", tel.replace(/\D/g,"").length === 12)];
+  if (ok.includes(false)) return;
+  acSubmit(e.target, async () => {
+    ac.profile = sbCheck(await ac.sb.from("profiles").update({ first_name, last_name, phone: tel }).eq("id", ac.user.id).select().single());
+    acRender(); acMsg(t("ac_saved_profile"), true);
+  });
+});
+
+function acInit(){
+  if (!SUPABASE.url || !SUPABASE.anonKey) return;
+  document.body.classList.add("has-acct"); $("#acBtn").hidden = false; $("#acBtn2").hidden = false;
+  const s = document.createElement("script");
+  s.src = SB_SRC; s.integrity = SB_SRI; s.crossOrigin = "anonymous";
+  s.onload = () => {
+    ac.sb = supabase.createClient(SUPABASE.url, SUPABASE.anonKey);
+    ac.sb.auth.onAuthStateChange((ev, session) => {
+      const u = (session && session.user) || null, changed = (u && u.id) !== (ac.user && ac.user.id);
+      ac.user = u;
+      if (ev === "PASSWORD_RECOVERY"){ ac.recovery = true; acOpen(); }
+      if (changed){ ac.profile = null; ac.orders = null; ac.tab = "orders"; ac.forgot = false; if (!u){ ac.recovery = false; $("#acProfile").reset(); } }
+      acRender();
+      /* Supabase chaqiruvlari shu callback ichida kutilsa, klient qotib qoladi */
+      if (changed && u) setTimeout(acLoadUser, 0);
+    });
+  };
+  s.onerror = () => console.error("Supabase client failed to load");
+  document.head.append(s);
+}
+acInit();
 
 applyLang();
 </script>
