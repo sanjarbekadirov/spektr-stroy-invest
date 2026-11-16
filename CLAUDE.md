@@ -20,7 +20,6 @@ Bu fayl Claude Code uchun. Loyihada ishlashdan oldin to'liq o'qing.
 
 - Jonli sayt (GitHub Pages): https://sanjarbekadirov.github.io/spektr-stroy-invest/
 - Repozitoriy: `sanjarbekadirov/spektr-stroy-invest`, branch `main`. `main` ga push qilinsa, sayt 1-2 daqiqada avtomatik yangilanadi.
-- `feature/shaxsiy-kabinet` branchi **eskirgan**: kabinet keyinroq `main` da qaytadan qilingan. Bu branchni merge qilmang; foydalanuvchi rozi bo'lsa o'chirish mumkin.
 - Supabase loyihasi: `iwuouayiomygwuoppfob` (https://iwuouayiomygwuoppfob.supabase.co).
 
 ## Fayllar
@@ -104,4 +103,3 @@ Har bir kalitni `T.uz`, `T.ru`, `T.en` uchalasiga qo'shing. Biror tilda kalit yo
 - Ish vaqti (hozir "har kuni 09:00-17:00") tasdiqlanmagan.
 - Supabase Auth uchun SMTP ulanganmi, tekshirish kerak (busiz tasdiqlash va parol tiklash xatlari bormaydi).
 - Kelajakda o'z domeni yoki serverga ko'chirish rejalashtirilgan. Ko'chirilganda Supabase'dagi Site URL va Redirect URLs ni yangilash kerak.
-- `feature/shaxsiy-kabinet` branchini o'chirish.
