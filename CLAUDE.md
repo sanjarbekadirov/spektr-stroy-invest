@@ -31,6 +31,8 @@ img/catalog/SP-001..112.jpg    Katalog rasmlari, fayl nomi = mahsulot kodi
 supabase/schema.sql            profiles, orders jadvallari, RLS, ro'yxatdan o'tish trigger'i
 supabase/telegram.sql          Yangi buyurtma -> Telegram guruhi (pg_net + Vault)
 supabase/fayl.sql              Buyurtmaga fayl biriktirish: order-files ombori
+supabase/ping.sql              ping() funksiyasi: Supabase loyihasi to'xtab qolmasligi uchun
+.github/workflows/keepalive.yml  Har 2 kunda ping() ni chaqiradi (faqat bepul tarifda kerak)
 supabase/functions/order-file  Edge function: biriktirilgan faylni guruhga hujjat qilib yuboradi
 .nojekyll                      GitHub Pages faylni o'zgartirmasdan bersin
 ```
@@ -103,3 +105,4 @@ Har bir kalitni `T.uz`, `T.ru`, `T.en` uchalasiga qo'shing. Biror tilda kalit yo
 - Ish vaqti (hozir "har kuni 09:00-17:00") tasdiqlanmagan.
 - Supabase Auth uchun SMTP ulanganmi, tekshirish kerak (busiz tasdiqlash va parol tiklash xatlari bormaydi).
 - Kelajakda o'z domeni yoki serverga ko'chirish rejalashtirilgan. Ko'chirilganda Supabase'dagi Site URL va Redirect URLs ni yangilash kerak.
+- Supabase bepul tarifda: 7 kun faolsiz tursa loyiha to'xtatiladi (2026-11-17 da shunday bo'lgan). Hozircha `keepalive.yml` uni faol saqlaydi. Pro tarifga o'tish rejalashtirilgan; o'tilgach, workflow va `ping.sql` ni olib tashlash mumkin.
