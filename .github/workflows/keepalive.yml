@@ -1,0 +1,21 @@
+# Supabase bepul tarifida loyiha 7 kun faolsiz tursa to'xtatiladi.
+# Bu vazifa har 2 kunda public.ping() ni chaqirib, loyihani faol saqlaydi.
+# Pro tarifga o'tilgach, bu faylni o'chirish mumkin.
+name: Supabase keepalive
+
+on:
+  schedule:
+    - cron: "17 6 */2 * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: public.ping() ni chaqirish
+        run: |
+          curl -fsS --retry 3 --retry-delay 10 -X POST \
+            "https://iwuouayiomygwuoppfob.supabase.co/rest/v1/rpc/ping" \
+            -H "apikey: sb_publishable_-p3f3riV9eqd7hKI8YwAOQ_npfI74O3" \
+            -H "Content-Type: application/json" \
+            -d '{}'
