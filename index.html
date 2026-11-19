@@ -154,8 +154,18 @@ section.sec{padding-block:72px}
 .dir .art{width:82%;align-self:center;margin-block:8px}
 .dir h3{font-size:1.25rem;font-weight:800;line-height:1.15}
 .dir .meta{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px 10px;margin-top:10px;font-size:.86rem;font-weight:600;opacity:.9}
+/* Photo cards: photo fills the card, a fade in the photo's own colour keeps the title readable */
+.dir.has-ph{background:var(--pb) var(--photo) center 46%/cover no-repeat}
+.dir.has-ph::after{content:"";position:absolute;left:0;right:0;bottom:0;height:42%;background:linear-gradient(to top,var(--pb2) 0,var(--pb2) 28%,transparent);pointer-events:none}
+.dir.has-ph>*{position:relative;z-index:1}
+.dir .art.sp{aspect-ratio:1/1}
+.dir[data-dir="sponge"]{--photo:url("img/dirs/sponge.webp");--pb:#2F1F76;--pb2:#3B278A}
+.dir[data-dir="pack"]{--photo:url("img/dirs/pack.webp");--pb:#A090D7;--pb2:#B3A3E2}
+.dir[data-dir="chem"]{--photo:url("img/dirs/chem.webp");--pb:#E3A92E;--pb2:#C18526}
+.dir[data-dir="tools"]{--photo:url("img/dirs/tools.webp");--pb:#7C7D99;--pb2:#585971}
 @media (max-width:960px){.dirs{grid-template-columns:1fr 1fr}.dir{min-height:320px}}
 @media (max-width:420px){.dir .num{font-size:3rem}}
+@media (max-width:520px){.dir.has-ph{background-color:var(--pb2);background-size:100% auto;background-position:center -34px}.dir .art.sp{aspect-ratio:4/5}}
 
 /* Catalog */
 .cat-bar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:22px}
@@ -932,10 +942,11 @@ function renderPartners(){
     return p.url ? `<a class="pcard" href="${esc(p.url)}" target="_blank" rel="noopener">${inner}</a>` : `<div class="pcard">${inner}</div>`;
   }).join("");
 }
+const DIR_PHOTOS = new Set(["sponge","pack","chem","tools"]); // img/dirs/<kalit>.webp mavjud yo'nalishlar
 function renderDirs(){
   $("#dirs").innerHTML = Object.entries(DIRS).map(([k,v],i) =>
-    `<button class="dir" type="button" data-dir="${k}" style="--c:${v.c};--fg:${v.fg};--nc:${v.nc}">
-      <span class="num">0${i+1}</span><span class="art">${ART[v.art]()}</span>
+    `<button class="dir${DIR_PHOTOS.has(k) ? " has-ph" : ""}" type="button" data-dir="${k}" style="--c:${v.c};--fg:${v.fg};--nc:${v.nc}">
+      <span class="num">0${i+1}</span>${DIR_PHOTOS.has(k) ? '<span class="art sp" aria-hidden="true"></span>' : `<span class="art">${ART[v.art]()}</span>`}
       <span><h3>${v.n[lang]}</h3><span class="meta"><span>${count(k)} ${t("pos")}</span><span>${t("to_cat")} →</span></span></span>
     </button>`).join("");
 }

@@ -28,6 +28,8 @@ Bu fayl Claude Code uchun. Loyihada ishlashdan oldin to'liq o'qing.
 index.html                     Butun sayt: HTML + CSS + JS bitta faylda, build bosqichi yo'q
 logo.svg, logo-s.svg           Vektor logotip va "S" belgisi (index.html ichiga ham joylangan)
 img/catalog/SP-001..112.jpg    Katalog rasmlari, fayl nomi = mahsulot kodi
+img/hero/hero-1..3.webp        Bosh sahifa bannerlari (2400 px); hero-N-m.webp: telefon uchun kesilgan varianti
+img/dirs/<kalit>.webp          Yo'nalish kartalari fotosi (640x1147, 9:16), kalit = DIRS kaliti
 supabase/schema.sql            profiles, orders jadvallari, RLS, ro'yxatdan o'tish trigger'i
 supabase/telegram.sql          Yangi buyurtma -> Telegram guruhi (pg_net + Vault)
 supabase/fayl.sql              Buyurtmaga fayl biriktirish: order-files ombori
@@ -52,7 +54,8 @@ Asosiy JS konstantalar (`<script>` boshida, taxminan 640-qatordan):
 | `U` | O'lchov birliklari: `pack`, `pc`, `pkg`, `lm`, `pair`, `kg` |
 | `P` | Katalog: 112 mahsulot. Har biri `{id, dir, u, n:{uz,ru,en}, s:{uz,ru,en}}` |
 | `T` | Barcha matnlar tarjimasi: `T.uz`, `T.ru`, `T.en`. HTML'da `data-i18n="kalit"` |
-| `PAL`, `ART` | Brend uslubidagi izometrik illyustratsiyalar (SVG kodda chiziladi) |
+| `DIR_PHOTOS` | Fotosi bor yo'nalishlar. Kartaning foto, fon rangi (`--pb`) va pastki gradient rangi (`--pb2`) CSS'da `.dir[data-dir="..."]` da |
+| `PAL`, `ART` | Izometrik SVG illyustratsiyalar. Hozir faqat fotosi yo'q yo'nalish uchun zaxira |
 | `FILE_TYPES` | Formaga biriktirish mumkin bo'lgan fayl turlari (xlsx, xls, csv, pdf, docx, doc, jpg, png) |
 | `SB_SRC`, `SB_SRI` | supabase-js 2.45.4, jsDelivr'dan SRI bilan, faqat kerak bo'lganda yuklanadi |
 
