@@ -53,7 +53,7 @@ Asosiy JS konstantalar (`<script>` boshida, taxminan 640-qatordan):
 | Nomi | Vazifasi |
 |---|---|
 | `SUPABASE` | `url` va `anonKey` (publishable kalit, saytda turishi mumkin) |
-| `PARTNERS` | Hamkorlar ro'yxati. Bo'sh bo'lsa `#partners` bo'limi va unga havolalar yashiriladi |
+| `PARTNERS` | Hamkorlar ro'yxati (10 ta), aylanuvchi lentada chiqadi. `logo` berilsa nom va monogramma o'rniga rasm. Bo'sh bo'lsa `#partners` bo'limi va unga havolalar yashiriladi |
 | `PHONE_MAIN` | Xato xabarlaridagi telefon |
 | `DIRS` | 4 yo'nalish: `sponge`, `pack`, `chem`, `tools` (rang, ikonka, illyustratsiya, 2 tildagi nom) |
 | `U` | O'lchov birliklari: `pack`, `pc`, `pkg`, `lm`, `pair`, `kg` |
@@ -111,8 +111,8 @@ Har bir kalitni `T.uz` va `T.ru` ikkalasiga qo'shing. Biror tilda kalit yo'q bo'
 
 ## Ochiq masalalar (foydalanuvchi bilan aniqlashtirish kerak)
 
-- Foydalanuvchi 2026-11-20 da tasdiqlagan da'volar: 13+ yil, 5 000+ korporativ mijoz, 1 500+ SKU, 1000+ nom, 24 soatda yetkazish, 30 daqiqada hisob, QQS / UzRTSB birja / g'aznachilik, hamkorlar (Enter Engineering, Eriell, NGMK, Uzkabel, Bunyodkor, Deutsche Kabel).
-- Hamkorlar hozir matnli belgi sifatida ko'rsatiladi: logotip fayllari kerak (`PARTNERS` ga `logo` qo'shiladi).
+- Foydalanuvchi 2026-11-20 da tasdiqlagan da'volar: 13+ yil, 5 000+ korporativ mijoz, 1 500+ SKU, 1000+ nom, 24 soatda yetkazish, 30 daqiqada hisob, QQS / UzRTSB birja / g'aznachilik, hamkorlar (Enter Engineering, Eriell, NGMK, Uzkabel, Bunyodkor, Deutsche Kabel; 2026-11-20 da qo'shildi: Havas, Tashkent City, Nestone, Humo Arena).
+- Hamkorlar hozir monogramma + nom kartochkasi sifatida ko'rsatiladi: logotip fayllari kerak (`img/partners/` ga qo'yib, `PARTNERS` ga `logo` qo'shiladi).
 - Katalogda narx yo'q: jadvaldagi "Ulgurji narx (QQS bilan)" ustunida "Tijorat taklifida" turadi.
 - Ish vaqti (hozir "har kuni 09:00-17:00") tasdiqlanmagan.
 - Supabase Auth uchun SMTP ulanganmi, tekshirish kerak (busiz tasdiqlash va parol tiklash xatlari bormaydi).
