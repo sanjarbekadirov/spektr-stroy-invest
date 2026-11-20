@@ -1347,7 +1347,7 @@ function renderPartners(){
   $("#partners").hidden = !on; $$("[data-partners]").forEach(el => el.hidden = !on);
   const mono = n => { const w = n.replace(/[^\p{L}\p{N} ]/gu, "").split(/\s+/).filter(Boolean); return (w.length > 1 ? w[0][0] + w[1][0] : w[0].slice(0, 2)).toUpperCase(); };
   const card = (p, dup) => {
-    const inner = p.logo ? `<img src="${esc(p.logo)}" alt="${esc(p.name)}"${p.invert ? ` class="logo-invert${p.invert === "bg" ? " on-dark" : ""}"` : ""} loading="lazy" onload="if(this.naturalWidth/this.naturalHeight<2.2)this.classList.add('tall')">` : `<span class="mono" aria-hidden="true">${esc(mono(p.name))}</span><span class="pn">${esc(p.name)}</span>`;
+    const inner = p.logo ? `<img src="${esc(p.logo)}" alt="${esc(p.name)}"${p.invert ? ` class="logo-invert${p.invert === "bg" ? " on-dark" : ""}"` : ""} decoding="async" onload="if(this.naturalWidth/this.naturalHeight<2.2)this.classList.add('tall')">` : `<span class="mono" aria-hidden="true">${esc(mono(p.name))}</span><span class="pn">${esc(p.name)}</span>`;
     const cls = `pcard${p.logo ? " has-logo" : ""}${p.tone === "light" ? " light" : ""}`, hide = dup ? ' aria-hidden="true"' : "";
     return p.url ? `<a class="${cls}" href="${esc(p.url)}" target="_blank" rel="noopener"${hide}${dup ? ' tabindex="-1"' : ""}>${inner}</a>` : `<div class="${cls}"${hide}>${inner}</div>`;
   };
