@@ -536,7 +536,7 @@ footer .totop:focus-visible{outline:2px solid var(--yellow)}
 :root[data-theme="dark"]{--bg-page:#14121D; --bg-surface:#1C1830; --text-main:#ECEAF2; --text-muted:#A7A2C0; --border-subtle:#302A4A}
 h1,h2,h3,h4{font-family:var(--f-head);letter-spacing:-.02em}
 .sec-head h2{font-weight:800}
-.tabular,.kpi b,.sku,.float-card b{font-variant-numeric:tabular-nums}
+.tabular,.kpi b,.sku{font-variant-numeric:tabular-nums}
 .btn{border-radius:12px;font-weight:700}
 .btn-p{background:var(--brand-primary)}
 .btn-p:hover{background:var(--brand-primary-dark)}
@@ -575,39 +575,38 @@ header.hd{box-shadow:0 1px 0 var(--border-subtle)}
 @media (max-width:640px){.hx{min-height:62px}.hx-logo img{height:30px}.hx-price span,.hx-tel{display:none}.hx-price{padding:10px 11px}.hx-right{gap:6px}.theme-btn,.hx-ico{width:38px;height:38px}}
 @media (max-width:380px){.theme-btn{display:none}}
 
-/* ---------- Hero (bento) ---------- */
+/* ---------- Hero (promo-slider) ---------- */
 .hx-hero{padding:48px 0 28px;position:relative;overflow:hidden;background:radial-gradient(60% 80% at 100% 0%,rgba(139,126,216,.16),transparent 70%),radial-gradient(40% 60% at 0% 100%,rgba(65,42,157,.06),transparent 70%)}
-.hh{display:grid;grid-template-columns:1.02fr 1fr;gap:56px;align-items:center}
+.hh{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.25fr);gap:44px;align-items:center}
 .pill{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;background:var(--bg-surface);border:1px solid var(--border-subtle);font-size:.8rem;font-weight:700;color:var(--accent-text);letter-spacing:.01em}
 .pill i{width:8px;height:8px;border-radius:50%;background:var(--brand-accent);box-shadow:0 0 0 4px rgba(255,183,27,.22)}
-.hh h1{font-size:clamp(2rem,4.1vw,3.4rem);font-weight:800;line-height:1.07;margin:20px 0 18px;color:var(--text-main)}
+.hh h1{font-size:clamp(2rem,3.6vw,3.1rem);font-weight:800;line-height:1.07;margin:20px 0 18px;color:var(--text-main)}
 .hh .lead{font-size:1.1rem;line-height:1.6;color:var(--text-muted);max-width:52ch}
 .hh .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
 .hh-points{list-style:none;padding:0;margin:28px 0 0;display:flex;gap:10px 26px;flex-wrap:wrap;color:var(--text-muted);font-size:.9rem;font-weight:600}
 .hh-points li{display:flex;align-items:center;gap:8px}
 .hh-points svg.i{width:18px;height:18px;color:var(--accent-text)}
 .hh-r{position:relative}
-.bento{display:grid;grid-template-columns:1.25fr 1fr;grid-template-rows:auto 190px;gap:14px}
-.bento .b{border-radius:var(--radius-lg);overflow:hidden;background:var(--bg-surface);position:relative}
-.bento img{width:100%;height:100%;object-fit:cover;display:block}
-.bento .b1{grid-column:1/3}
-/* Promo-banner: rasm orqali boshqariladi (img/promo-uz|ru[-m].webp), matn rasmning o'zida */
-.bento .promo{aspect-ratio:21/9;border-radius:22px;overflow:hidden;box-shadow:0 12px 32px rgba(65,42,157,.08);background:#2A1B78}
-.promo picture{display:block;width:100%;height:100%}
+/* Promo-slider: har slayd faqat rasm (img/promo-N-uz|ru[-m].webp), matn rasmning o'zida */
+.promo-slider{position:relative;aspect-ratio:21/9;border-radius:22px;overflow:hidden;box-shadow:0 14px 36px rgba(65,42,157,.10);background:#2A1B78;touch-action:pan-y;isolation:isolate}
+.ps-track{display:flex;height:100%;transition:transform .6s cubic-bezier(.22,1,.36,1);will-change:transform}
+.ps-slide{position:relative;flex:0 0 100%;height:100%}
+.ps-slide picture{display:block;width:100%;height:100%}
+.ps-slide img{display:block;width:100%;height:100%;object-fit:cover;user-select:none;-webkit-user-drag:none}
 .promo-cta{position:absolute;left:5.5%;bottom:13%;display:inline-flex;align-items:center;padding:9px 18px;border-radius:12px;background:#FFB71B;color:#161324;font-weight:700;font-size:14px;line-height:1.2;text-decoration:none;box-shadow:0 8px 20px -8px rgba(0,0,0,.45);transition:transform .2s,box-shadow .2s,background .2s}
 .promo-cta:hover{background:#FFC444;transform:translateY(-2px);box-shadow:0 12px 24px -10px rgba(0,0,0,.55)}
 .promo-cta:focus-visible{outline:3px solid #fff;outline-offset:2px}
-.b-chip{position:absolute;top:12px;right:12px;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#412A9D;font-size:.78rem;font-weight:800;box-shadow:0 6px 16px -8px rgba(22,19,36,.35);white-space:nowrap}
-.bento .b3::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(22,19,36,.78) 0%,rgba(22,19,36,.25) 45%,transparent 70%);pointer-events:none}
-.b3-cap{position:absolute;left:14px;right:12px;bottom:12px;z-index:1;color:#fff;display:flex;flex-direction:column;gap:2px;line-height:1.25}
-.b3-cap b{font-family:var(--f-head);font-weight:800;font-size:.98rem}
-.b3-cap span{font-size:.8rem;color:rgba(255,255,255,.85);font-weight:500}
-.float-card{position:absolute;left:-26px;bottom:34px;background:var(--brand-primary);color:#fff;border-radius:18px;padding:18px 22px;box-shadow:0 24px 50px -20px rgba(46,28,117,.75);display:flex;flex-direction:column;gap:2px;min-width:190px}
-.float-card b{font-family:var(--f-head);font-weight:800;font-size:2rem;line-height:1}
-.float-card span{font-size:.86rem;color:#D9D4F2;font-weight:600}
-.float-card::after{content:"";position:absolute;right:16px;top:16px;width:10px;height:10px;border-radius:50%;background:var(--brand-accent)}
-@media (max-width:980px){.hh{grid-template-columns:1fr;gap:34px}.float-card{left:14px;bottom:14px}}
-@media (max-width:640px){.hx-hero{padding:28px 0 16px}.bento{grid-template-rows:auto 150px;gap:10px}.bento .promo{aspect-ratio:1/1}.promo-cta{left:14.5%;top:47%;bottom:auto;padding:7px 13px;font-size:12.5px;border-radius:10px}.float-card{left:8px;bottom:8px;padding:10px 12px;max-width:calc(55% - 20px)}.float-card b{font-size:1.25rem}.float-card span{font-size:.72rem;line-height:1.25}.float-card::after{width:7px;height:7px;top:10px;right:10px}.b-chip{top:8px;right:8px;font-size:.7rem;padding:6px 10px}.b3-cap{left:10px;bottom:10px}.b3-cap b{font-size:.86rem}.b3-cap span{font-size:.72rem}.float-card{min-width:0}.hh .ctas .btn{flex:1 1 100%}}
+.ps-arrow{position:absolute;top:50%;z-index:2;width:36px;height:36px;margin-top:-18px;border:0;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.28);color:#fff;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);cursor:pointer;opacity:0;transition:opacity .25s,background .2s}
+.ps-arrow svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.ps-arrow.prev{left:8px}.ps-arrow.next{right:8px}
+.promo-slider:hover .ps-arrow,.ps-arrow:focus-visible{opacity:1}
+.ps-arrow:hover{background:rgba(255,255,255,.45)}
+.ps-dots{position:absolute;left:50%;bottom:10px;z-index:2;transform:translateX(-50%);display:flex;gap:6px;padding:6px 9px;border-radius:999px;background:rgba(255,255,255,.6);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.ps-dots button{width:7px;height:7px;padding:0;border:0;border-radius:999px;background:rgba(65,42,157,.35);cursor:pointer;transition:width .3s,background .3s}
+.ps-dots button[aria-current="true"]{width:22px;background:#412A9D}
+@media (hover:none){.ps-arrow{display:none}}
+@media (max-width:980px){.hh{grid-template-columns:1fr;gap:34px}}
+@media (max-width:640px){.hx-hero{padding:28px 0 16px}.promo-slider{aspect-ratio:1/1}.promo-cta{left:var(--ml,14.5%);top:var(--mt,47%);bottom:auto;padding:7px 13px;font-size:12.5px;border-radius:10px}.hh .ctas .btn{flex:1 1 100%}}
 
 /* ---------- Hamkorlar va KPI ---------- */
 .proof{padding:24px 0 56px}
@@ -781,7 +780,7 @@ footer .wm{color:rgba(255,255,255,.05)}
 </header>
 
 <main id="top">
-  <!-- ===== Hero: 2 ustunli bento ===== -->
+  <!-- ===== Hero: chapda matn, o'ngda promo-slider ===== -->
   <section class="hx-hero" id="home">
     <div class="wrap hh">
       <div class="hh-l">
@@ -795,18 +794,25 @@ footer .wm{color:rgba(255,255,255,.05)}
         </ul>
       </div>
       <div class="hh-r">
-        <div class="bento">
-          <div class="b b1 promo">
-            <picture>
-              <source id="promoM" media="(max-width:640px)" srcset="img/promo-uz-m.webp" width="1024" height="1024">
-              <img id="promoImg" src="img/promo-uz.webp" alt="Maishiy kimyo va xo'jalik mollariga maxsus narxlar. Oy xiti: -12%." width="1568" height="672" fetchpriority="high">
-            </picture>
-            <a class="promo-cta" id="promoCta" href="#catalog" data-i18n="promo_cta">Tovarlarni ko'rish →</a>
+        <div class="promo-slider" id="promo" aria-roledescription="carousel" aria-label="Aksiyalar" data-i18n-aria="ps_label">
+          <div class="ps-track">
+          <div class="ps-slide" data-n="1" role="group" aria-roledescription="slide">
+            <picture><source media="(max-width:640px)" srcset="img/promo-1-uz-m.webp" width="1024" height="1024"><img src="img/promo-1-uz.webp" alt="Maishiy kimyo va xo'jalik mollariga maxsus narxlar. Oy xiti: -12%." width="1568" height="672" draggable="false" fetchpriority="high"></picture>
+            <a class="promo-cta" href="#catalog" data-dir="chem" data-i18n="promo_cta">Tovarlarni ko'rish →</a>
           </div>
-          <div class="b b2"><img src="img/hero/hero-2.webp" alt="" width="1200" height="800" loading="lazy"><span class="b-chip" data-i18n="vat_chip">QQS 12% bilan</span></div>
-          <div class="b b3"><img src="img/hero/hero-3.webp" alt="" width="1200" height="800" loading="lazy"><div class="b3-cap"><b data-i18n="dlv_h">Bepul yetkazib berish</b><span data-i18n="dlv_p">Toshkent bo'ylab 24 soatda</span></div></div>
+          <div class="ps-slide" data-n="2" role="group" aria-roledescription="slide" style="--mt:59.5%;--ml:11.5%">
+            <picture><source media="(max-width:640px)" srcset="img/promo-2-uz-m.webp" width="1024" height="1024"><img src="img/promo-2-uz.webp" alt="Qurilish materiallari va instrumentlar. Ulgurji narx: -10%. Omborda mavjud." width="1568" height="672" draggable="false" decoding="async"></picture>
+            <a class="promo-cta" href="#catalog" data-dir="tools" data-i18n="promo_cta">Tovarlarni ko'rish →</a>
+          </div>
+          <div class="ps-slide" data-n="3" role="group" aria-roledescription="slide" style="--mt:59.5%;--ml:11.5%">
+            <picture><source media="(max-width:640px)" srcset="img/promo-3-uz-m.webp" width="1024" height="1024"><img src="img/promo-3-uz.webp" alt="Toshkent bo'ylab tezkor yetkazib berish: 24 soatda, bepul. QQS 12%, UzRTSB birja." width="1568" height="672" draggable="false" decoding="async"></picture>
+            <a class="promo-cta" href="#request" data-i18n="promo_cta3">Buyurtma berish →</a>
+          </div>
+          </div>
+          <button class="ps-arrow prev" type="button" aria-label="Oldingi slayd"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button class="ps-arrow next" type="button" aria-label="Keyingi slayd"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+          <div class="ps-dots"></div>
         </div>
-        <div class="float-card"><b>5 000+</b><span data-i18n="hero_float_t">korporativ mijozlar</span></div>
       </div>
     </div>
   </section>
@@ -1203,8 +1209,8 @@ toast:"Добавлено в список",theme_dark:"Тёмная тема",th
 };
 
 /* ---------- redizayn matnlari ---------- */
-Object.assign(T.uz, {"nav_terms": "B2B shartlar", "price_btn": "Prays-list (XLSX)", "list": "Smeta", "list_sub": "tanlangan pozitsiyalar", "hero_badge": "QQS (NDS) • UzRTSB Birja • G'aznachilik", "hero_h1": "Korxonalar va qurilish obyektlari uchun kompleks ulgurji ta'minot", "hero_p": "1000+ nomdagi qurilish, maishiy kimyo va xo'jalik mollarini bitta shartnoma va bitta reys bilan yetkazib beramiz.", "hero_cta1": "Tijorat taklifi olish", "hero_cta2": "Katalogni ko'rish", "hero_float_t": "korporativ mijozlar", "hero_chip": "Bitta shartnoma, bitta reys", "proof_eyebrow": "Bizga ishonishadi", "proof_title": "Yirik korxonalar ta'minotchisi", "kpi1_t": "yil tajriba", "kpi2_t": "korxona mijozlarimiz", "kpi3_t": "SKU assortimentda", "kpi4_n": "24 soat", "kpi4_t": "ichida yetkazib berish", "view_cards": "Kartochkalar", "view_table": "B2B jadval", "th_sku": "Artikul", "th_name": "Mahsulot nomi", "th_unit": "O'lchov birligi", "th_price": "Ulgurji narx (QQS bilan)", "th_qty": "Miqdor", "price_cell": "Tijorat taklifida", "add": "+ Smetaga qo'shish", "added": "Smetada", "add_short": "+ Qo'shish", "added_short": "Qo'shildi", "toast": "Smetaga qo'shildi", "dr_empty": "Smeta hozircha bo'sh. Katalogdan pozitsiyalarni qo'shing.", "dr_sum": "Jami: {p} pozitsiya, {q} birlik", "dr_note": "Narxlar tijorat taklifida ko'rsatiladi", "go_request": "Menejerga yuborish", "sm_eyebrow": "Smeta bo'yicha hisob", "sm_h": "Smetangiz bormi? Vaqtingizni tejang: 30 daqiqada hisoblab beramiz.", "sm_p": "Faylni yuklang va telefon raqamingizni qoldiring. Menejer tijorat taklifini tayyorlab, siz bilan bog'lanadi.", "sm_drop": "Faylni shu yerga tashlang yoki", "sm_pick": "kompyuterdan tanlang", "sm_types": ".xlsx, .xls, .pdf, .docx, 10 MB gacha", "sm_phone": "Telefon raqamingiz", "sm_btn": "Tijorat taklifi olish", "sm_err_file": "Fayl tanlang: .xlsx, .xls, .pdf yoki .docx, 10 MB gacha", "sm_ok": "Rahmat! Smeta qabul qilindi, menejer tez orada siz bilan bog'lanadi.", "sm_fail": "Yuborib bo'lmadi. Iltimos, qo'ng'iroq qiling: +998 78 120 12 00", "how_eyebrow": "Ish tartibi", "how_title": "Shaffof ish jarayoni: 4 qadam", "how1_h": "Ariza yoki smeta", "how1_p": "Katalogdan smeta tuzing yoki tayyor smetangizni yuklang.", "how2_h": "30 daqiqada hisob-kitob", "how2_p": "Menejer tijorat taklifini tayyorlab yuboradi.", "how3_h": "Shartnoma va QQS hisob-faktura", "how3_p": "Shartnoma tuziladi, to'lov pul o'tkazish yo'li bilan amalga oshiriladi.", "how4_h": "Obyektga tezkor yetkazib berish", "how4_p": "Mahsulot obyektingizga to'liq hujjatlar bilan yetkaziladi.", "addr": "Toshkent, Chilonzor tumani, Lutfiy ko'chasi 6, 2-qavat", "xlsx_title": "SPEKTR STROY INVEST: prays-list", "xlsx_dir": "Yo'nalish", "xlsx_spec": "Tavsif", "promo_cta": "Tovarlarni ko'rish →", "promo_alt": "Maishiy kimyo va xo'jalik mollariga maxsus narxlar. Oy xiti: -12%.", "vat_chip": "QQS 12% bilan", "dlv_h": "Bepul yetkazib berish", "dlv_p": "Toshkent bo'ylab 24 soatda"});
-Object.assign(T.ru, {"nav_terms": "B2B условия", "price_btn": "Прайс-лист (XLSX)", "list": "Смета", "list_sub": "выбранные позиции", "hero_badge": "НДС • Биржа UzRTSB • Казначейство", "hero_h1": "Комплексные оптовые поставки для предприятий и строительных объектов", "hero_p": "Поставляем 1000+ наименований строительных товаров, бытовой химии и хозтоваров по одному договору и одним рейсом.", "hero_cta1": "Получить КП", "hero_cta2": "Смотреть каталог", "hero_float_t": "корпоративных клиентов", "hero_chip": "Один договор, один рейс", "proof_eyebrow": "Нам доверяют", "proof_title": "Поставщик крупных предприятий", "kpi1_t": "лет опыта", "kpi2_t": "предприятий-клиентов", "kpi3_t": "SKU в ассортименте", "kpi4_n": "24 часа", "kpi4_t": "срок доставки", "view_cards": "Карточки", "view_table": "B2B таблица", "th_sku": "Артикул", "th_name": "Наименование", "th_unit": "Ед. изм.", "th_price": "Оптовая цена (с НДС)", "th_qty": "Кол-во", "price_cell": "В коммерческом предложении", "add": "+ В смету", "added": "В смете", "add_short": "+ Добавить", "added_short": "Добавлено", "toast": "Добавлено в смету", "dr_empty": "Смета пока пуста. Добавьте позиции из каталога.", "dr_sum": "Итого: {p} позиций, {q} ед.", "dr_note": "Цены указываются в коммерческом предложении", "go_request": "Отправить менеджеру", "sm_eyebrow": "Расчёт по смете", "sm_h": "Есть смета? Сэкономьте время: рассчитаем за 30 минут.", "sm_p": "Загрузите файл и оставьте номер телефона. Менеджер подготовит коммерческое предложение и свяжется с вами.", "sm_drop": "Перетащите файл сюда или", "sm_pick": "выберите на компьютере", "sm_types": ".xlsx, .xls, .pdf, .docx, до 10 МБ", "sm_phone": "Ваш телефон", "sm_btn": "Получить КП", "sm_err_file": "Выберите файл: .xlsx, .xls, .pdf или .docx, до 10 МБ", "sm_ok": "Спасибо! Смета получена, менеджер скоро свяжется с вами.", "sm_fail": "Не удалось отправить. Пожалуйста, позвоните: +998 78 120 12 00", "how_eyebrow": "Порядок работы", "how_title": "Прозрачный процесс: 4 шага", "how1_h": "Заявка или смета", "how1_p": "Соберите смету в каталоге или загрузите готовую.", "how2_h": "Расчёт за 30 минут", "how2_p": "Менеджер подготовит и отправит коммерческое предложение.", "how3_h": "Договор и счёт-фактура с НДС", "how3_p": "Заключаем договор, оплата производится перечислением.", "how4_h": "Быстрая доставка на объект", "how4_p": "Доставляем на объект с полным пакетом документов.", "addr": "Ташкент, Чиланзарский район, ул. Лутфий 6, 2-й этаж", "xlsx_title": "SPEKTR STROY INVEST: прайс-лист", "xlsx_dir": "Направление", "xlsx_spec": "Описание", "promo_cta": "Смотреть товары →", "promo_alt": "Выгодные цены на бытовую химию и хозтовары. Хит месяца: -12%.", "vat_chip": "С НДС 12%", "dlv_h": "Бесплатная доставка", "dlv_p": "по Ташкенту за 24 часа"});
+Object.assign(T.uz, {"nav_terms": "B2B shartlar", "price_btn": "Prays-list (XLSX)", "list": "Smeta", "list_sub": "tanlangan pozitsiyalar", "hero_badge": "QQS (NDS) • UzRTSB Birja • G'aznachilik", "hero_h1": "Korxonalar va qurilish obyektlari uchun kompleks ulgurji ta'minot", "hero_p": "1000+ nomdagi qurilish, maishiy kimyo va xo'jalik mollarini bitta shartnoma va bitta reys bilan yetkazib beramiz.", "hero_cta1": "Tijorat taklifi olish", "hero_cta2": "Katalogni ko'rish", "proof_eyebrow": "Bizga ishonishadi", "proof_title": "Yirik korxonalar ta'minotchisi", "kpi1_t": "yil tajriba", "kpi2_t": "korxona mijozlarimiz", "kpi3_t": "SKU assortimentda", "kpi4_n": "24 soat", "kpi4_t": "ichida yetkazib berish", "view_cards": "Kartochkalar", "view_table": "B2B jadval", "th_sku": "Artikul", "th_name": "Mahsulot nomi", "th_unit": "O'lchov birligi", "th_price": "Ulgurji narx (QQS bilan)", "th_qty": "Miqdor", "price_cell": "Tijorat taklifida", "add": "+ Smetaga qo'shish", "added": "Smetada", "add_short": "+ Qo'shish", "added_short": "Qo'shildi", "toast": "Smetaga qo'shildi", "dr_empty": "Smeta hozircha bo'sh. Katalogdan pozitsiyalarni qo'shing.", "dr_sum": "Jami: {p} pozitsiya, {q} birlik", "dr_note": "Narxlar tijorat taklifida ko'rsatiladi", "go_request": "Menejerga yuborish", "sm_eyebrow": "Smeta bo'yicha hisob", "sm_h": "Smetangiz bormi? Vaqtingizni tejang: 30 daqiqada hisoblab beramiz.", "sm_p": "Faylni yuklang va telefon raqamingizni qoldiring. Menejer tijorat taklifini tayyorlab, siz bilan bog'lanadi.", "sm_drop": "Faylni shu yerga tashlang yoki", "sm_pick": "kompyuterdan tanlang", "sm_types": ".xlsx, .xls, .pdf, .docx, 10 MB gacha", "sm_phone": "Telefon raqamingiz", "sm_btn": "Tijorat taklifi olish", "sm_err_file": "Fayl tanlang: .xlsx, .xls, .pdf yoki .docx, 10 MB gacha", "sm_ok": "Rahmat! Smeta qabul qilindi, menejer tez orada siz bilan bog'lanadi.", "sm_fail": "Yuborib bo'lmadi. Iltimos, qo'ng'iroq qiling: +998 78 120 12 00", "how_eyebrow": "Ish tartibi", "how_title": "Shaffof ish jarayoni: 4 qadam", "how1_h": "Ariza yoki smeta", "how1_p": "Katalogdan smeta tuzing yoki tayyor smetangizni yuklang.", "how2_h": "30 daqiqada hisob-kitob", "how2_p": "Menejer tijorat taklifini tayyorlab yuboradi.", "how3_h": "Shartnoma va QQS hisob-faktura", "how3_p": "Shartnoma tuziladi, to'lov pul o'tkazish yo'li bilan amalga oshiriladi.", "how4_h": "Obyektga tezkor yetkazib berish", "how4_p": "Mahsulot obyektingizga to'liq hujjatlar bilan yetkaziladi.", "addr": "Toshkent, Chilonzor tumani, Lutfiy ko'chasi 6, 2-qavat", "xlsx_title": "SPEKTR STROY INVEST: prays-list", "xlsx_dir": "Yo'nalish", "xlsx_spec": "Tavsif", "promo_cta": "Tovarlarni ko'rish →", "promo_cta3": "Buyurtma berish →", "promo1_alt": "Maishiy kimyo va xo'jalik mollariga maxsus narxlar. Oy xiti: -12%.", "promo2_alt": "Qurilish materiallari va instrumentlar. Ulgurji narx: -10%. Omborda mavjud.", "promo3_alt": "Toshkent bo'ylab tezkor yetkazib berish: 24 soatda, bepul. QQS 12%, UzRTSB birja.", "ps_label": "Aksiyalar", "ps_prev": "Oldingi slayd", "ps_next": "Keyingi slayd", "ps_go": "{n}-slayd"});
+Object.assign(T.ru, {"nav_terms": "B2B условия", "price_btn": "Прайс-лист (XLSX)", "list": "Смета", "list_sub": "выбранные позиции", "hero_badge": "НДС • Биржа UzRTSB • Казначейство", "hero_h1": "Комплексные оптовые поставки для предприятий и строительных объектов", "hero_p": "Поставляем 1000+ наименований строительных товаров, бытовой химии и хозтоваров по одному договору и одним рейсом.", "hero_cta1": "Получить КП", "hero_cta2": "Смотреть каталог", "proof_eyebrow": "Нам доверяют", "proof_title": "Поставщик крупных предприятий", "kpi1_t": "лет опыта", "kpi2_t": "предприятий-клиентов", "kpi3_t": "SKU в ассортименте", "kpi4_n": "24 часа", "kpi4_t": "срок доставки", "view_cards": "Карточки", "view_table": "B2B таблица", "th_sku": "Артикул", "th_name": "Наименование", "th_unit": "Ед. изм.", "th_price": "Оптовая цена (с НДС)", "th_qty": "Кол-во", "price_cell": "В коммерческом предложении", "add": "+ В смету", "added": "В смете", "add_short": "+ Добавить", "added_short": "Добавлено", "toast": "Добавлено в смету", "dr_empty": "Смета пока пуста. Добавьте позиции из каталога.", "dr_sum": "Итого: {p} позиций, {q} ед.", "dr_note": "Цены указываются в коммерческом предложении", "go_request": "Отправить менеджеру", "sm_eyebrow": "Расчёт по смете", "sm_h": "Есть смета? Сэкономьте время: рассчитаем за 30 минут.", "sm_p": "Загрузите файл и оставьте номер телефона. Менеджер подготовит коммерческое предложение и свяжется с вами.", "sm_drop": "Перетащите файл сюда или", "sm_pick": "выберите на компьютере", "sm_types": ".xlsx, .xls, .pdf, .docx, до 10 МБ", "sm_phone": "Ваш телефон", "sm_btn": "Получить КП", "sm_err_file": "Выберите файл: .xlsx, .xls, .pdf или .docx, до 10 МБ", "sm_ok": "Спасибо! Смета получена, менеджер скоро свяжется с вами.", "sm_fail": "Не удалось отправить. Пожалуйста, позвоните: +998 78 120 12 00", "how_eyebrow": "Порядок работы", "how_title": "Прозрачный процесс: 4 шага", "how1_h": "Заявка или смета", "how1_p": "Соберите смету в каталоге или загрузите готовую.", "how2_h": "Расчёт за 30 минут", "how2_p": "Менеджер подготовит и отправит коммерческое предложение.", "how3_h": "Договор и счёт-фактура с НДС", "how3_p": "Заключаем договор, оплата производится перечислением.", "how4_h": "Быстрая доставка на объект", "how4_p": "Доставляем на объект с полным пакетом документов.", "addr": "Ташкент, Чиланзарский район, ул. Лутфий 6, 2-й этаж", "xlsx_title": "SPEKTR STROY INVEST: прайс-лист", "xlsx_dir": "Направление", "xlsx_spec": "Описание", "promo_cta": "Смотреть товары →", "promo_cta3": "Оформить заказ →", "promo1_alt": "Выгодные цены на бытовую химию и хозтовары. Хит месяца: -12%.", "promo2_alt": "Стройматериалы и инструменты оптом. Оптовые цены: -10%. В наличии на складе.", "promo3_alt": "Быстрая доставка по всему Ташкенту: за 24 часа, бесплатно. НДС 12%, биржа UzRTSB.", "ps_label": "Акции", "ps_prev": "Предыдущий слайд", "ps_next": "Следующий слайд", "ps_go": "Слайд {n}"});
 
 /* ---------- state ---------- */
 let lang = "uz", dir = "all", query = "", shown = 0, list = {}, view = "cards"; // list: {id: qty}
@@ -1277,7 +1283,10 @@ const ART = {
 /* ---------- render ---------- */
 function applyLang(){
   document.documentElement.lang = lang;
-  const pImg = $("#promoImg"); if (pImg){ $("#promoM").srcset = `img/promo-${lang}-m.webp`; pImg.src = `img/promo-${lang}.webp`; pImg.alt = t("promo_alt"); }
+  $$(".ps-slide").forEach(sl => { const n = sl.dataset.n, im = sl.querySelector("img"); sl.querySelector("source").srcset = `img/promo-${n}-${lang}-m.webp`; im.src = `img/promo-${n}-${lang}.webp`; im.alt = t("promo" + n + "_alt"); });
+  $$("[data-i18n-aria]").forEach(el => el.setAttribute("aria-label", t(el.dataset.i18nAria)));
+  $$(".ps-arrow").forEach(b => b.setAttribute("aria-label", t(b.classList.contains("prev") ? "ps_prev" : "ps_next")));
+  $$(".ps-dots button").forEach((b, k) => b.setAttribute("aria-label", t("ps_go").replace("{n}", k + 1)));
   $$("[data-i18n]").forEach(el => el.textContent = t(el.dataset.i18n));
   $$("[data-i18n-ph]").forEach(el => el.placeholder = t(el.dataset.i18nPh));
   $$("[data-i18n-html]").forEach(el => el.innerHTML = t(el.dataset.i18nHtml));
@@ -1352,7 +1361,41 @@ function updateCounts(){
   $(".inlist").hidden = !n;
 }
 function setDir(d, scroll){ dir = d; shown = 0; renderTabs(); renderCards(); if (scroll) $("#catalog").scrollIntoView(); }
-$("#promoCta").addEventListener("click", e => { e.preventDefault(); setDir("chem", false); $("#catalog").scrollIntoView({ behavior: "smooth" }); });
+
+/* ---------- Hero promo-slider: 5 s autoplay, hover'da pauza, nuqtalar, strelkalar, swipe ---------- */
+(() => {
+  const root = $("#promo"); if (!root) return;
+  const track = root.querySelector(".ps-track"), slides = [...track.children], dots = root.querySelector(".ps-dots");
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let cur = 0, timer = 0, hold = false;
+  dots.innerHTML = slides.map((_, k) => `<button type="button" aria-label="${t("ps_go").replace("{n}", k + 1)}"></button>`).join("");
+  const go = n => {
+    cur = (n + slides.length) % slides.length;
+    track.style.transform = `translateX(${-cur * 100}%)`;
+    [...dots.children].forEach((d, k) => d.setAttribute("aria-current", k === cur));
+    slides.forEach((sl, k) => { sl.setAttribute("aria-hidden", k !== cur); sl.querySelector("a").tabIndex = k === cur ? 0 : -1; });
+  };
+  const play = () => { clearInterval(timer); if (!still) timer = setInterval(() => { if (!hold && !document.hidden) go(cur + 1); }, 5000); };
+  root.querySelector(".prev").addEventListener("click", () => { go(cur - 1); play(); });
+  root.querySelector(".next").addEventListener("click", () => { go(cur + 1); play(); });
+  dots.addEventListener("click", e => { const b = e.target.closest("button"); if (b){ go([...dots.children].indexOf(b)); play(); } });
+  root.addEventListener("mouseenter", () => hold = true);
+  root.addEventListener("mouseleave", () => hold = false);
+  root.addEventListener("focusin", () => hold = true);
+  root.addEventListener("focusout", () => hold = false);
+  let x0 = null, y0 = 0;
+  root.addEventListener("touchstart", e => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; hold = true; }, { passive: true });
+  root.addEventListener("touchend", e => {
+    hold = false; if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0; x0 = null;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)){ go(cur + (dx < 0 ? 1 : -1)); play(); }
+  });
+  root.addEventListener("click", e => {
+    const a = e.target.closest(".promo-cta[data-dir]"); if (!a) return;
+    e.preventDefault(); setDir(a.dataset.dir, false); $("#catalog").scrollIntoView({ behavior: "smooth" });
+  });
+  go(0); play();
+})();
 
 /* ---------- theme ---------- */
 const mq = matchMedia("(prefers-color-scheme: dark)");

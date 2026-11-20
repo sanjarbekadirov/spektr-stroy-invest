@@ -30,7 +30,7 @@ logo.svg, logo-s.svg           Vektor logotip va "S" belgisi (index.html ichiga 
 img/catalog/SP-001..112.jpg    Katalog rasmlari, fayl nomi = mahsulot kodi
 img/hero/hero-1..3.webp        Bosh sahifa bannerlari (2400 px); hero-N-m.webp: telefon uchun kesilgan varianti
 img/dirs/<kalit>.webp          Yo'nalish kartalari fotosi (640x1147, 9:16), kalit = DIRS kaliti
-img/promo-uz|ru.webp           Hero promo-banneri (21:9, 1568x672); promo-uz|ru-m.webp: telefon (1:1). Aksiya o'zgarsa faqat shu 4 faylni almashtiring, matn rasmning o'zida
+img/promo-N-uz|ru.webp         Hero promo-slayderi, N = 1..3 (21:9, 1568x672); promo-N-uz|ru-m.webp: telefon (1:1). Aksiya o'zgarsa faqat rasmni almashtiring, matn rasmning o'zida. Telefonda tugma joyi slaydning --mt/--ml o'zgaruvchisida
 supabase/schema.sql            profiles, orders jadvallari, RLS, ro'yxatdan o'tish trigger'i
 supabase/telegram.sql          Yangi buyurtma -> Telegram guruhi (pg_net + Vault)
 supabase/fayl.sql              Buyurtmaga fayl biriktirish: order-files ombori
@@ -42,7 +42,7 @@ supabase/functions/order-file  Edge function: biriktirilgan faylni guruhga hujja
 
 ## index.html xaritasi
 
-Sahifa bo'limlari tartibda (redizayn 2026-11-20): sticky sarlavha (PNG logo, menyu, telefon, UZ/RU, rejim, smeta, kabinet, "Prays-list (XLSX)") -> `#home` 2 ustunli bento hero -> `#partners` hamkorlar + 4 KPI -> `#directions` 4 yo'nalish -> `#catalog` (kartochka / B2B jadval rejimi, `ssi_view`) -> `#smeta` "Smetangiz bormi?" banneri (drag & drop fayl + telefon, `orders` ga yoziladi) -> `#how` 4 qadam -> `#request` so'rov formasi -> `#contacts` (chapda ma'lumot, o'ngda xarita) -> `#412A9D` footer. Telefonda pastki menyu paneli bor.
+Sahifa bo'limlari tartibda (redizayn 2026-11-20): sticky sarlavha (PNG logo, menyu, telefon, UZ/RU, rejim, smeta, kabinet, "Prays-list (XLSX)") -> `#home` hero (chapda matn, o'ngda 3 slaydli promo-slider) -> `#partners` hamkorlar + 4 KPI -> `#directions` 4 yo'nalish -> `#catalog` (kartochka / B2B jadval rejimi, `ssi_view`) -> `#smeta` "Smetangiz bormi?" banneri (drag & drop fayl + telefon, `orders` ga yoziladi) -> `#how` 4 qadam -> `#request` so'rov formasi -> `#contacts` (chapda ma'lumot, o'ngda xarita) -> `#412A9D` footer. Telefonda pastki menyu paneli bor.
 
 Standart (o'zbekcha) matnlar HTML ichida statik yozilgan (SEO). JS faqat til almashtirilganda yangilaydi. Matnni o'zgartirsangiz, `T.uz` va HTML ichidagi matnni birga yangilang. Redizayn matnlari `T` dan keyingi `Object.assign(T.uz, ...)` blokida.
 
