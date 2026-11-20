@@ -220,6 +220,26 @@ section.sec{padding-block:72px}
 .req .inlist{margin-top:28px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 .req .inlist b{font-family:var(--f-head);font-weight:900;font-size:2.2rem;color:var(--yellow);font-variant-numeric:tabular-nums}
 .req .slines{left:auto;right:0;bottom:40px;align-items:flex-end;opacity:.9;z-index:0}
+/* So'rov bo'limi: chap ustun (keyingi qadamlar, qo'ng'iroq, belgilar). Bo'lim har doim to'q fonda */
+.rq-next{margin-top:34px;padding:24px 24px 8px;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12)}
+.rq-next-h{margin:0 0 18px;font-family:var(--f-head);font-weight:800;font-size:1.05rem;color:#fff}
+.rq-steps{list-style:none;margin:0;padding:0}
+.rq-steps li{position:relative;display:flex;gap:16px;padding-bottom:20px}
+.rq-steps li:not(:last-child)::before{content:"";position:absolute;left:17px;top:38px;bottom:4px;width:2px;background:linear-gradient(rgba(255,183,27,.6),rgba(255,183,27,.08))}
+.rq-n{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--yellow);color:#1C1340;font-family:var(--f-head);font-weight:800;font-size:.95rem}
+.rq-steps b{display:block;font-family:var(--f-head);font-weight:800;font-size:1rem;color:#fff;margin:6px 0 3px}
+.rq-steps span:not(.rq-n){display:block;color:#B9B2DA;font-size:.9rem;line-height:1.5}
+.rq-call{margin-top:16px;display:grid;grid-template-columns:auto 1fr;gap:4px 16px;align-items:center;padding:20px 24px;border-radius:20px;background:linear-gradient(135deg,rgba(255,183,27,.16),rgba(255,183,27,.04));border:1px solid rgba(255,183,27,.35)}
+.rq-call-ico{grid-row:span 2;width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--yellow);color:#1C1340}
+.rq-call-ico svg.i{width:22px;height:22px}
+.rq-call b{display:block;font-family:var(--f-head);font-weight:800;color:#fff}
+.rq-call div>span{display:block;color:#B9B2DA;font-size:.88rem}
+.rq-call-nums{grid-column:2;display:flex;flex-wrap:wrap;gap:4px 18px;margin-top:6px}
+.rq-call-nums a{font-family:var(--f-head);font-weight:800;font-size:1.15rem;color:var(--yellow);text-decoration:none;font-variant-numeric:tabular-nums;white-space:nowrap}
+.rq-call-nums a:hover{text-decoration:underline}
+.rq-badges{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.rq-badges li{padding:7px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.18);color:#E4E0F5;font-size:.82rem;font-weight:700}
+@media (max-width:520px){.rq-next{padding:20px 18px 4px}.rq-call{padding:18px;gap:4px 12px}.rq-call-ico{width:42px;height:42px}.rq-call-nums a{font-size:1.05rem}}
 form.rq{background:var(--surface);color:var(--text);border-radius:14px;padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .field{display:flex;flex-direction:column;gap:6px;min-width:0}
 .field.full{grid-column:1/-1}
@@ -260,7 +280,7 @@ form.rq{background:var(--surface);color:var(--text);border-radius:14px;padding:2
 .copy{all:unset;cursor:pointer;font-size:.78rem;font-weight:700;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.14);color:#fff}
 .copy:focus-visible{outline:2px solid var(--yellow)}
 .cinfo{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.cinfo>div{background:rgba(28,19,64,.35);border-radius:12px;padding:18px;display:flex;gap:14px;align-items:flex-start;min-width:0}
+.cinfo>*{background:rgba(28,19,64,.35);border-radius:12px;padding:18px;display:flex;gap:14px;align-items:flex-start;min-width:0}
 .cinfo .ic{--c:var(--white);--fg:var(--purple);width:40px;height:40px}
 .cinfo .k{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:#CFC9E8;font-weight:600}
 .cinfo .v{font-weight:600;margin-top:4px;overflow-wrap:anywhere}
@@ -560,6 +580,19 @@ header.hd{box-shadow:0 1px 0 var(--border-subtle)}
 .hx-right{display:flex;align-items:center;gap:10px}
 .hx-tel{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:.92rem;color:var(--text-main);white-space:nowrap;font-variant-numeric:tabular-nums}
 .hx-tel svg.i{width:18px;height:18px;color:var(--accent-text)}
+/* Sarlavhada telefon va ish vaqti kartochkada (boshqa sarlavha tugmalari kabi); nuqta: hozir ish vaqtimi */
+.hx-tel{height:42px;box-sizing:border-box;padding:0 14px 0 6px;border-radius:12px;background:var(--bg-surface);gap:10px;transition:box-shadow .2s}
+.hx-tel-ic{text-decoration:none;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s}
+.hx-tel-ic:hover{background:var(--brand-primary);transform:scale(1.06)}
+.hx-tel-ic:hover svg.i{color:#fff}
+.hx-tel-ic:focus-visible{outline:3px solid var(--brand-accent);outline-offset:2px}
+.hx-tel-ic{position:relative;flex:none;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--bg-page);box-shadow:0 1px 2px rgba(22,19,36,.08)}
+.hx-tel-ic svg.i{width:16px;height:16px}
+.hx-dot{position:absolute;right:-2px;top:-2px;width:9px;height:9px;border-radius:50%;background:#A7A2C0;box-shadow:0 0 0 2px var(--bg-surface)}
+.hx-dot.on{background:#22C55E;animation:hxPulse 2.4s ease-out infinite}
+@keyframes hxPulse{0%{box-shadow:0 0 0 2px var(--bg-surface),0 0 0 2px rgba(34,197,94,.45)}70%{box-shadow:0 0 0 2px var(--bg-surface),0 0 0 7px rgba(34,197,94,0)}100%{box-shadow:0 0 0 2px var(--bg-surface),0 0 0 2px rgba(34,197,94,0)}}
+/* Sarlavhada telefon ostida ish vaqti; tor ekranda faqat ish vaqti qoladi */
+.hx-tel-t{font-size:.84rem;font-weight:700;color:var(--text-main);line-height:1}
 .hx-ico{all:unset;cursor:pointer;position:relative;display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:var(--bg-surface);color:var(--accent-text)}
 .hx-ico:hover{background:var(--border-subtle)}
 .hx-ico:focus-visible{outline:3px solid var(--brand-accent)}
@@ -569,7 +602,7 @@ header.hd{box-shadow:0 1px 0 var(--border-subtle)}
 .theme-btn{width:42px;height:42px;border-radius:12px}
 .langs{border-radius:12px;padding:3px}
 .langs button{padding:8px 10px;border-radius:9px}
-@media (max-width:1360px){.hx-tel span{display:none}}
+
 @media (max-width:1180px){.hx-price span{display:none}.hx-price{padding:10px 11px}}
 @media (max-width:980px){.hx-nav{display:none}.hx{grid-template-columns:auto 1fr;gap:12px}.hx-right{justify-self:end}}
 @media (max-width:640px){.hx{min-height:62px}.hx-logo img{height:30px}.hx-price span,.hx-tel{display:none}.hx-price{padding:10px 11px}.hx-right{gap:6px}.theme-btn,.hx-ico{width:38px;height:38px}}
@@ -720,22 +753,65 @@ header.hd{box-shadow:0 1px 0 var(--border-subtle)}
 @media (max-width:520px){.sm-row{flex-direction:column}}
 
 /* ---------- Kontaktlar: chapda ma'lumot, o'ngda xarita ---------- */
-.contacts .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:32px;align-items:stretch}
+.contacts .wrap{display:flex;flex-direction:column;gap:28px}
 .ct-l{display:flex;flex-direction:column;gap:24px;min-width:0}
 .contacts .phone-row .num{font-size:clamp(1.6rem,3.2vw,2.5rem)}
-.contacts .cinfo{grid-template-columns:1fr 1fr}
-.contacts .cmap{height:auto;min-height:380px;border-radius:var(--radius-lg);background:var(--bg-page);border:1px solid var(--border-subtle)}
+/* Kontakt kartochkalari: kompyuterda 5 tasi bir qatorda (ikonka tepada), xarita ostida to'liq kenglikda */
+.contacts .cinfo{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+/* Telefonlar va ish vaqti yonma-yon */
+.ct-top{display:none;align-items:center;gap:20px 48px;flex-wrap:wrap}
+@media (max-width:640px){.ct-top{display:flex}}
+.ct-hours{display:flex;align-items:flex-start;gap:14px}
+.ct-hours .ic{--c:var(--brand-primary);--fg:#fff;width:40px;height:40px;flex:none}
+.ct-hours .ic svg.i{width:19px;height:19px}
+.ct-hours .k{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);font-weight:600}
+.ct-hours .v{font-family:var(--f-head);font-weight:800;font-size:1.25rem;color:var(--text-main);margin-top:4px;font-variant-numeric:tabular-nums}
+.ct-hours .s{font-size:.86rem;color:var(--text-muted);margin-top:2px}
+/* Ixcham kartochka: ikonka va sarlavha bir qatorda, qiymat ostida to'liq kenglikda (ichki div display:contents) */
+.contacts .cinfo>*{display:grid;grid-template-columns:32px minmax(0,1fr);column-gap:10px;row-gap:2px;align-content:start;padding:16px 18px;border-radius:16px}
+.contacts .cinfo>*>div{display:contents}
+.contacts .cinfo .ic{width:32px;height:32px;grid-row:1}
+.contacts .cinfo .ic svg.i{width:16px;height:16px}
+.contacts .cinfo .k{grid-column:2;grid-row:1;align-self:center;margin:0;font-size:.72rem}
+.contacts .cinfo .v,.contacts .cinfo .s,.contacts .cinfo a.out,.contacts .cinfo .copy{grid-column:1/-1;justify-self:start}
+.contacts .cinfo .v{font-size:.98rem;line-height:1.4;margin-top:10px}
+.contacts .cinfo .s{margin-top:2px;font-size:.84rem;line-height:1.45}
+.contacts .cinfo a.out{margin-top:6px}
+.contacts .cinfo .copy{margin-top:8px!important}
+/* Bosiladigan kontakt kartochkalari: butun kartochka havola yoki nusxa olish */
+.contacts .cinfo>.ccard{position:relative;cursor:pointer;text-decoration:none;color:inherit;font:inherit;text-align:left;-webkit-appearance:none;appearance:none;transition:border-color .2s,transform .2s,box-shadow .2s}
+.contacts .cinfo>.ccard:hover{border-color:rgba(65,42,157,.45);transform:translateY(-2px);box-shadow:0 10px 24px -14px rgba(65,42,157,.55)}
+.contacts .cinfo>.ccard:focus-visible{outline:3px solid var(--brand-accent);outline-offset:2px}
+.contacts .cinfo .go{position:absolute;top:14px;right:14px;width:22px;height:22px;display:grid;place-items:center;color:var(--text-muted);transition:color .2s,transform .2s}
+.contacts .cinfo .go svg.i{width:16px;height:16px}
+.contacts .cinfo>.ccard:hover .go{color:var(--accent-text);transform:translate(2px,-2px)}
+.contacts .cinfo>.ccard .k{padding-right:22px}
+.contacts .cinfo>.ccard.copied .k{color:var(--ok,#1E7A4C)}
+.contacts .phone-row .num{position:relative;cursor:pointer}
+.contacts .phone-row .num.copied::after{content:attr(data-tip);position:absolute;left:calc(100% + 12px);top:50%;transform:translateY(-50%);white-space:nowrap;padding:5px 10px;border-radius:999px;background:var(--brand-primary);color:#fff;font:700 .78rem/1.2 var(--f-body,inherit);letter-spacing:0}
+.contacts .cinfo>.ct-tg{background:linear-gradient(160deg,rgba(65,42,157,.08),var(--bg-page) 60%);border-color:rgba(65,42,157,.3)}
+.contacts .cmap{height:400px;min-height:0;border-radius:var(--radius-lg);background:var(--bg-page);border:1px solid var(--border-subtle)}
 /* och fon: binafsha footerdan ajralib tursin */
 .contacts{background:var(--bg-surface);color:var(--text-main)}
 .contacts .bigS{color:rgba(65,42,157,.05)}
 .contacts .eyebrow{color:var(--text-muted)}
 .contacts .phone-row .num{color:var(--accent-text);font-weight:800}
 .contacts .copy{background:var(--bg-page);color:var(--accent-text);border:1px solid var(--border-subtle)}
-.contacts .cinfo>div{background:var(--bg-page);border:1px solid var(--border-subtle)}
+.contacts .cinfo>*{background:var(--bg-page);border:1px solid var(--border-subtle)}
 .contacts .cinfo .ic{--c:var(--brand-primary);--fg:#fff}
 .contacts .cinfo .k,.contacts .cinfo .s{color:var(--text-muted)}
 .contacts .cinfo a.out{color:var(--accent-text)}
-@media (max-width:980px){.contacts .wrap{grid-template-columns:1fr}.contacts .cmap{min-height:320px}}
+@media (max-width:900px){.contacts .cinfo{grid-template-columns:repeat(2,minmax(0,1fr))}.contacts .cinfo>*:last-child{grid-column:1/-1}}
+/* Manzil xarita ostida, kichik qatorda (bosilsa Yandex xaritasi ochiladi) */
+.cmap-wrap{display:flex;flex-direction:column;gap:12px}
+.cmap-addr{display:flex;align-items:center;gap:10px;align-self:flex-start;max-width:100%;padding:4px 2px;color:var(--text-muted);font-size:.9rem;line-height:1.4;text-decoration:none}
+.cmap-addr svg.i{flex:none;width:18px;height:18px;color:var(--accent-text)}
+.cmap-addr b{color:var(--text-main);font-weight:600}
+.cmap-addr .cmap-go{width:14px;height:14px;color:var(--text-muted);transition:transform .2s,color .2s}
+.cmap-addr:hover b{color:var(--accent-text);text-decoration:underline;text-underline-offset:3px}
+.cmap-addr:hover .cmap-go{color:var(--accent-text);transform:translate(2px,-2px)}
+.cmap-addr:focus-visible{outline:3px solid var(--brand-accent);outline-offset:2px;border-radius:6px}
+@media (max-width:640px){.contacts .cinfo{grid-template-columns:1fr}.contacts .cmap{height:320px}.cmap-addr{align-items:flex-start;font-size:.86rem}.cmap-addr svg.i{margin-top:1px}}
 @media (max-width:520px){.contacts .cinfo{grid-template-columns:1fr}}
 
 /* ---------- Footer (#412A9D) ---------- */
@@ -784,6 +860,9 @@ footer .wm{color:rgba(255,255,255,.05)}
   <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></symbol>
   <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></symbol>
   <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+  <symbol id="i-ext" viewBox="0 0 24 24"><path d="M8 16L16.5 7.5M9 7h8v8"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="12" height="12" rx="2.5"/><path d="M15.5 8.5V6a2.5 2.5 0 0 0-2.5-2.5H6A2.5 2.5 0 0 0 3.5 6v7A2.5 2.5 0 0 0 6 15.5h2.5"/></symbol>
+  <symbol id="i-tg" viewBox="0 0 24 24"><path d="M21 4.5L2.8 11.4c-.9.35-.9 1.6.03 1.9l4.6 1.45 1.75 5.4c.25.8 1.25 1 1.8.38l2.55-2.8 4.6 3.4c.7.5 1.7.12 1.9-.73L23 5.8c.25-1.05-.8-1.75-2-1.3z"/><path d="M7.5 14.7l11-7.4-8.4 8.6"/></symbol>
   <symbol id="i-insta" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17 7v.01"/></symbol>
   <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v5M14 11v5"/></symbol>
   <symbol id="i-house" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7M5.5 9.5V20h13V9.5"/></symbol>
@@ -800,7 +879,7 @@ footer .wm{color:rgba(255,255,255,.05)}
       <a href="#contacts" data-i18n="nav_contacts">Kontaktlar</a>
     </nav>
     <div class="hx-right">
-      <a class="hx-tel" href="tel:+998781201200"><svg class="i"><use href="#i-phone"/></svg><span>+998 78 120 12 00</span></a>
+      <div class="hx-tel"><a class="hx-tel-ic" href="tel:+998781201200" aria-label="+998 78 120 12 00"><svg class="i"><use href="#i-phone"/></svg><i class="hx-dot" id="openDot"></i></a><span class="hx-tel-t" data-i18n="hours">Du-Ju, 09:00-17:00</span></div>
       <div class="langs" role="group" aria-label="Til / Язык"><button type="button" data-lang="uz">UZ</button><button type="button" data-lang="ru">RU</button></div>
       <button class="theme-btn" type="button" id="themeBtn"></button>
       <button class="hx-ico" type="button" id="listBtn"><svg class="i"><use href="#i-list"/></svg><span class="badge" data-n="0">0</span><span class="sr" data-i18n="list">Smeta</span></button>
@@ -936,6 +1015,20 @@ footer .wm{color:rgba(255,255,255,.05)}
         <blockquote data-i18n="req_quote">Hurmatli hamkor! Buyurtma bering: tijorat taklifini tayyorlab, shartnoma asosida yetkazib beramiz.</blockquote>
         <p class="ru" data-i18n="req_sub">Pozitsiyalarni katalogdan qo'shing yoki ro'yxatni qo'lda yozing.</p>
         <div class="inlist"><b id="inCount">0</b><span data-i18n="req_inlist">pozitsiya ro'yxatingizda</span><button class="btn btn-o" type="button" id="openList2" style="color:#fff;padding:9px 16px" data-i18n="req_open">Ro'yxatni ko'rish</button></div>
+        <div class="rq-next">
+          <h3 class="rq-next-h" data-i18n="rq_next">Ariza yuborganingizdan keyin</h3>
+          <ol class="rq-steps">
+            <li><span class="rq-n">1</span><div><b data-i18n="rq_s1_h">30 daqiqada tijorat taklifi</b><span data-i18n="rq_s1_p">Menejer pozitsiyalarni hisoblab, narxlar bilan taklif yuboradi.</span></div></li>
+            <li><span class="rq-n">2</span><div><b data-i18n="rq_s2_h">Shartnoma va QQS hisob-faktura</b><span data-i18n="rq_s2_p">To'lov faqat pul o'tkazish yo'li bilan, shartnoma asosida.</span></div></li>
+            <li><span class="rq-n">3</span><div><b data-i18n="rq_s3_h">24 soatda yetkazib berish</b><span data-i18n="rq_s3_p">Mahsulot obyektingizga to'liq hujjatlar bilan yetkaziladi.</span></div></li>
+          </ol>
+        </div>
+        <div class="rq-call">
+          <span class="rq-call-ico" aria-hidden="true"><svg class="i"><use href="#i-phone"/></svg></span>
+          <div><b data-i18n="rq_call_h">Shoshilinch buyurtmami?</b><span data-i18n="rq_call_p">Menejerga to'g'ridan-to'g'ri qo'ng'iroq qiling</span></div>
+          <div class="rq-call-nums"><a href="tel:+998781201200">+998 78 120 12 00</a><a href="tel:+998781201400">+998 78 120 14 00</a></div>
+        </div>
+        <ul class="rq-badges"><li data-i18n="rq_b1">QQS (NDS)</li><li data-i18n="rq_b2">UzRTSB birja</li><li data-i18n="rq_b3">G'aznachilik</li></ul>
       </div>
       <form class="rq" id="rq" novalidate>
         <div class="field full" id="f-org"><label for="org" data-i18n="f_org">Tashkilot nomi</label><input id="org" autocomplete="organization" data-i18n-ph="f_org_ph" placeholder="Tashkilot yoki korxona nomi"><span class="err" hidden data-i18n="err_org">Tashkilot nomini kiriting</span></div>
@@ -956,19 +1049,22 @@ footer .wm{color:rgba(255,255,255,.05)}
     <svg class="bigS" viewBox="240 101 1519 1798" aria-hidden="true"><use href="#sp"/></svg>
     <div class="wrap">
       <div class="ct-l">
-      <span class="eyebrow" data-i18n="ct_eyebrow">Kontaktlar</span>
-      <div class="phones">
-        <div class="phone-row"><a class="num" href="tel:+998781201200">+998 78 120 12 00</a><button class="copy" type="button" data-copy="+998781201200" data-i18n="copy">Nusxa olish</button></div>
-        <div class="phone-row"><a class="num" href="tel:+998781201400">+998 78 120 14 00</a><button class="copy" type="button" data-copy="+998781201400" data-i18n="copy">Nusxa olish</button></div>
+      <div class="ct-top">
+      <div class="ct-hours">
+        <span class="ic"><svg class="i"><use href="#i-clock"/></svg></span>
+        <div><div class="k" data-i18n="hours_k">Ish vaqti</div><div class="v" data-i18n="hours">Du-Ju, 09:00-17:00</div><div class="s" data-i18n="pay_note">To'lov: pul o'tkazish yo'li bilan</div></div>
+      </div>
       </div>
       <div class="cinfo">
-        <div><span class="ic"><svg class="i"><use href="#i-pin"/></svg></span><div><div class="k" data-i18n="addr_k">Manzil</div><div class="v" data-i18n="addr">Toshkent, Chilonzor tumani, Lutfiy ko'chasi 6, 2-qavat</div><div class="s" data-i18n="land">Mo'ljal: Novza metrosidan 760 metr</div><a class="out" id="mapLink" target="_blank" rel="noopener" data-i18n="map">Xaritada ochish</a></div></div>
-        <div><span class="ic"><svg class="i"><use href="#i-clock"/></svg></span><div><div class="k" data-i18n="hours_k">Ish vaqti</div><div class="v" data-i18n="hours">Har kuni, 09:00-17:00</div><div class="s" data-i18n="pay_note">To'lov: pul o'tkazish yo'li bilan</div></div></div>
-        <div><span class="ic"><svg class="i"><use href="#i-mail"/></svg></span><div><div class="k" data-i18n="mail_k">E-pochta</div><div class="v">spektr-si@mail.ru</div><button class="copy" type="button" style="margin-top:8px" data-copy="spektr-si@mail.ru" data-i18n="copy">Nusxa olish</button></div></div>
-        <div><span class="ic"><svg class="i"><use href="#i-insta"/></svg></span><div><div class="k">Instagram</div><div class="v">@spektr.stroy.uz</div><a class="out" href="https://www.instagram.com/spektr.stroy.uz" target="_blank" rel="noopener" data-i18n="ig_open">Sahifani ochish</a></div></div>
+        <a class="ccard ct-tg" href="https://t.me/SPEKTR_STROY_INVEST" target="_blank" rel="noopener"><span class="ic"><svg class="i"><use href="#i-tg"/></svg></span><div><div class="k">Telegram</div><div class="v">@SPEKTR_<wbr>STROY_<wbr>INVEST</div></div><span class="go" aria-hidden="true"><svg class="i"><use href="#i-ext"/></svg></span></a>
+        <a class="ccard" href="https://www.instagram.com/spektr.stroy.uz" target="_blank" rel="noopener"><span class="ic"><svg class="i"><use href="#i-insta"/></svg></span><div><div class="k">Instagram</div><div class="v">@spektr.stroy.uz</div></div><span class="go" aria-hidden="true"><svg class="i"><use href="#i-ext"/></svg></span></a>
+        <button class="ccard" type="button" data-copy="spektr-si@mail.ru"><span class="ic"><svg class="i"><use href="#i-mail"/></svg></span><div><div class="k" data-i18n="mail_k">E-pochta</div><div class="v">spektr-si@mail.ru</div></div><span class="go" aria-hidden="true"><svg class="i"><use href="#i-copy"/></svg></span></button>
       </div>
       </div>
-      <div class="cmap"><iframe id="mapFrame" src="https://yandex.uz/map-widget/v1/?ll=69.207579%2C41.298957&amp;z=16&amp;pt=69.207579%2C41.298957%2Cpm2rdm" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
+      <div class="cmap-wrap">
+        <div class="cmap"><iframe id="mapFrame" src="https://yandex.uz/map-widget/v1/?ll=69.207579%2C41.298957&amp;z=16&amp;pt=69.207579%2C41.298957%2Cpm2rdm" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
+        <a class="cmap-addr" id="mapLink" href="https://yandex.uz/maps/org/spektr_stroy_invest/120661517051/" target="_blank" rel="noopener"><svg class="i"><use href="#i-pin"/></svg><span><b data-i18n="addr">Toshkent, Chilonzor tumani, Lutfiy ko'chasi 6, 2-qavat</b> <span class="cmap-land" data-i18n="land">Mo'ljal: Novza metrosidan 760 metr</span></span><svg class="i cmap-go" aria-hidden="true"><use href="#i-ext"/></svg></a>
+      </div>
     </div>
   </section>
 </main>
@@ -1223,7 +1319,7 @@ err_org:"Tashkilot nomini kiriting",err_name:"Mas'ul shaxs ismini kiriting",err_
 ok:"Rahmat, buyurtmangiz qabul qilindi. Menejer tijorat taklifi bo'yicha siz bilan bog'lanadi.",sending:"Yuborilmoqda...",
 fail:"Buyurtmani yuborib bo'lmadi. Iltimos, qo'ng'iroq qiling: "+PHONE_MAIN+". Buyurtma matni:",
 ct_eyebrow:"Kontaktlar",addr_k:"Manzil",addr:"Toshkent, Lutfiy ko'chasi 6, 2-qavat",land:"Mo'ljal: Novza metrosidan 760 metr",
-hours_k:"Ish vaqti",hours:"Har kuni, 09:00-17:00",pay_note:"To'lov: pul o'tkazish yo'li bilan",mail_k:"E-pochta",map:"Xaritada ochish",copy:"Nusxa olish",copied:"Nusxa olindi",
+hours_k:"Ish vaqti",hours:"Du-Ju, 09:00-17:00",pay_note:"To'lov: pul o'tkazish yo'li bilan",mail_k:"E-pochta",map:"Xaritada ochish",copy:"Nusxa olish",copied:"Nusxa olindi",
 f_tag:"Korxonalar va davlat tashkilotlari uchun ta'minot.",f_company:"Kompaniya",f_partners:"Hamkorlarga",f_pay:"To'lov: pul o'tkazish",f_delivery:"Obyektgacha yetkazib berish",
 clear:"Tozalash",go_request:"Buyurtmaga o'tish",dr_empty:"Ro'yxat hozircha bo'sh. Katalogdan pozitsiyalarni qo'shing.",remove:"O'chirish",
 toast:"Ro'yxatga qo'shildi",theme_dark:"Qorong'u rejim",theme_light:"Yorug' rejim",bb_home:"Bosh sahifa",bb_list:"Ro'yxat",bb_contact:"Aloqa",list_head:"Katalogdan:"},
@@ -1249,15 +1345,15 @@ err_org:"Укажите название организации",err_name:"Ук�
 ok:"Спасибо, заказ принят. Менеджер свяжется с вами по коммерческому предложению.",sending:"Отправка...",
 fail:"Не удалось отправить заказ. Пожалуйста, позвоните: "+PHONE_MAIN+". Текст заказа:",
 ct_eyebrow:"Контакты",addr_k:"Адрес",addr:"Ташкент, ул. Лутфий 6, 2-й этаж",land:"Ориентир: 760 м от метро «Новза»",
-hours_k:"Режим работы",hours:"Ежедневно, 09:00-17:00",pay_note:"Оплата: перечислением",mail_k:"Эл. почта",map:"Открыть на карте",copy:"Копировать",copied:"Скопировано",
+hours_k:"Режим работы",hours:"Пн-Пт, 09:00-17:00",pay_note:"Оплата: перечислением",mail_k:"Эл. почта",map:"Открыть на карте",copy:"Копировать",copied:"Скопировано",
 f_tag:"Снабжение предприятий и государственных организаций.",f_company:"Компания",f_partners:"Партнёрам",f_pay:"Оплата: перечислением",f_delivery:"Доставка до объекта",
 clear:"Очистить",go_request:"Перейти к заказу",dr_empty:"Список пока пуст. Добавьте позиции из каталога.",remove:"Удалить",
 toast:"Добавлено в список",theme_dark:"Тёмная тема",theme_light:"Светлая тема",bb_home:"Главная",bb_list:"Список",bb_contact:"Связь",list_head:"Из каталога:"},
 };
 
 /* ---------- redizayn matnlari ---------- */
-Object.assign(T.uz, {"nav_terms": "B2B shartlar", "price_btn": "Prays-list (XLSX)", "list": "Smeta", "list_sub": "tanlangan pozitsiyalar", "hero_badge": "QQS (NDS) • UzRTSB Birja • G'aznachilik", "hero_h1": "Korxonalar va qurilish obyektlari uchun kompleks ulgurji ta'minot", "hero_p": "1000+ nomdagi qurilish, maishiy kimyo va xo'jalik mollarini bitta shartnoma va bitta reys bilan yetkazib beramiz.", "hero_cta1": "Tijorat taklifi olish", "hero_cta2": "Katalogni ko'rish", "proof_eyebrow": "Bizga ishonishadi", "proof_title": "Yirik korxonalar ta'minotchisi", "proof_note": "Sanoat, qurilish, savdo va sport obyektlarini ta'minlaymiz.", "kpi1_t": "yil tajriba", "kpi2_t": "korxona mijozlarimiz", "kpi3_t": "SKU assortimentda", "kpi4_n": "24 soat", "kpi4_t": "ichida yetkazib berish", "view_cards": "Kartochkalar", "view_table": "B2B jadval", "th_sku": "Artikul", "th_name": "Mahsulot nomi", "th_unit": "O'lchov birligi", "th_price": "Ulgurji narx (QQS bilan)", "th_qty": "Miqdor", "price_cell": "Tijorat taklifida", "add": "+ Smetaga qo'shish", "added": "Smetada", "add_short": "+ Qo'shish", "added_short": "Qo'shildi", "toast": "Smetaga qo'shildi", "dr_empty": "Smeta hozircha bo'sh. Katalogdan pozitsiyalarni qo'shing.", "dr_sum": "Jami: {p} pozitsiya, {q} birlik", "dr_note": "Narxlar tijorat taklifida ko'rsatiladi", "go_request": "Menejerga yuborish", "sm_eyebrow": "Smeta bo'yicha hisob", "sm_h": "Smetangiz bormi? Vaqtingizni tejang: 30 daqiqada hisoblab beramiz.", "sm_p": "Faylni yuklang va telefon raqamingizni qoldiring. Menejer tijorat taklifini tayyorlab, siz bilan bog'lanadi.", "sm_drop": "Faylni shu yerga tashlang yoki", "sm_pick": "kompyuterdan tanlang", "sm_types": ".xlsx, .xls, .pdf, .docx, 10 MB gacha", "sm_phone": "Telefon raqamingiz", "sm_btn": "Tijorat taklifi olish", "sm_err_file": "Fayl tanlang: .xlsx, .xls, .pdf yoki .docx, 10 MB gacha", "sm_ok": "Rahmat! Smeta qabul qilindi, menejer tez orada siz bilan bog'lanadi.", "sm_fail": "Yuborib bo'lmadi. Iltimos, qo'ng'iroq qiling: +998 78 120 12 00", "how_eyebrow": "Ish tartibi", "how_title": "Shaffof ish jarayoni: 4 qadam", "how1_h": "Ariza yoki smeta", "how1_p": "Katalogdan smeta tuzing yoki tayyor smetangizni yuklang.", "how2_h": "30 daqiqada hisob-kitob", "how2_p": "Menejer tijorat taklifini tayyorlab yuboradi.", "how3_h": "Shartnoma va QQS hisob-faktura", "how3_p": "Shartnoma tuziladi, to'lov pul o'tkazish yo'li bilan amalga oshiriladi.", "how4_h": "Obyektga tezkor yetkazib berish", "how4_p": "Mahsulot obyektingizga to'liq hujjatlar bilan yetkaziladi.", "addr": "Toshkent, Chilonzor tumani, Lutfiy ko'chasi 6, 2-qavat", "xlsx_title": "SPEKTR STROY INVEST: prays-list", "xlsx_dir": "Yo'nalish", "xlsx_spec": "Tavsif", "promo_cta": "Tovarlarni ko'rish →", "promo_cta3": "Buyurtma berish →", "promo1_alt": "Maishiy kimyo va xo'jalik mollariga maxsus narxlar. Oy xiti: -12%.", "promo2_alt": "Qurilish materiallari va instrumentlar. Ulgurji narx: -10%. Omborda mavjud.", "promo3_alt": "Toshkent bo'ylab tezkor yetkazib berish: 24 soatda, bepul. QQS 12%, UzRTSB birja.", "ps_label": "Aksiyalar", "ps_prev": "Oldingi slayd", "ps_next": "Keyingi slayd", "ps_go": "{n}-slayd"});
-Object.assign(T.ru, {"nav_terms": "B2B условия", "price_btn": "Прайс-лист (XLSX)", "list": "Смета", "list_sub": "выбранные позиции", "hero_badge": "НДС • Биржа UzRTSB • Казначейство", "hero_h1": "Комплексные оптовые поставки для предприятий и строительных объектов", "hero_p": "Поставляем 1000+ наименований строительных товаров, бытовой химии и хозтоваров по одному договору и одним рейсом.", "hero_cta1": "Получить КП", "hero_cta2": "Смотреть каталог", "proof_eyebrow": "Нам доверяют", "proof_title": "Поставщик крупных предприятий", "proof_note": "Снабжаем промышленные, строительные, торговые и спортивные объекты.", "kpi1_t": "лет опыта", "kpi2_t": "предприятий-клиентов", "kpi3_t": "SKU в ассортименте", "kpi4_n": "24 часа", "kpi4_t": "срок доставки", "view_cards": "Карточки", "view_table": "B2B таблица", "th_sku": "Артикул", "th_name": "Наименование", "th_unit": "Ед. изм.", "th_price": "Оптовая цена (с НДС)", "th_qty": "Кол-во", "price_cell": "В коммерческом предложении", "add": "+ В смету", "added": "В смете", "add_short": "+ Добавить", "added_short": "Добавлено", "toast": "Добавлено в смету", "dr_empty": "Смета пока пуста. Добавьте позиции из каталога.", "dr_sum": "Итого: {p} позиций, {q} ед.", "dr_note": "Цены указываются в коммерческом предложении", "go_request": "Отправить менеджеру", "sm_eyebrow": "Расчёт по смете", "sm_h": "Есть смета? Сэкономьте время: рассчитаем за 30 минут.", "sm_p": "Загрузите файл и оставьте номер телефона. Менеджер подготовит коммерческое предложение и свяжется с вами.", "sm_drop": "Перетащите файл сюда или", "sm_pick": "выберите на компьютере", "sm_types": ".xlsx, .xls, .pdf, .docx, до 10 МБ", "sm_phone": "Ваш телефон", "sm_btn": "Получить КП", "sm_err_file": "Выберите файл: .xlsx, .xls, .pdf или .docx, до 10 МБ", "sm_ok": "Спасибо! Смета получена, менеджер скоро свяжется с вами.", "sm_fail": "Не удалось отправить. Пожалуйста, позвоните: +998 78 120 12 00", "how_eyebrow": "Порядок работы", "how_title": "Прозрачный процесс: 4 шага", "how1_h": "Заявка или смета", "how1_p": "Соберите смету в каталоге или загрузите готовую.", "how2_h": "Расчёт за 30 минут", "how2_p": "Менеджер подготовит и отправит коммерческое предложение.", "how3_h": "Договор и счёт-фактура с НДС", "how3_p": "Заключаем договор, оплата производится перечислением.", "how4_h": "Быстрая доставка на объект", "how4_p": "Доставляем на объект с полным пакетом документов.", "addr": "Ташкент, Чиланзарский район, ул. Лутфий 6, 2-й этаж", "xlsx_title": "SPEKTR STROY INVEST: прайс-лист", "xlsx_dir": "Направление", "xlsx_spec": "Описание", "promo_cta": "Смотреть товары →", "promo_cta3": "Оформить заказ →", "promo1_alt": "Выгодные цены на бытовую химию и хозтовары. Хит месяца: -12%.", "promo2_alt": "Стройматериалы и инструменты оптом. Оптовые цены: -10%. В наличии на складе.", "promo3_alt": "Быстрая доставка по всему Ташкенту: за 24 часа, бесплатно. НДС 12%, биржа UzRTSB.", "ps_label": "Акции", "ps_prev": "Предыдущий слайд", "ps_next": "Следующий слайд", "ps_go": "Слайд {n}"});
+Object.assign(T.uz, {"nav_terms": "B2B shartlar", "price_btn": "Prays-list (XLSX)", "list": "Smeta", "list_sub": "tanlangan pozitsiyalar", "hero_badge": "QQS (NDS) • UzRTSB Birja • G'aznachilik", "hero_h1": "Korxonalar va qurilish obyektlari uchun kompleks ulgurji ta'minot", "hero_p": "1000+ nomdagi qurilish, maishiy kimyo va xo'jalik mollarini bitta shartnoma va bitta reys bilan yetkazib beramiz.", "hero_cta1": "Tijorat taklifi olish", "hero_cta2": "Katalogni ko'rish", "proof_eyebrow": "Bizga ishonishadi", "proof_title": "Yirik korxonalar ta'minotchisi", "proof_note": "Sanoat, qurilish, savdo va sport obyektlarini ta'minlaymiz.", "kpi1_t": "yil tajriba", "kpi2_t": "korxona mijozlarimiz", "kpi3_t": "SKU assortimentda", "kpi4_n": "24 soat", "kpi4_t": "ichida yetkazib berish", "view_cards": "Kartochkalar", "view_table": "B2B jadval", "th_sku": "Artikul", "th_name": "Mahsulot nomi", "th_unit": "O'lchov birligi", "th_price": "Ulgurji narx (QQS bilan)", "th_qty": "Miqdor", "price_cell": "Tijorat taklifida", "add": "+ Smetaga qo'shish", "added": "Smetada", "add_short": "+ Qo'shish", "added_short": "Qo'shildi", "toast": "Smetaga qo'shildi", "dr_empty": "Smeta hozircha bo'sh. Katalogdan pozitsiyalarni qo'shing.", "dr_sum": "Jami: {p} pozitsiya, {q} birlik", "dr_note": "Narxlar tijorat taklifida ko'rsatiladi", "go_request": "Menejerga yuborish", "sm_eyebrow": "Smeta bo'yicha hisob", "sm_h": "Smetangiz bormi? Vaqtingizni tejang: 30 daqiqada hisoblab beramiz.", "sm_p": "Faylni yuklang va telefon raqamingizni qoldiring. Menejer tijorat taklifini tayyorlab, siz bilan bog'lanadi.", "sm_drop": "Faylni shu yerga tashlang yoki", "sm_pick": "kompyuterdan tanlang", "sm_types": ".xlsx, .xls, .pdf, .docx, 10 MB gacha", "sm_phone": "Telefon raqamingiz", "sm_btn": "Tijorat taklifi olish", "sm_err_file": "Fayl tanlang: .xlsx, .xls, .pdf yoki .docx, 10 MB gacha", "sm_ok": "Rahmat! Smeta qabul qilindi, menejer tez orada siz bilan bog'lanadi.", "sm_fail": "Yuborib bo'lmadi. Iltimos, qo'ng'iroq qiling: +998 78 120 12 00", "how_eyebrow": "Ish tartibi", "how_title": "Shaffof ish jarayoni: 4 qadam", "how1_h": "Ariza yoki smeta", "how1_p": "Katalogdan smeta tuzing yoki tayyor smetangizni yuklang.", "how2_h": "30 daqiqada hisob-kitob", "how2_p": "Menejer tijorat taklifini tayyorlab yuboradi.", "how3_h": "Shartnoma va QQS hisob-faktura", "how3_p": "Shartnoma tuziladi, to'lov pul o'tkazish yo'li bilan amalga oshiriladi.", "how4_h": "Obyektga tezkor yetkazib berish", "how4_p": "Mahsulot obyektingizga to'liq hujjatlar bilan yetkaziladi.", "addr": "Toshkent, Chilonzor tumani, Lutfiy ko'chasi 6, 2-qavat", "xlsx_title": "SPEKTR STROY INVEST: prays-list", "xlsx_dir": "Yo'nalish", "xlsx_spec": "Tavsif", "promo_cta": "Tovarlarni ko'rish →", "promo_cta3": "Buyurtma berish →", "promo1_alt": "Maishiy kimyo va xo'jalik mollariga maxsus narxlar. Oy xiti: -12%.", "promo2_alt": "Qurilish materiallari va instrumentlar. Ulgurji narx: -10%. Omborda mavjud.", "promo3_alt": "Toshkent bo'ylab tezkor yetkazib berish: 24 soatda, bepul. QQS 12%, UzRTSB birja.", "ps_label": "Aksiyalar", "ps_prev": "Oldingi slayd", "ps_next": "Keyingi slayd", "ps_go": "{n}-slayd", "tg_open": "Telegramda yozish", "open_now": "Hozir ish vaqti: qo'ng'iroq qiling", "closed_now": "Hozir ish vaqti emas: ariza qoldiring", "rq_next": "Ariza yuborganingizdan keyin", "rq_s1_h": "30 daqiqada tijorat taklifi", "rq_s1_p": "Menejer pozitsiyalarni hisoblab, narxlar bilan taklif yuboradi.", "rq_s2_h": "Shartnoma va QQS hisob-faktura", "rq_s2_p": "To'lov faqat pul o'tkazish yo'li bilan, shartnoma asosida.", "rq_s3_h": "24 soatda yetkazib berish", "rq_s3_p": "Mahsulot obyektingizga to'liq hujjatlar bilan yetkaziladi.", "rq_call_h": "Shoshilinch buyurtmami?", "rq_call_p": "Menejerga to'g'ridan-to'g'ri qo'ng'iroq qiling", "rq_b1": "QQS (NDS)", "rq_b2": "UzRTSB birja", "rq_b3": "G'aznachilik"});
+Object.assign(T.ru, {"nav_terms": "B2B условия", "price_btn": "Прайс-лист (XLSX)", "list": "Смета", "list_sub": "выбранные позиции", "hero_badge": "НДС • Биржа UzRTSB • Казначейство", "hero_h1": "Комплексные оптовые поставки для предприятий и строительных объектов", "hero_p": "Поставляем 1000+ наименований строительных товаров, бытовой химии и хозтоваров по одному договору и одним рейсом.", "hero_cta1": "Получить КП", "hero_cta2": "Смотреть каталог", "proof_eyebrow": "Нам доверяют", "proof_title": "Поставщик крупных предприятий", "proof_note": "Снабжаем промышленные, строительные, торговые и спортивные объекты.", "kpi1_t": "лет опыта", "kpi2_t": "предприятий-клиентов", "kpi3_t": "SKU в ассортименте", "kpi4_n": "24 часа", "kpi4_t": "срок доставки", "view_cards": "Карточки", "view_table": "B2B таблица", "th_sku": "Артикул", "th_name": "Наименование", "th_unit": "Ед. изм.", "th_price": "Оптовая цена (с НДС)", "th_qty": "Кол-во", "price_cell": "В коммерческом предложении", "add": "+ В смету", "added": "В смете", "add_short": "+ Добавить", "added_short": "Добавлено", "toast": "Добавлено в смету", "dr_empty": "Смета пока пуста. Добавьте позиции из каталога.", "dr_sum": "Итого: {p} позиций, {q} ед.", "dr_note": "Цены указываются в коммерческом предложении", "go_request": "Отправить менеджеру", "sm_eyebrow": "Расчёт по смете", "sm_h": "Есть смета? Сэкономьте время: рассчитаем за 30 минут.", "sm_p": "Загрузите файл и оставьте номер телефона. Менеджер подготовит коммерческое предложение и свяжется с вами.", "sm_drop": "Перетащите файл сюда или", "sm_pick": "выберите на компьютере", "sm_types": ".xlsx, .xls, .pdf, .docx, до 10 МБ", "sm_phone": "Ваш телефон", "sm_btn": "Получить КП", "sm_err_file": "Выберите файл: .xlsx, .xls, .pdf или .docx, до 10 МБ", "sm_ok": "Спасибо! Смета получена, менеджер скоро свяжется с вами.", "sm_fail": "Не удалось отправить. Пожалуйста, позвоните: +998 78 120 12 00", "how_eyebrow": "Порядок работы", "how_title": "Прозрачный процесс: 4 шага", "how1_h": "Заявка или смета", "how1_p": "Соберите смету в каталоге или загрузите готовую.", "how2_h": "Расчёт за 30 минут", "how2_p": "Менеджер подготовит и отправит коммерческое предложение.", "how3_h": "Договор и счёт-фактура с НДС", "how3_p": "Заключаем договор, оплата производится перечислением.", "how4_h": "Быстрая доставка на объект", "how4_p": "Доставляем на объект с полным пакетом документов.", "addr": "Ташкент, Чиланзарский район, ул. Лутфий 6, 2-й этаж", "xlsx_title": "SPEKTR STROY INVEST: прайс-лист", "xlsx_dir": "Направление", "xlsx_spec": "Описание", "promo_cta": "Смотреть товары →", "promo_cta3": "Оформить заказ →", "promo1_alt": "Выгодные цены на бытовую химию и хозтовары. Хит месяца: -12%.", "promo2_alt": "Стройматериалы и инструменты оптом. Оптовые цены: -10%. В наличии на складе.", "promo3_alt": "Быстрая доставка по всему Ташкенту: за 24 часа, бесплатно. НДС 12%, биржа UzRTSB.", "ps_label": "Акции", "ps_prev": "Предыдущий слайд", "ps_next": "Следующий слайд", "ps_go": "Слайд {n}", "tg_open": "Написать в Telegram", "open_now": "Сейчас рабочее время: звоните", "closed_now": "Сейчас нерабочее время: оставьте заявку", "rq_next": "После отправки заявки", "rq_s1_h": "КП за 30 минут", "rq_s1_p": "Менеджер рассчитает позиции и пришлёт предложение с ценами.", "rq_s2_h": "Договор и счёт-фактура с НДС", "rq_s2_p": "Оплата только перечислением, на основании договора.", "rq_s3_h": "Доставка за 24 часа", "rq_s3_p": "Доставим на объект с полным пакетом документов.", "rq_call_h": "Срочный заказ?", "rq_call_p": "Позвоните менеджеру напрямую", "rq_b1": "НДС", "rq_b2": "Биржа UzRTSB", "rq_b3": "Казначейство"});
 
 /* ---------- state ---------- */
 let lang = "uz", dir = "all", query = "", shown = 0, list = {}, view = "cards"; // list: {id: qty}
@@ -1467,6 +1563,21 @@ function setDir(d, scroll){ dir = d; shown = 0; renderTabs(); renderCards(); if 
   place(1, false); mark(); play();
 })();
 
+/* ---------- sarlavha: ish vaqti nuqtasi (Toshkent vaqti, Du-Ju 09:00-17:00) ---------- */
+function syncOpen(){
+  const dot = $("#openDot"); if (!dot) return;
+  let on = false;
+  try {
+    const p = Object.fromEntries(new Intl.DateTimeFormat("en-GB", { timeZone:"Asia/Tashkent", weekday:"short", hour:"2-digit", minute:"2-digit", hourCycle:"h23" }).formatToParts(new Date()).map(x => [x.type, x.value]));
+    const m = +p.hour * 60 + +p.minute;
+    on = !["Sat","Sun"].includes(p.weekday) && m >= 540 && m < 1020;
+  } catch(e){}
+  dot.classList.toggle("on", on);
+  dot.parentElement.title = "+998 78 120 12 00 \u2022 " + t(on ? "open_now" : "closed_now");
+}
+syncOpen(); setInterval(syncOpen, 60000);
+$$(".langs button").forEach(b => b.addEventListener("click", syncOpen));
+
 /* ---------- theme ---------- */
 const mq = matchMedia("(prefers-color-scheme: dark)");
 const isDark = () => { const a = document.documentElement.getAttribute("data-theme"); return a ? a === "dark" : mq.matches; };
@@ -1591,9 +1702,18 @@ $("#rq").addEventListener("submit", async e => {
 });
 
 /* copy */
+// [data-copy] bosilganda nusxa olinadi. Telefon raqami sensorli qurilmada qo'ng'iroq qiladi, kompyuterda nusxalanadi
+const finePointer = matchMedia("(hover: hover) and (pointer: fine)");
 document.addEventListener("click", e => {
-  const b = e.target.closest(".copy"); if (!b) return;
-  const done = () => { b.textContent = t("copied"); setTimeout(() => b.textContent = t("copy"), 1500); };
+  const b = e.target.closest("[data-copy]"); if (!b) return;
+  if (b.classList.contains("num") && !finePointer.matches) return;
+  e.preventDefault();
+  const k = b.querySelector(".k");
+  const done = () => {
+    b.classList.add("copied"); b.dataset.tip = t("copied");
+    if (k) k.textContent = t("copied"); else if (b.classList.contains("copy")) b.textContent = t("copied");
+    clearTimeout(b._ct); b._ct = setTimeout(() => { b.classList.remove("copied"); if (k) k.textContent = t(k.dataset.i18n); else if (b.classList.contains("copy")) b.textContent = t("copy"); }, 1500);
+  };
   try { navigator.clipboard.writeText(b.dataset.copy).then(done, () => {}); } catch(err){}
 });
 

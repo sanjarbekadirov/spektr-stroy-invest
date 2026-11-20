@@ -43,7 +43,7 @@ supabase/functions/order-file  Edge function: biriktirilgan faylni guruhga hujja
 
 ## index.html xaritasi
 
-Sahifa bo'limlari tartibda (redizayn 2026-11-20): sticky sarlavha (PNG logo, menyu, telefon, UZ/RU, rejim, smeta, kabinet, "Prays-list (XLSX)") -> `#home` hero (tepada to'liq kenglikdagi 3 slaydli promo-slider, ostida H1 va tugmalar) -> `#partners` hamkorlar + 4 KPI -> `#directions` 4 yo'nalish -> `#catalog` (kartochka / B2B jadval rejimi, `ssi_view`) -> `#smeta` "Smetangiz bormi?" banneri (drag & drop fayl + telefon, `orders` ga yoziladi) -> `#how` 4 qadam -> `#request` so'rov formasi -> `#contacts` (chapda ma'lumot, o'ngda xarita) -> `#412A9D` footer. Telefonda pastki menyu paneli bor.
+Sahifa bo'limlari tartibda (redizayn 2026-11-20): sticky sarlavha (PNG logo, menyu, telefon, UZ/RU, rejim, smeta, kabinet, "Prays-list (XLSX)") -> `#home` hero (tepada to'liq kenglikdagi 3 slaydli promo-slider, ostida H1 va tugmalar) -> `#partners` hamkorlar + 4 KPI -> `#directions` 4 yo'nalish -> `#catalog` (kartochka / B2B jadval rejimi, `ssi_view`) -> `#smeta` "Smetangiz bormi?" banneri (drag & drop fayl + telefon, `orders` ga yoziladi) -> `#how` 4 qadam -> `#request` so'rov formasi -> `#contacts` (ish vaqti, 3 ta bosiladigan kartochka: Telegram, Instagram, e-pochta; ostida to'liq kenglikdagi xarita va manzil qatori) -> `#412A9D` footer. Telefonda pastki menyu paneli bor.
 
 Standart (o'zbekcha) matnlar HTML ichida statik yozilgan (SEO). JS faqat til almashtirilganda yangilaydi. Matnni o'zgartirsangiz, `T.uz` va HTML ichidagi matnni birga yangilang. Redizayn matnlari `T` dan keyingi `Object.assign(T.uz, ...)` blokida.
 
@@ -112,9 +112,8 @@ Har bir kalitni `T.uz` va `T.ru` ikkalasiga qo'shing. Biror tilda kalit yo'q bo'
 
 ## Ochiq masalalar (foydalanuvchi bilan aniqlashtirish kerak)
 
-- Foydalanuvchi 2026-11-20 da tasdiqlagan da'volar: 13+ yil, 5 000+ korporativ mijoz, 1 500+ SKU, 1000+ nom, 24 soatda yetkazish, 30 daqiqada hisob, QQS / UzRTSB birja / g'aznachilik, hamkorlar (Enter Engineering, Eriell, NGMK, Uzkabel, Bunyodkor, Deutsche Kabel; 2026-11-20 da qo'shildi: Havas, Tashkent City, Nestone, Humo Arena).
+- Foydalanuvchi 2026-11-20 da tasdiqlagan da'volar: ish vaqti Du-Ju 09:00-17:00 (sarlavhada, telefon tugmasi yonida; faqat tugma qo'ng'iroq qiladi), 13+ yil, 5 000+ korporativ mijoz, 1 500+ SKU, 1000+ nom, 24 soatda yetkazish, 30 daqiqada hisob, QQS / UzRTSB birja / g'aznachilik, hamkorlar (Enter Engineering, Eriell, NGMK, Uzkabel, Bunyodkor, Deutsche Kabel; 2026-11-20 da qo'shildi: Havas, Tashkent City, Nestone, Humo Arena).
 - Katalogda narx yo'q: jadvaldagi "Ulgurji narx (QQS bilan)" ustunida "Tijorat taklifida" turadi.
-- Ish vaqti (hozir "har kuni 09:00-17:00") tasdiqlanmagan.
 - Supabase Auth uchun SMTP ulanganmi, tekshirish kerak (busiz tasdiqlash va parol tiklash xatlari bormaydi).
 - Kelajakda o'z domeni yoki serverga ko'chirish rejalashtirilgan. Ko'chirilganda Supabase'dagi Site URL va Redirect URLs ni yangilash kerak.
 - Supabase bepul tarifda: 7 kun faolsiz tursa loyiha to'xtatiladi (2026-11-17 da shunday bo'lgan). Hozircha `keepalive.yml` uni faol saqlaydi. Pro tarifga o'tish rejalashtirilgan; o'tilgach, workflow va `ping.sql` ni olib tashlash mumkin.
