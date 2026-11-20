@@ -390,6 +390,91 @@ body.aopen .drawer.acct{transform:none;visibility:visible}
 .ord-sum{font-weight:700;font-variant-numeric:tabular-nums}
 .ac-empty{text-align:center;color:var(--muted);font-size:.92rem;padding:28px 8px}
 .rq-ac{grid-column:1/-1;font-size:.86rem;background:var(--surface-2);border-radius:8px;padding:10px 14px}
+
+/* ===== Zamonaviy qatlam (2026-11): gradientlar, brend fonlari, kartalar, animatsiya ===== */
+:root{
+  --g-brand:linear-gradient(135deg,#412A9D 0%,#5A43C9 55%,#7E6FE0 100%);
+  --g-night:radial-gradient(120% 90% at 100% 0%,rgba(106,85,214,.55) 0%,transparent 55%),radial-gradient(90% 80% at 0% 100%,rgba(65,42,157,.6) 0%,transparent 60%),#1C1340;
+  --g-purple:radial-gradient(90% 120% at 0% 0%,rgba(139,126,216,.45) 0%,transparent 55%),linear-gradient(135deg,#3A2590 0%,#412A9D 45%,#5A43C9 100%);
+  --g-soft:radial-gradient(60% 70% at 100% 0%,rgba(139,126,216,.16) 0%,transparent 70%),radial-gradient(50% 60% at 0% 100%,rgba(65,42,157,.08) 0%,transparent 70%),linear-gradient(180deg,#F7F5FC 0%,#FFFFFF 100%);
+  --g-media:linear-gradient(160deg,#F4F2FA 0%,#E9E5F5 100%);
+  --g-line:linear-gradient(90deg,#412A9D,#8B7ED8);
+  --sh-card:0 18px 40px -18px rgba(65,42,157,.35);
+  --hd-bg:rgba(255,255,255,.9);
+  --bigS:rgba(65,42,157,.05);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --g-soft:radial-gradient(60% 70% at 100% 0%,rgba(106,85,214,.18) 0%,transparent 70%),radial-gradient(50% 60% at 0% 100%,rgba(65,42,157,.16) 0%,transparent 70%),linear-gradient(180deg,#181425 0%,#14121D 100%);
+  --g-media:linear-gradient(160deg,#241E40 0%,#1C1830 100%);
+  --g-line:linear-gradient(90deg,#7B67E0,#AB9EF4);
+  --sh-card:0 18px 40px -18px rgba(0,0,0,.7);
+  --hd-bg:rgba(20,18,29,.9);
+  --bigS:rgba(171,158,244,.05);
+}}
+:root[data-theme="dark"]{
+  --g-soft:radial-gradient(60% 70% at 100% 0%,rgba(106,85,214,.18) 0%,transparent 70%),radial-gradient(50% 60% at 0% 100%,rgba(65,42,157,.16) 0%,transparent 70%),linear-gradient(180deg,#181425 0%,#14121D 100%);
+  --g-media:linear-gradient(160deg,#241E40 0%,#1C1830 100%);
+  --g-line:linear-gradient(90deg,#7B67E0,#AB9EF4);
+  --sh-card:0 18px 40px -18px rgba(0,0,0,.7);
+  --hd-bg:rgba(20,18,29,.9);
+  --bigS:rgba(171,158,244,.05);
+}
+
+/* Sarlavha: shisha effekti */
+@supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  header.hd{background:var(--hd-bg);-webkit-backdrop-filter:saturate(1.6) blur(14px);backdrop-filter:saturate(1.6) blur(14px)}
+}
+form.search button{background:var(--g-brand)}
+
+/* Tugmalar */
+.btn{transition:transform .2s,box-shadow .2s,background-position .4s}
+.btn-p{background:var(--g-brand);background-size:160% 100%;background-position:0 0}
+.btn-p:hover{background-position:100% 0;box-shadow:0 10px 24px -10px rgba(65,42,157,.7)}
+.btn-y{background:linear-gradient(135deg,#FFC23D 0%,#FFB71B 60%,#F5A800 100%)}
+.btn-y:hover{box-shadow:0 10px 24px -10px rgba(255,183,27,.75)}
+
+/* Bo'lim sarlavhalari: eyebrow oldida gradient chiziq */
+.sec-head .eyebrow{display:inline-flex;align-items:center;gap:10px}
+.sec-head .eyebrow::before{content:"";width:28px;height:3px;border-radius:2px;background:var(--g-line)}
+
+/* Yo'nalishlar va katalog: yumshoq gradient fon + chizma to'ri + katta S */
+#directions,#catalog{position:relative;isolation:isolate}
+#directions{background:var(--g-soft);overflow:hidden}
+#directions::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(var(--grid-l) 1px,transparent 1px),linear-gradient(90deg,var(--grid-l) 1px,transparent 1px);background-size:44px 44px;
+  -webkit-mask-image:radial-gradient(80% 70% at 50% 0%,#000 0%,transparent 75%);mask-image:radial-gradient(80% 70% at 50% 0%,#000 0%,transparent 75%)}
+.sec .bgS{position:absolute;z-index:-1;pointer-events:none;color:var(--bigS);height:120%;width:auto;max-width:none;top:-10%;right:-6%}
+
+/* Yo'nalish kartalari */
+.dir{transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s}
+.dir:hover{transform:translateY(-6px);box-shadow:var(--sh-card)}
+.dir.has-ph::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(28,19,64,.18) 0%,transparent 35%)}
+
+/* Katalog kartalari */
+.cards{gap:16px}
+.card{position:relative;border-radius:16px;transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s,border-color .3s}
+.card::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:linear-gradient(135deg,#412A9D,#8B7ED8 50%,#FFB71B);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.card:hover{transform:translateY(-4px);box-shadow:var(--sh-card);border-color:transparent}
+.card:hover::after{opacity:1}
+.card .media{background:var(--g-media);margin:8px 8px 0;border-radius:12px}
+.card .media img{inset:10px;width:calc(100% - 20px);height:calc(100% - 20px);padding:10px;background:#fff;border-radius:10px;box-shadow:0 6px 16px -10px rgba(28,19,64,.35);transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.card:hover .media img{transform:scale(1.04)}
+.card .media .ic.lg{opacity:.85}
+.card .media .code{background:rgba(28,19,64,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border-radius:999px;padding:3px 9px}
+.card .price{background:linear-gradient(90deg,var(--accent-text),#8B7ED8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tab{transition:background .2s,color .2s,box-shadow .2s}
+.tab[aria-pressed="true"]{background:var(--g-brand);color:#fff;box-shadow:0 8px 18px -10px rgba(65,42,157,.8)}
+
+/* Buyurtma va kontakt bo'limlari */
+.req{background:var(--g-night)}
+.contacts{background:var(--g-purple)}
+footer{background:linear-gradient(180deg,#1C1340 0%,#120D2A 55%,#0D0B14 100%)}
+
+/* Ekranga kirganda yumshoq paydo bo'lish (faqat JS ishlasa yashiriladi) */
+.anim .rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.anim .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){.anim .rv{opacity:1;transform:none}.card:hover,.dir:hover,.card:hover .media img{transform:none}}
 </style>
 </head>
 <body>
@@ -493,6 +578,7 @@ body.aopen .drawer.acct{transform:none;visibility:visible}
   </section>
 
   <section class="sec" id="directions">
+    <svg class="bgS" viewBox="240 101 1519 1798" aria-hidden="true"><use href="#sp"/></svg>
     <div class="wrap">
       <div class="sec-head"><div class="l"><span class="eyebrow" data-i18n="dirs_eyebrow"></span><h2 data-i18n="dirs_title"></h2></div></div>
       <div class="dirs" id="dirs"></div>
@@ -1290,6 +1376,18 @@ applyLang();
 /* bo'limga o'tganda sarlavha uning boshini yopmasin */
 const syncHd = () => document.documentElement.style.setProperty("--hd-h", $("#hd").offsetHeight + "px");
 syncHd(); new ResizeObserver(syncHd).observe($("#hd"));
+
+/* ---------- ekranga kirganda paydo bo'lish ---------- */
+(() => {
+  if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const els = [];
+  $$(".sec-head, .req .wrap > *, .contacts .wrap > *").forEach(e => els.push(e));
+  $$("#dirs .dir").forEach((e, i) => { e.style.setProperty("--d", (i * 0.08) + "s"); els.push(e); });
+  els.forEach(e => e.classList.add("rv"));
+  document.documentElement.classList.add("anim");
+  const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } }), { rootMargin:"0px 0px -8% 0px" });
+  els.forEach(e => io.observe(e));
+})();
 </script>
 
 </body>
