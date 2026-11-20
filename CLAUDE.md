@@ -31,6 +31,7 @@ img/catalog/SP-001..112.jpg    Katalog rasmlari, fayl nomi = mahsulot kodi
 img/hero/hero-1..3.webp        Bosh sahifa bannerlari (2400 px); hero-N-m.webp: telefon uchun kesilgan varianti
 img/dirs/<kalit>.webp          Yo'nalish kartalari fotosi (640x1147, 9:16), kalit = DIRS kaliti
 img/promo-N-uz|ru.webp         Hero promo-slayderi, N = 1..3 (21:9, 1568x672); promo-N-uz|ru-m.webp: telefon (1:1). Aksiya o'zgarsa faqat rasmni almashtiring, matn rasmning o'zida. Telefonda tugma joyi slaydning --mt/--ml o'zgaruvchisida
+img/partners/*.webp, havas.svg  Hamkorlar logotiplari (balandligi 120 px, shaffof fon). Lentada monoxrom, hover'da asl rang. `PARTNERS` da oq logotip uchun `invert` ("alpha" yoki "bg"), ochiq rangli uchun `tone:"light"`
 supabase/schema.sql            profiles, orders jadvallari, RLS, ro'yxatdan o'tish trigger'i
 supabase/telegram.sql          Yangi buyurtma -> Telegram guruhi (pg_net + Vault)
 supabase/fayl.sql              Buyurtmaga fayl biriktirish: order-files ombori
@@ -112,7 +113,6 @@ Har bir kalitni `T.uz` va `T.ru` ikkalasiga qo'shing. Biror tilda kalit yo'q bo'
 ## Ochiq masalalar (foydalanuvchi bilan aniqlashtirish kerak)
 
 - Foydalanuvchi 2026-11-20 da tasdiqlagan da'volar: 13+ yil, 5 000+ korporativ mijoz, 1 500+ SKU, 1000+ nom, 24 soatda yetkazish, 30 daqiqada hisob, QQS / UzRTSB birja / g'aznachilik, hamkorlar (Enter Engineering, Eriell, NGMK, Uzkabel, Bunyodkor, Deutsche Kabel; 2026-11-20 da qo'shildi: Havas, Tashkent City, Nestone, Humo Arena).
-- Hamkorlar hozir monogramma + nom kartochkasi sifatida ko'rsatiladi: logotip fayllari kerak (`img/partners/` ga qo'yib, `PARTNERS` ga `logo` qo'shiladi).
 - Katalogda narx yo'q: jadvaldagi "Ulgurji narx (QQS bilan)" ustunida "Tijorat taklifida" turadi.
 - Ish vaqti (hozir "har kuni 09:00-17:00") tasdiqlanmagan.
 - Supabase Auth uchun SMTP ulanganmi, tekshirish kerak (busiz tasdiqlash va parol tiklash xatlari bormaydi).
