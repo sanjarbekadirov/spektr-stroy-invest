@@ -42,7 +42,7 @@ supabase/functions/order-file  Edge function: biriktirilgan faylni guruhga hujja
 
 ## index.html xaritasi
 
-Sahifa bo'limlari tartibda (redizayn 2026-11-20): sticky sarlavha (PNG logo, menyu, telefon, UZ/RU, rejim, smeta, kabinet, "Prays-list (XLSX)") -> `#home` hero (chapda matn, o'ngda 3 slaydli promo-slider) -> `#partners` hamkorlar + 4 KPI -> `#directions` 4 yo'nalish -> `#catalog` (kartochka / B2B jadval rejimi, `ssi_view`) -> `#smeta` "Smetangiz bormi?" banneri (drag & drop fayl + telefon, `orders` ga yoziladi) -> `#how` 4 qadam -> `#request` so'rov formasi -> `#contacts` (chapda ma'lumot, o'ngda xarita) -> `#412A9D` footer. Telefonda pastki menyu paneli bor.
+Sahifa bo'limlari tartibda (redizayn 2026-11-20): sticky sarlavha (PNG logo, menyu, telefon, UZ/RU, rejim, smeta, kabinet, "Prays-list (XLSX)") -> `#home` hero (tepada to'liq kenglikdagi 3 slaydli promo-slider, ostida H1 va tugmalar) -> `#partners` hamkorlar + 4 KPI -> `#directions` 4 yo'nalish -> `#catalog` (kartochka / B2B jadval rejimi, `ssi_view`) -> `#smeta` "Smetangiz bormi?" banneri (drag & drop fayl + telefon, `orders` ga yoziladi) -> `#how` 4 qadam -> `#request` so'rov formasi -> `#contacts` (chapda ma'lumot, o'ngda xarita) -> `#412A9D` footer. Telefonda pastki menyu paneli bor.
 
 Standart (o'zbekcha) matnlar HTML ichida statik yozilgan (SEO). JS faqat til almashtirilganda yangilaydi. Matnni o'zgartirsangiz, `T.uz` va HTML ichidagi matnni birga yangilang. Redizayn matnlari `T` dan keyingi `Object.assign(T.uz, ...)` blokida.
 

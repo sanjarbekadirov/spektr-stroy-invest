@@ -576,37 +576,44 @@ header.hd{box-shadow:0 1px 0 var(--border-subtle)}
 @media (max-width:380px){.theme-btn{display:none}}
 
 /* ---------- Hero (promo-slider) ---------- */
-.hx-hero{padding:48px 0 28px;position:relative;overflow:hidden;background:radial-gradient(60% 80% at 100% 0%,rgba(139,126,216,.16),transparent 70%),radial-gradient(40% 60% at 0% 100%,rgba(65,42,157,.06),transparent 70%)}
-.hh{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.25fr);gap:44px;align-items:center}
+.hx-hero{padding:24px 0 36px;position:relative;overflow:hidden;background:radial-gradient(60% 80% at 100% 0%,rgba(139,126,216,.16),transparent 70%),radial-gradient(40% 60% at 0% 100%,rgba(65,42,157,.06),transparent 70%)}
+/* Hero: tepada to'liq kenglikdagi promo-slider, ostida sarlavha (chapda) va tugmalar (o'ngda) */
+.hh{display:flex;flex-direction:column;gap:34px}
+.hh-r{order:-1}
+.hh-l{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:48px;align-items:end}
+.hh-l>.pill,.hh-l>h1,.hh-l>.lead{grid-column:1}
+.hh-l>.pill{justify-self:start}
+.hh-l>.ctas{grid-column:2;grid-row:2;align-self:center;justify-content:flex-end}
+.hh-l>.hh-points{grid-column:2;grid-row:3;justify-content:flex-end;align-self:start}
 .pill{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;background:var(--bg-surface);border:1px solid var(--border-subtle);font-size:.8rem;font-weight:700;color:var(--accent-text);letter-spacing:.01em}
 .pill i{width:8px;height:8px;border-radius:50%;background:var(--brand-accent);box-shadow:0 0 0 4px rgba(255,183,27,.22)}
-.hh h1{font-size:clamp(2rem,3.6vw,3.1rem);font-weight:800;line-height:1.07;margin:20px 0 18px;color:var(--text-main)}
+.hh h1{font-size:clamp(1.8rem,3vw,2.7rem);font-weight:800;line-height:1.1;margin:16px 0 12px;color:var(--text-main)}
 .hh .lead{font-size:1.1rem;line-height:1.6;color:var(--text-muted);max-width:52ch}
-.hh .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
-.hh-points{list-style:none;padding:0;margin:28px 0 0;display:flex;gap:10px 26px;flex-wrap:wrap;color:var(--text-muted);font-size:.9rem;font-weight:600}
+.hh .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:0}
+.hh-points{list-style:none;padding:0;margin:16px 0 0;display:flex;gap:10px 26px;flex-wrap:wrap;color:var(--text-muted);font-size:.9rem;font-weight:600}
 .hh-points li{display:flex;align-items:center;gap:8px}
 .hh-points svg.i{width:18px;height:18px;color:var(--accent-text)}
 .hh-r{position:relative}
 /* Promo-slider: har slayd faqat rasm (img/promo-N-uz|ru[-m].webp), matn rasmning o'zida */
-.promo-slider{position:relative;aspect-ratio:21/9;border-radius:22px;overflow:hidden;box-shadow:0 14px 36px rgba(65,42,157,.10);background:#2A1B78;touch-action:pan-y;isolation:isolate}
+.promo-slider{position:relative;aspect-ratio:21/9;border-radius:22px;overflow:hidden;box-shadow:0 14px 36px rgba(65,42,157,.10);background:#2A1B78;touch-action:pan-y;isolation:isolate;container-type:inline-size}
 .ps-track{display:flex;height:100%;transition:transform .6s cubic-bezier(.22,1,.36,1);will-change:transform}
 .ps-slide{position:relative;flex:0 0 100%;height:100%}
 .ps-slide picture{display:block;width:100%;height:100%}
 .ps-slide img{display:block;width:100%;height:100%;object-fit:cover;user-select:none;-webkit-user-drag:none}
-.promo-cta{position:absolute;left:5.5%;bottom:13%;display:inline-flex;align-items:center;padding:9px 18px;border-radius:12px;background:#FFB71B;color:#161324;font-weight:700;font-size:14px;line-height:1.2;text-decoration:none;box-shadow:0 8px 20px -8px rgba(0,0,0,.45);transition:transform .2s,box-shadow .2s,background .2s}
+.promo-cta{position:absolute;left:5.6%;bottom:13.4%;display:inline-flex;align-items:center;padding:.72em 1.3em;border-radius:12px;background:#FFB71B;color:#161324;font-weight:700;font-size:clamp(13px,1.5cqw,19px);line-height:1.2;text-decoration:none;box-shadow:0 8px 20px -8px rgba(0,0,0,.45);transition:transform .2s,box-shadow .2s,background .2s}
 .promo-cta:hover{background:#FFC444;transform:translateY(-2px);box-shadow:0 12px 24px -10px rgba(0,0,0,.55)}
 .promo-cta:focus-visible{outline:3px solid #fff;outline-offset:2px}
-.ps-arrow{position:absolute;top:50%;z-index:2;width:36px;height:36px;margin-top:-18px;border:0;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.28);color:#fff;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);cursor:pointer;opacity:0;transition:opacity .25s,background .2s}
-.ps-arrow svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
-.ps-arrow.prev{left:8px}.ps-arrow.next{right:8px}
-.promo-slider:hover .ps-arrow,.ps-arrow:focus-visible{opacity:1}
-.ps-arrow:hover{background:rgba(255,255,255,.45)}
+.ps-arrow{position:absolute;top:50%;z-index:2;width:46px;height:46px;margin-top:-23px;border:0;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.92);color:#161324;box-shadow:0 6px 18px -6px rgba(22,19,36,.35);cursor:pointer;transition:transform .2s,background .2s}
+.ps-arrow svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.ps-arrow.prev{left:16px}.ps-arrow.next{right:16px}
+.ps-arrow:hover{background:#fff;transform:scale(1.06)}
+.ps-arrow:focus-visible{outline:3px solid #FFB71B;outline-offset:2px}
 .ps-dots{position:absolute;left:50%;bottom:10px;z-index:2;transform:translateX(-50%);display:flex;gap:6px;padding:6px 9px;border-radius:999px;background:rgba(255,255,255,.6);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .ps-dots button{width:7px;height:7px;padding:0;border:0;border-radius:999px;background:rgba(65,42,157,.35);cursor:pointer;transition:width .3s,background .3s}
 .ps-dots button[aria-current="true"]{width:22px;background:#412A9D}
 @media (hover:none){.ps-arrow{display:none}}
-@media (max-width:980px){.hh{grid-template-columns:1fr;gap:34px}}
-@media (max-width:640px){.hx-hero{padding:28px 0 16px}.promo-slider{aspect-ratio:1/1}.promo-cta{left:var(--ml,14.5%);top:var(--mt,47%);bottom:auto;padding:7px 13px;font-size:12.5px;border-radius:10px}.hh .ctas .btn{flex:1 1 100%}}
+@media (max-width:980px){.hh{gap:26px}.hh-l{display:block}.hh .ctas{margin-top:24px;justify-content:flex-start}.hh-points{justify-content:flex-start}}
+@media (max-width:640px){.hx-hero{padding:16px 0 16px}.promo-slider{aspect-ratio:1/1}.promo-cta{left:var(--ml,14.5%);top:var(--mt,47%);bottom:auto;padding:7px 13px;font-size:12.5px;border-radius:10px}.hh .ctas .btn{flex:1 1 100%}}
 
 /* ---------- Hamkorlar va KPI ---------- */
 .proof{padding:24px 0 56px}
@@ -1362,23 +1369,42 @@ function updateCounts(){
 }
 function setDir(d, scroll){ dir = d; shown = 0; renderTabs(); renderCards(); if (scroll) $("#catalog").scrollIntoView(); }
 
-/* ---------- Hero promo-slider: 5 s autoplay, hover'da pauza, nuqtalar, strelkalar, swipe ---------- */
+/* ---------- Hero promo-slider: cheksiz bir tomonga aylanadi (chetlarda klon slaydlar), 5 s autoplay, hover'da pauza, nuqtalar, strelkalar, swipe ---------- */
 (() => {
   const root = $("#promo"); if (!root) return;
-  const track = root.querySelector(".ps-track"), slides = [...track.children], dots = root.querySelector(".ps-dots");
+  const track = root.querySelector(".ps-track"), slides = [...track.children], dots = root.querySelector(".ps-dots"), N = slides.length;
   const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let cur = 0, timer = 0, hold = false;
+  // Tasma: [3-klon] 1 2 3 [1-klon]. Oxirgidan keyin 1-klonga silliq o'tadi, so'ng sezdirmasdan haqiqiy 1-ga sakraydi.
+  const mkClone = sl => { const c = sl.cloneNode(true); c.classList.add("ps-clone"); c.setAttribute("aria-hidden", "true"); c.querySelector("a").tabIndex = -1; c.querySelector("img").removeAttribute("fetchpriority"); return c; };
+  track.insertBefore(mkClone(slides[N - 1]), slides[0]); track.appendChild(mkClone(slides[0]));
+  let pos = 1, timer = 0, hold = false, busy = false, guard = 0;
   dots.innerHTML = slides.map((_, k) => `<button type="button" aria-label="${t("ps_go").replace("{n}", k + 1)}"></button>`).join("");
-  const go = n => {
-    cur = (n + slides.length) % slides.length;
-    track.style.transform = `translateX(${-cur * 100}%)`;
+  const place = (p, anim) => {
+    track.style.transition = anim && !still ? "" : "none";
+    track.style.transform = `translateX(${-p * 100}%)`;
+    if (!anim || still) void track.offsetWidth;
+  };
+  const mark = () => {
+    const cur = (pos - 1 + N) % N;
     [...dots.children].forEach((d, k) => d.setAttribute("aria-current", k === cur));
     slides.forEach((sl, k) => { sl.setAttribute("aria-hidden", k !== cur); sl.querySelector("a").tabIndex = k === cur ? 0 : -1; });
   };
-  const play = () => { clearInterval(timer); if (!still) timer = setInterval(() => { if (!hold && !document.hidden) go(cur + 1); }, 5000); };
-  root.querySelector(".prev").addEventListener("click", () => { go(cur - 1); play(); });
-  root.querySelector(".next").addEventListener("click", () => { go(cur + 1); play(); });
-  dots.addEventListener("click", e => { const b = e.target.closest("button"); if (b){ go([...dots.children].indexOf(b)); play(); } });
+  const settle = () => { if (pos === N + 1){ pos = 1; place(1, false); } else if (pos === 0){ pos = N; place(N, false); } };
+  // Animatsiya tugaguncha (0.6 s) yangi o'tish qabul qilinmaydi: tez-tez bosilganda tasma sakrab ketmasin
+  const done = () => { clearTimeout(guard); busy = false; settle(); };
+  track.addEventListener("transitionend", e => { if (e.target === track && e.propertyName === "transform") done(); });
+  const go = p => {
+    p = Math.max(0, Math.min(N + 1, p));
+    if (busy || p === pos) return;
+    pos = p; place(pos, true); mark();
+    if (still) { settle(); return; }
+    busy = true; clearTimeout(guard); guard = setTimeout(done, 800);
+  };
+  const step = d => go(pos + d);
+  const play = () => { clearInterval(timer); if (!still) timer = setInterval(() => { if (!hold && !document.hidden) step(1); }, 5000); };
+  root.querySelector(".prev").addEventListener("click", () => { step(-1); play(); });
+  root.querySelector(".next").addEventListener("click", () => { step(1); play(); });
+  dots.addEventListener("click", e => { const b = e.target.closest("button"); if (b){ go([...dots.children].indexOf(b) + 1); play(); } });
   root.addEventListener("mouseenter", () => hold = true);
   root.addEventListener("mouseleave", () => hold = false);
   root.addEventListener("focusin", () => hold = true);
@@ -1388,13 +1414,13 @@ function setDir(d, scroll){ dir = d; shown = 0; renderTabs(); renderCards(); if 
   root.addEventListener("touchend", e => {
     hold = false; if (x0 === null) return;
     const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0; x0 = null;
-    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)){ go(cur + (dx < 0 ? 1 : -1)); play(); }
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)){ step(dx < 0 ? 1 : -1); play(); }
   });
   root.addEventListener("click", e => {
     const a = e.target.closest(".promo-cta[data-dir]"); if (!a) return;
     e.preventDefault(); setDir(a.dataset.dir, false); $("#catalog").scrollIntoView({ behavior: "smooth" });
   });
-  go(0); play();
+  place(1, false); mark(); play();
 })();
 
 /* ---------- theme ---------- */
