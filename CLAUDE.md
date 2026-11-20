@@ -30,6 +30,7 @@ logo.svg, logo-s.svg           Vektor logotip va "S" belgisi (index.html ichiga 
 img/catalog/SP-001..112.jpg    Katalog rasmlari, fayl nomi = mahsulot kodi
 img/hero/hero-1..3.webp        Bosh sahifa bannerlari (2400 px); hero-N-m.webp: telefon uchun kesilgan varianti
 img/dirs/<kalit>.webp          Yo'nalish kartalari fotosi (640x1147, 9:16), kalit = DIRS kaliti
+img/promo-uz|ru.webp           Hero promo-banneri (21:9, 1568x672); promo-uz|ru-m.webp: telefon (1:1). Aksiya o'zgarsa faqat shu 4 faylni almashtiring, matn rasmning o'zida
 supabase/schema.sql            profiles, orders jadvallari, RLS, ro'yxatdan o'tish trigger'i
 supabase/telegram.sql          Yangi buyurtma -> Telegram guruhi (pg_net + Vault)
 supabase/fayl.sql              Buyurtmaga fayl biriktirish: order-files ombori
