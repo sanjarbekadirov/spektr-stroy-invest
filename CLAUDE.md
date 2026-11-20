@@ -13,7 +13,7 @@ Bu fayl Claude Code uchun. Loyihada ishlashdan oldin to'liq o'qing.
 
 - **Mijoz:** «SPEKTR STROY INVEST» MChJ, Toshkent. Foydalanuvchining tog'asining kompaniyasi.
 - **Segment:** B2B va B2G. Korxonalar va davlat tashkilotlariga ta'minot. To'lov faqat **pul o'tkazish** (bank orqali), shartnoma asosida.
-- **Kompaniyaning ish tili:** asosan rus tili. Sayt UZ / RU / EN, standart til o'zbek.
+- **Kompaniyaning ish tili:** asosan rus tili. Sayt UZ / RU (inglizcha 2026-11-20 da olib tashlangan), standart til o'zbek.
 - **Pozitsiyalash (brendbukdan):** "Bitta hamkor. To'rt yo'nalish. Bitta shartnoma." Murojaat ohangi: "Hurmatli hamkor", rasmiy, aniq, va'dalarsiz.
 
 ## Manzillar
@@ -50,10 +50,10 @@ Asosiy JS konstantalar (`<script>` boshida, taxminan 640-qatordan):
 | `SUPABASE` | `url` va `anonKey` (publishable kalit, saytda turishi mumkin) |
 | `PARTNERS` | Hamkorlar ro'yxati. Bo'sh bo'lsa `#partners` bo'limi va unga havolalar yashiriladi |
 | `PHONE_MAIN` | Xato xabarlaridagi telefon |
-| `DIRS` | 4 yo'nalish: `sponge`, `pack`, `chem`, `tools` (rang, ikonka, illyustratsiya, 3 tildagi nom) |
+| `DIRS` | 4 yo'nalish: `sponge`, `pack`, `chem`, `tools` (rang, ikonka, illyustratsiya, 2 tildagi nom) |
 | `U` | O'lchov birliklari: `pack`, `pc`, `pkg`, `lm`, `pair`, `kg` |
-| `P` | Katalog: 112 mahsulot. Har biri `{id, dir, u, n:{uz,ru,en}, s:{uz,ru,en}}` |
-| `T` | Barcha matnlar tarjimasi: `T.uz`, `T.ru`, `T.en`. HTML'da `data-i18n="kalit"` |
+| `P` | Katalog: 112 mahsulot. Har biri `{id, dir, u, n:{uz,ru}, s:{uz,ru}}` |
+| `T` | Barcha matnlar tarjimasi: `T.uz`, `T.ru`. HTML'da `data-i18n="kalit"` |
 | `DIR_PHOTOS` | Fotosi bor yo'nalishlar. Kartaning foto, fon rangi (`--pb`) va pastki gradient rangi (`--pb2`) CSS'da `.dir[data-dir="..."]` da |
 | `PAL`, `ART` | Izometrik SVG illyustratsiyalar. Hozir faqat fotosi yo'q yo'nalish uchun zaxira |
 | `FILE_TYPES` | Formaga biriktirish mumkin bo'lgan fayl turlari (xlsx, xls, csv, pdf, docx, doc, jpg, png) |
@@ -65,13 +65,13 @@ Brauzer xotirasi (`localStorage`): `ssi_lang`, `ssi_theme`, `ssi_list` (so'rov r
 
 ### Katalogga mahsulot qo'shish
 
-1. `P` massiviga yangi yozuv: keyingi bo'sh kod (`SP-113`), `dir` 4 kalitdan biri, `u` birlik, `n` va `s` uch tilda.
+1. `P` massiviga yangi yozuv: keyingi bo'sh kod (`SP-113`), `dir` 4 kalitdan biri, `u` birlik, `n` va `s` ikki tilda.
 2. Rasmni `img/catalog/SP-113.jpg` qilib qo'shing (taxminan 600-800 px, 100 KB atrofida).
 3. Yangi yo'nalish yoki birlik kerak bo'lsa, `DIRS` / `U` va `T` dagi matnlarni ham to'ldiring.
 
 ### Yangi matn qo'shish
 
-Har bir kalitni `T.uz`, `T.ru`, `T.en` uchalasiga qo'shing. Biror tilda kalit yo'q bo'lsa, sahifada kalit nomi chiqib qoladi.
+Har bir kalitni `T.uz` va `T.ru` ikkalasiga qo'shing. Biror tilda kalit yo'q bo'lsa, sahifada kalit nomi chiqib qoladi.
 
 ## Backend: Supabase
 
@@ -99,7 +99,7 @@ Har bir kalitni `T.uz`, `T.ru`, `T.en` uchalasiga qo'shing. Biror tilda kalit yo
 
 1. O'zgarishdan oldin: `git pull origin main` (foydalanuvchi GitHub'da to'g'ridan-to'g'ri ham tahrirlaydi).
 2. Mahalliy tekshirish: `python3 -m http.server 8000`, keyin http://localhost:8000
-3. Har o'zgarishdan keyin tekshiring: telefon kengligi (390 px, gorizontal scroll yo'q), yorug' va qorong'u rejim, uchala til, konsolda xato yo'q.
+3. Har o'zgarishdan keyin tekshiring: telefon kengligi (390 px, gorizontal scroll yo'q), yorug' va qorong'u rejim, ikkala til, konsolda xato yo'q.
 4. Commit -> `git push origin main` -> 1-2 daqiqada jonli saytda.
 
 ## Ochiq masalalar (foydalanuvchi bilan aniqlashtirish kerak)
