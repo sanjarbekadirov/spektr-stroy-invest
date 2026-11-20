@@ -41,7 +41,11 @@ supabase/functions/order-file  Edge function: biriktirilgan faylni guruhga hujja
 
 ## index.html xaritasi
 
-Sahifa bo'limlari tartibda: sarlavha (logo, qidiruv, til va rejim tugmalari, so'rov ro'yxati, kabinet) -> `#home` banner-slayder -> `#directions` 4 yo'nalish -> `#catalog` -> `#partners` -> `#request` so'rov formasi -> `#contacts` -> footer. Telefonda pastki menyu paneli bor.
+Sahifa bo'limlari tartibda (redizayn 2026-11-20): sticky sarlavha (PNG logo, menyu, telefon, UZ/RU, rejim, smeta, kabinet, "Prays-list (XLSX)") -> `#home` 2 ustunli bento hero -> `#partners` hamkorlar + 4 KPI -> `#directions` 4 yo'nalish -> `#catalog` (kartochka / B2B jadval rejimi, `ssi_view`) -> `#smeta` "Smetangiz bormi?" banneri (drag & drop fayl + telefon, `orders` ga yoziladi) -> `#how` 4 qadam -> `#request` so'rov formasi -> `#contacts` (chapda ma'lumot, o'ngda xarita) -> `#412A9D` footer. Telefonda pastki menyu paneli bor.
+
+Standart (o'zbekcha) matnlar HTML ichida statik yozilgan (SEO). JS faqat til almashtirilganda yangilaydi. Matnni o'zgartirsangiz, `T.uz` va HTML ichidagi matnni birga yangilang. Redizayn matnlari `T` dan keyingi `Object.assign(T.uz, ...)` blokida.
+
+Prays-list XLSX brauzerda kutubxonasiz yaratiladi (`priceListXlsx`, oddiy ZIP + SpreadsheetML).
 
 Asosiy JS konstantalar (`<script>` boshida, taxminan 640-qatordan):
 
@@ -90,7 +94,9 @@ Har bir kalitni `T.uz` va `T.ru` ikkalasiga qo'shing. Biror tilda kalit yo'q bo'
 ## Brend qoidalari (Brendbuk v2.0)
 
 - **Ranglar:** Spektr Binafsha `#412A9D` (asosiy), Tungi `#1C1340`, Signal Sariq `#FFB71B` (faqat aksent: tugma, raqam, belgilash; katta maydonlarda emas), Lavanda `#8B7ED8`, Beton `#ECEAF2`, Po'lat `#6E6A85`, Grafit `#16141F`.
-- **Shriftlar:** Montserrat (sarlavhalar, 600-900), Inter (matn, 400-700). Google Fonts orqali.
+- **Shriftlar:** Manrope (sarlavhalar, 700/800), Inter (matn, raqamlar `tabular-nums`). 2026-11-20 redizaynida foydalanuvchi tanlovi bilan Montserrat o'rniga Manrope.
+- **Tokenlar (redizayn):** `--brand-primary #412A9D`, `--brand-primary-dark #2E1C75`, `--brand-accent #FFB71B`, `--bg-surface #F5F4FA`, `--text-main #161324`, `--text-muted #5F5B73`, `--border-subtle #E5E2F0`. Eski o'zgaruvchilar shularga ulangan.
+- **Logotip fayllari:** `img/01_Spektr_logo_binafsha_shaffof.png` (sarlavha), `img/02_Spektr_logo_oq_shaffof.png` (footer), `img/08_Spektr_belgi_S_binafsha_shaffof.png` (favicon). Asl fayllar: Desktop/Spektr Stroy Invest/Spektr_logotiplar 2.
 - **Logotip:** binafsha, oq (qorong'u fonda) yoki qora variant. Nisbatlarini o'zgartirmang, effekt qo'shmang. Kompaniya nomi yozuvda: **SPEKTR STROY INVEST**.
 - **Vizual til:** ulkan "S" belgisi fonda, chizma to'ri (grid), sariq spektr chiziqlari, doira ichidagi chiziqli ikonkalar, izometrik illyustratsiyalar.
 - **Qorong'u rejim:** barcha ranglar CSS token orqali (`:root`, `@media (prefers-color-scheme: dark)`, `[data-theme]`). Yangi element qo'shganda literal rang emas, tokenlardan foydalaning.
@@ -104,7 +110,9 @@ Har bir kalitni `T.uz` va `T.ru` ikkalasiga qo'shing. Biror tilda kalit yo'q bo'
 
 ## Ochiq masalalar (foydalanuvchi bilan aniqlashtirish kerak)
 
-- `PARTNERS` bo'sh: hamkorlar logotiplari va ruxsat kerak.
+- Foydalanuvchi 2026-11-20 da tasdiqlagan da'volar: 13+ yil, 5 000+ korporativ mijoz, 1 500+ SKU, 1000+ nom, 24 soatda yetkazish, 30 daqiqada hisob, QQS / UzRTSB birja / g'aznachilik, hamkorlar (Enter Engineering, Eriell, NGMK, Uzkabel, Bunyodkor, Deutsche Kabel).
+- Hamkorlar hozir matnli belgi sifatida ko'rsatiladi: logotip fayllari kerak (`PARTNERS` ga `logo` qo'shiladi).
+- Katalogda narx yo'q: jadvaldagi "Ulgurji narx (QQS bilan)" ustunida "Tijorat taklifida" turadi.
 - Ish vaqti (hozir "har kuni 09:00-17:00") tasdiqlanmagan.
 - Supabase Auth uchun SMTP ulanganmi, tekshirish kerak (busiz tasdiqlash va parol tiklash xatlari bormaydi).
 - Kelajakda o'z domeni yoki serverga ko'chirish rejalashtirilgan. Ko'chirilganda Supabase'dagi Site URL va Redirect URLs ni yangilash kerak.
