@@ -475,6 +475,49 @@ footer{background:linear-gradient(180deg,#1C1340 0%,#120D2A 55%,#0D0B14 100%)}
 .anim .rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
 .anim .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion: reduce){.anim .rv{opacity:1;transform:none}.card:hover,.dir:hover,.card:hover .media img{transform:none}}
+
+/* ===== 2-bosqich: ishonch qatori, ish tartibi, footer ===== */
+.trust{padding-block:0 8px;position:relative;z-index:2}
+.trust .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:-6px}
+.tr{display:flex;align-items:center;gap:14px;padding:18px 18px;border-radius:14px;background:var(--surface);border:1px solid var(--line);box-shadow:0 14px 30px -24px rgba(65,42,157,.45);position:relative;overflow:hidden}
+.tr::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--g-line)}
+.tr .tn{font-family:var(--f-head);font-weight:900;font-size:1.9rem;line-height:1;background:var(--g-brand);-webkit-background-clip:text;background-clip:text;color:transparent;font-variant-numeric:tabular-nums;flex:none}
+.tr .ti{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--g-brand);color:#fff;flex:none}
+.tr b{display:block;font-family:var(--f-head);font-weight:800;font-size:.98rem;line-height:1.2}
+.tr small{display:block;color:var(--muted);font-size:.82rem;line-height:1.35;margin-top:2px}
+@media (max-width:1000px){.trust .wrap{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.trust .wrap{grid-template-columns:1fr 1fr;gap:8px}.tr{flex-direction:column;align-items:flex-start;gap:8px;padding:14px}.tr .tn{font-size:1.6rem}.tr .ti{width:38px;height:38px}}
+
+.how{position:relative;isolation:isolate;overflow:hidden;background:var(--g-soft)}
+.how .bgS{right:auto;left:-10%;top:-15%;height:130%}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:st;position:relative}
+.steps::before{content:"";position:absolute;left:12%;right:12%;top:31px;height:2px;background:linear-gradient(90deg,#412A9D,#8B7ED8 70%,#FFB71B);opacity:.5;z-index:0}
+.step{position:relative;z-index:1;padding:0 6px}
+.step .sn{display:grid;place-items:center;width:62px;height:62px;border-radius:50%;background:var(--g-brand);color:#fff;box-shadow:0 0 0 6px var(--bg),0 14px 28px -12px rgba(65,42,157,.8);margin-bottom:18px;position:relative}
+.step .sn svg.i{width:26px;height:26px}
+.step .sn::after{counter-increment:st;content:counter(st);position:absolute;top:-4px;right:-6px;min-width:22px;height:22px;border-radius:11px;background:var(--yellow);color:var(--night);font:800 .72rem/22px var(--f-body);text-align:center}
+.step h3{font-size:1.12rem;font-weight:800;margin-bottom:6px}
+.step p{color:var(--muted);font-size:.92rem;line-height:1.5}
+.how .how-cta{margin-top:34px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.how .how-cta span{color:var(--muted);font-size:.9rem}
+@media (max-width:900px){
+  .steps{grid-template-columns:1fr;gap:0}
+  .steps::before{left:30px;right:auto;top:20px;bottom:20px;width:2px;height:auto;background:linear-gradient(180deg,#412A9D,#8B7ED8 70%,#FFB71B)}
+  .step{display:grid;grid-template-columns:62px 1fr;column-gap:16px;padding:0 0 22px}
+  .step .sn{grid-row:span 2;margin:0}
+  .step h3{align-self:end;margin:4px 0 2px}
+}
+
+footer{position:relative;overflow:hidden}
+footer .wrap{position:relative;z-index:1}
+footer .wm{position:absolute;left:50%;bottom:-2.2vw;transform:translateX(-50%);width:min(1240px,96vw);height:auto;color:rgba(255,255,255,.035);pointer-events:none;z-index:0;max-width:none}
+footer h4{display:flex;align-items:center;gap:8px}
+footer h4::before{content:"";width:14px;height:2px;border-radius:2px;background:var(--yellow)}
+footer a{transition:color .2s}
+footer .totop{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-size:.82rem;color:#fff;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.08);transition:background .2s}
+footer .totop:hover{background:rgba(255,255,255,.16)}
+footer .totop svg.i{width:16px;height:16px;transform:rotate(-90deg)}
+footer .totop:focus-visible{outline:2px solid var(--yellow)}
 </style>
 </head>
 <body>
@@ -577,6 +620,16 @@ footer{background:linear-gradient(180deg,#1C1340 0%,#120D2A 55%,#0D0B14 100%)}
     </div>
   </section>
 
+
+  <section class="trust" aria-label="Spektr Stroy Invest">
+    <div class="wrap">
+      <div class="tr"><span class="tn" id="trCount">112</span><div><b data-i18n="tr1_b"></b><small data-i18n="tr1_s"></small></div></div>
+      <div class="tr"><span class="tn">4</span><div><b data-i18n="tr2_b"></b><small data-i18n="tr2_s"></small></div></div>
+      <div class="tr"><span class="ti"><svg class="i"><use href="#i-doc"/></svg></span><div><b data-i18n="tr3_b"></b><small data-i18n="tr3_s"></small></div></div>
+      <div class="tr"><span class="ti"><svg class="i"><use href="#i-truck"/></svg></span><div><b data-i18n="tr4_b"></b><small data-i18n="tr4_s"></small></div></div>
+    </div>
+  </section>
+
   <section class="sec" id="directions">
     <svg class="bgS" viewBox="240 101 1519 1798" aria-hidden="true"><use href="#sp"/></svg>
     <div class="wrap">
@@ -602,6 +655,20 @@ footer{background:linear-gradient(180deg,#1C1340 0%,#120D2A 55%,#0D0B14 100%)}
     <div class="wrap">
       <div class="sec-head"><div class="l"><span class="eyebrow" data-i18n="partners_eyebrow"></span><h2 data-i18n="partners_title"></h2></div></div>
       <div class="pgrid" id="pgrid"></div>
+    </div>
+  </section>
+
+  <section class="sec how" id="how">
+    <svg class="bgS" viewBox="240 101 1519 1798" aria-hidden="true"><use href="#sp"/></svg>
+    <div class="wrap">
+      <div class="sec-head"><div class="l"><span class="eyebrow" data-i18n="how_eyebrow"></span><h2 data-i18n="how_title"></h2></div></div>
+      <ol class="steps">
+        <li class="step"><span class="sn"><svg class="i"><use href="#i-list"/></svg></span><h3 data-i18n="how1_h"></h3><p data-i18n="how1_p"></p></li>
+        <li class="step"><span class="sn"><svg class="i"><use href="#i-doc"/></svg></span><h3 data-i18n="how2_h"></h3><p data-i18n="how2_p"></p></li>
+        <li class="step"><span class="sn"><svg class="i"><use href="#i-check"/></svg></span><h3 data-i18n="how3_h"></h3><p data-i18n="how3_p"></p></li>
+        <li class="step"><span class="sn"><svg class="i"><use href="#i-truck"/></svg></span><h3 data-i18n="how4_h"></h3><p data-i18n="how4_p"></p></li>
+      </ol>
+      <div class="how-cta"><a class="btn btn-p" href="#request" data-i18n="cta_send"></a><span data-i18n="how_cta_note"></span></div>
     </div>
   </section>
 
@@ -651,12 +718,13 @@ footer{background:linear-gradient(180deg,#1C1340 0%,#120D2A 55%,#0D0B14 100%)}
 
 <footer>
   <div class="bar"></div>
+  <svg class="wm" viewBox="144 143 3712 919" aria-hidden="true"><use href="#lp"/></svg>
   <div class="wrap">
     <div class="fbrand"><div class="flogo"><svg viewBox="144 143 3712 919" aria-label="Spektr Stroy Invest"><use href="#lp"/></svg></div><p class="ftag" data-i18n="f_tag"></p></div>
     <div><h4 data-i18n="f_company"></h4><ul><li data-partners hidden><a href="#partners" data-i18n="partners_eyebrow"></a></li><li><a href="#contacts" data-i18n="nav_contacts"></a></li></ul></div>
     <div><h4 data-i18n="catalog"></h4><ul id="fCats"></ul></div>
     <div><h4 data-i18n="f_partners"></h4><ul><li><a href="#request" data-i18n="nav_request"></a></li><li data-i18n="f_pay"></li><li data-i18n="f_delivery"></li><li><a href="tel:+998781201200">+998 78 120 12 00</a></li></ul></div>
-    <div class="bottom"><span>© 2026 «SPEKTR STROY INVEST» MChJ</span><span data-i18n="addr"></span></div>
+    <div class="bottom"><span>© 2026 «SPEKTR STROY INVEST» MChJ</span><span data-i18n="addr"></span><button class="totop" type="button" id="toTop"><svg class="i"><use href="#i-right"/></svg><span data-i18n="to_top"></span></button></div>
   </div>
 </footer>
 
@@ -863,7 +931,7 @@ const P = [
 ];
 
 const T = {
-uz:{partners_eyebrow:"Hamkorlar",partners_title:"Bizning hamkorlarimiz",f_file:"Fayl biriktirish",f_file_btn:"Fayl tanlash",f_file_none:"Fayl tanlanmagan",f_file_hint:"Excel, CSV, PDF, Word yoki rasm, 10 MB gacha",err_file:"Bu turdagi fayl qabul qilinmaydi yoki u 10 MB dan katta",file_only:"Ro'yxat biriktirilgan faylda",ig_open:"Sahifani ochish",more:"Yana {n} tasini ko'rsatish",search_ph_s:"Mahsulot qidirish",ac_title:"Shaxsiy kabinet",ac_short:"Kabinet",ac_sub_out:"kirish",ac_in:"Kirish",ac_up:"Ro'yxatdan o'tish",ac_email:"Elektron pochta",ac_pass:"Parol",ac_pass_new:"Yangi parol (kamida 8 belgi)",ac_first:"Ism",ac_last:"Familiya",ac_forgot:"Parolni unutdingizmi?",ac_forgot_lead:"Elektron pochtangizni kiriting, parolni tiklash havolasini yuboramiz.",ac_forgot_send:"Havola yuborish",ac_forgot_done:"Agar bu pochta ro'yxatdan o'tgan bo'lsa, tiklash havolasi yuborildi. Pochtangizni tekshiring.",ac_back:"Orqaga",ac_reset_lead:"Yangi parolni kiriting.",ac_reset_done:"Parol yangilandi.",ac_save:"Saqlash",ac_saved_profile:"Ma'lumotlar saqlandi.",ac_out:"Chiqish",ac_profile:"Profil",ac_orders:"Buyurtmalar",ac_purchases:"Haridlar",ac_loading:"Yuklanmoqda...",ac_no_orders:"Hali buyurtmalar yo'q.",ac_no_purchases:"Hali yakunlangan haridlar yo'q. Buyurtma yetkazilgach, shu yerda ko'rinadi.",ac_to_catalog:"Katalogga o'tish",ac_load_fail:"Tarixni yuklab bo'lmadi. Keyinroq urinib ko'ring.",ac_st_new:"Yangi",ac_st_processing:"Jarayonda",ac_st_delivered:"Yetkazildi",ac_st_cancelled:"Bekor qilingan",ac_sum:"so'm",ac_confirm:"Elektron pochtangizga tasdiqlash xati yuborildi. Havolani bosing, so'ng kiring.",ac_e_email:"To'g'ri elektron pochta manzilini kiriting",ac_e_pass:"Parol kamida 8 belgidan iborat bo'lsin",ac_e_first:"Ismni kiriting",ac_e_last:"Familiyani kiriting",ac_e_cred:"Elektron pochta yoki parol noto'g'ri.",ac_e_unconf:"Avval elektron pochtangizdagi havola orqali manzilni tasdiqlang.",ac_e_exists:"Bu elektron pochta allaqachon ro'yxatdan o'tgan. Kirish bo'limidan foydalaning.",ac_e_rate:"Urinishlar juda ko'p. Birozdan so'ng qayta urining.",ac_e_gen:"Xizmat vaqtincha ishlamayapti. Keyinroq urinib ko'ring yoki qo'ng'iroq qiling: "+PHONE_MAIN,ac_rq_in:"Buyurtma kabinetingizda saqlanadi:",ac_rq_out:"Buyurtmalar tarixi saqlanishi uchun",ac_rq_login:"kabinetga kiring",ac_order_saved:"Buyurtma №{n} kabinetingizga saqlandi.",catalog:"Katalog",search_ph:"Mahsulot qidirish, masalan: gubka",list:"Buyurtma ro'yxati",list_sub:"tijorat taklifi uchun",
+uz:{tr1_b:"pozitsiya katalogda",tr1_s:"4 yo'nalish bo'yicha, rasm va kodlari bilan",tr2_b:"yo'nalish",tr2_s:"bitta shartnoma doirasida",tr3_b:"Shartnoma asosida",tr3_s:"to'liq hujjatlar bilan, to'lov pul o'tkazish orqali",tr4_b:"Obyektgacha yetkazish",tr4_s:"shartnomada kelishilgan muddatda",how_eyebrow:"Ish tartibi",how_title:"Buyurtmadan yetkazib berishgacha 4 qadam",how1_h:"Ro'yxat",how1_p:"Katalogdan pozitsiyalarni ro'yxatga qo'shing yoki ularni formaga o'zingiz yozing.",how2_h:"Tijorat taklifi",how2_p:"Ro'yxatingiz bo'yicha tijorat taklifini tayyorlab yuboramiz.",how3_h:"Shartnoma",how3_p:"Shartnoma tuziladi, to'lov pul o'tkazish yo'li bilan amalga oshiriladi.",how4_h:"Yetkazib berish",how4_p:"Mahsulot kelishilgan muddatda obyektingizga to'liq hujjatlar bilan yetkaziladi.",how_cta_note:"Bir necha daqiqada so'rov qoldiring.",to_top:"Yuqoriga",partners_eyebrow:"Hamkorlar",partners_title:"Bizning hamkorlarimiz",f_file:"Fayl biriktirish",f_file_btn:"Fayl tanlash",f_file_none:"Fayl tanlanmagan",f_file_hint:"Excel, CSV, PDF, Word yoki rasm, 10 MB gacha",err_file:"Bu turdagi fayl qabul qilinmaydi yoki u 10 MB dan katta",file_only:"Ro'yxat biriktirilgan faylda",ig_open:"Sahifani ochish",more:"Yana {n} tasini ko'rsatish",search_ph_s:"Mahsulot qidirish",ac_title:"Shaxsiy kabinet",ac_short:"Kabinet",ac_sub_out:"kirish",ac_in:"Kirish",ac_up:"Ro'yxatdan o'tish",ac_email:"Elektron pochta",ac_pass:"Parol",ac_pass_new:"Yangi parol (kamida 8 belgi)",ac_first:"Ism",ac_last:"Familiya",ac_forgot:"Parolni unutdingizmi?",ac_forgot_lead:"Elektron pochtangizni kiriting, parolni tiklash havolasini yuboramiz.",ac_forgot_send:"Havola yuborish",ac_forgot_done:"Agar bu pochta ro'yxatdan o'tgan bo'lsa, tiklash havolasi yuborildi. Pochtangizni tekshiring.",ac_back:"Orqaga",ac_reset_lead:"Yangi parolni kiriting.",ac_reset_done:"Parol yangilandi.",ac_save:"Saqlash",ac_saved_profile:"Ma'lumotlar saqlandi.",ac_out:"Chiqish",ac_profile:"Profil",ac_orders:"Buyurtmalar",ac_purchases:"Haridlar",ac_loading:"Yuklanmoqda...",ac_no_orders:"Hali buyurtmalar yo'q.",ac_no_purchases:"Hali yakunlangan haridlar yo'q. Buyurtma yetkazilgach, shu yerda ko'rinadi.",ac_to_catalog:"Katalogga o'tish",ac_load_fail:"Tarixni yuklab bo'lmadi. Keyinroq urinib ko'ring.",ac_st_new:"Yangi",ac_st_processing:"Jarayonda",ac_st_delivered:"Yetkazildi",ac_st_cancelled:"Bekor qilingan",ac_sum:"so'm",ac_confirm:"Elektron pochtangizga tasdiqlash xati yuborildi. Havolani bosing, so'ng kiring.",ac_e_email:"To'g'ri elektron pochta manzilini kiriting",ac_e_pass:"Parol kamida 8 belgidan iborat bo'lsin",ac_e_first:"Ismni kiriting",ac_e_last:"Familiyani kiriting",ac_e_cred:"Elektron pochta yoki parol noto'g'ri.",ac_e_unconf:"Avval elektron pochtangizdagi havola orqali manzilni tasdiqlang.",ac_e_exists:"Bu elektron pochta allaqachon ro'yxatdan o'tgan. Kirish bo'limidan foydalaning.",ac_e_rate:"Urinishlar juda ko'p. Birozdan so'ng qayta urining.",ac_e_gen:"Xizmat vaqtincha ishlamayapti. Keyinroq urinib ko'ring yoki qo'ng'iroq qiling: "+PHONE_MAIN,ac_rq_in:"Buyurtma kabinetingizda saqlanadi:",ac_rq_out:"Buyurtmalar tarixi saqlanishi uchun",ac_rq_login:"kabinetga kiring",ac_order_saved:"Buyurtma №{n} kabinetingizga saqlandi.",catalog:"Katalog",search_ph:"Mahsulot qidirish, masalan: gubka",list:"Buyurtma ro'yxati",list_sub:"tijorat taklifi uchun",
 nav_dirs:"Yo'nalishlar",nav_catalog:"Katalog",nav_contacts:"Kontaktlar",nav_request:"Buyurtma berish",
 pos:"pozitsiya",
 s1_eyebrow:"Korxonalar va davlat tashkilotlari uchun ta'minot",s1_l1:"Bitta hamkor.",s1_l2:"To'rt yo'nalish.",s1_l3:"Bitta shartnoma.",
@@ -889,7 +957,7 @@ f_tag:"Korxonalar va davlat tashkilotlari uchun ta'minot.",f_company:"Kompaniya"
 clear:"Tozalash",go_request:"Buyurtmaga o'tish",dr_empty:"Ro'yxat hozircha bo'sh. Katalogdan pozitsiyalarni qo'shing.",remove:"O'chirish",
 toast:"Ro'yxatga qo'shildi",theme_dark:"Qorong'u rejim",theme_light:"Yorug' rejim",bb_home:"Bosh sahifa",bb_list:"Ro'yxat",bb_contact:"Aloqa",list_head:"Katalogdan:"},
 
-ru:{partners_eyebrow:"Партнёры",partners_title:"Наши партнёры",f_file:"Прикрепить файл",f_file_btn:"Выбрать файл",f_file_none:"Файл не выбран",f_file_hint:"Excel, CSV, PDF, Word или фото, до 10 МБ",err_file:"Этот тип файла не принимается или файл больше 10 МБ",file_only:"Перечень в прикреплённом файле",ig_open:"Открыть страницу",more:"Показать ещё: {n}",search_ph_s:"Поиск товара",ac_title:"Личный кабинет",ac_short:"Кабинет",ac_sub_out:"вход",ac_in:"Войти",ac_up:"Регистрация",ac_email:"Электронная почта",ac_pass:"Пароль",ac_pass_new:"Новый пароль (минимум 8 символов)",ac_first:"Имя",ac_last:"Фамилия",ac_forgot:"Забыли пароль?",ac_forgot_lead:"Введите вашу электронную почту, мы отправим ссылку для восстановления пароля.",ac_forgot_send:"Отправить ссылку",ac_forgot_done:"Если эта почта зарегистрирована, ссылка отправлена. Проверьте почту.",ac_back:"Назад",ac_reset_lead:"Введите новый пароль.",ac_reset_done:"Пароль обновлён.",ac_save:"Сохранить",ac_saved_profile:"Данные сохранены.",ac_out:"Выйти",ac_profile:"Профиль",ac_orders:"Заказы",ac_purchases:"Покупки",ac_loading:"Загрузка...",ac_no_orders:"Заказов пока нет.",ac_no_purchases:"Завершённых покупок пока нет. Заказ появится здесь после доставки.",ac_to_catalog:"Перейти в каталог",ac_load_fail:"Не удалось загрузить историю. Попробуйте позже.",ac_st_new:"Новый",ac_st_processing:"В работе",ac_st_delivered:"Доставлен",ac_st_cancelled:"Отменён",ac_sum:"сум",ac_confirm:"На вашу почту отправлено письмо. Перейдите по ссылке, затем войдите.",ac_e_email:"Введите правильный адрес электронной почты",ac_e_pass:"Пароль должен содержать минимум 8 символов",ac_e_first:"Введите имя",ac_e_last:"Введите фамилию",ac_e_cred:"Неверная электронная почта или пароль.",ac_e_unconf:"Сначала подтвердите адрес по ссылке из письма.",ac_e_exists:"Эта почта уже зарегистрирована. Используйте вход.",ac_e_rate:"Слишком много попыток. Повторите немного позже.",ac_e_gen:"Сервис временно недоступен. Попробуйте позже или позвоните: "+PHONE_MAIN,ac_rq_in:"Заказ сохранится в вашем кабинете:",ac_rq_out:"Чтобы сохранять историю заказов,",ac_rq_login:"войдите в кабинет",ac_order_saved:"Заказ №{n} сохранён в вашем кабинете.",catalog:"Каталог",search_ph:"Поиск товара, например: губка",list:"Список заказа",list_sub:"для коммерческого предложения",
+ru:{tr1_b:"позиций в каталоге",tr1_s:"по 4 направлениям, с фото и кодами",tr2_b:"направления",tr2_s:"в рамках одного договора",tr3_b:"По договору",tr3_s:"с полным пакетом документов, оплата перечислением",tr4_b:"Доставка на объект",tr4_s:"в срок, согласованный в договоре",how_eyebrow:"Порядок работы",how_title:"4 шага от заявки до поставки",how1_h:"Список",how1_p:"Добавьте позиции из каталога в список или впишите их в форму сами.",how2_h:"Коммерческое предложение",how2_p:"Подготовим и отправим коммерческое предложение по вашему списку.",how3_h:"Договор",how3_p:"Заключаем договор, оплата производится перечислением.",how4_h:"Доставка",how4_p:"Товар доставляется на ваш объект в согласованный срок с полным пакетом документов.",how_cta_note:"Оставьте заявку за несколько минут.",to_top:"Наверх",partners_eyebrow:"Партнёры",partners_title:"Наши партнёры",f_file:"Прикрепить файл",f_file_btn:"Выбрать файл",f_file_none:"Файл не выбран",f_file_hint:"Excel, CSV, PDF, Word или фото, до 10 МБ",err_file:"Этот тип файла не принимается или файл больше 10 МБ",file_only:"Перечень в прикреплённом файле",ig_open:"Открыть страницу",more:"Показать ещё: {n}",search_ph_s:"Поиск товара",ac_title:"Личный кабинет",ac_short:"Кабинет",ac_sub_out:"вход",ac_in:"Войти",ac_up:"Регистрация",ac_email:"Электронная почта",ac_pass:"Пароль",ac_pass_new:"Новый пароль (минимум 8 символов)",ac_first:"Имя",ac_last:"Фамилия",ac_forgot:"Забыли пароль?",ac_forgot_lead:"Введите вашу электронную почту, мы отправим ссылку для восстановления пароля.",ac_forgot_send:"Отправить ссылку",ac_forgot_done:"Если эта почта зарегистрирована, ссылка отправлена. Проверьте почту.",ac_back:"Назад",ac_reset_lead:"Введите новый пароль.",ac_reset_done:"Пароль обновлён.",ac_save:"Сохранить",ac_saved_profile:"Данные сохранены.",ac_out:"Выйти",ac_profile:"Профиль",ac_orders:"Заказы",ac_purchases:"Покупки",ac_loading:"Загрузка...",ac_no_orders:"Заказов пока нет.",ac_no_purchases:"Завершённых покупок пока нет. Заказ появится здесь после доставки.",ac_to_catalog:"Перейти в каталог",ac_load_fail:"Не удалось загрузить историю. Попробуйте позже.",ac_st_new:"Новый",ac_st_processing:"В работе",ac_st_delivered:"Доставлен",ac_st_cancelled:"Отменён",ac_sum:"сум",ac_confirm:"На вашу почту отправлено письмо. Перейдите по ссылке, затем войдите.",ac_e_email:"Введите правильный адрес электронной почты",ac_e_pass:"Пароль должен содержать минимум 8 символов",ac_e_first:"Введите имя",ac_e_last:"Введите фамилию",ac_e_cred:"Неверная электронная почта или пароль.",ac_e_unconf:"Сначала подтвердите адрес по ссылке из письма.",ac_e_exists:"Эта почта уже зарегистрирована. Используйте вход.",ac_e_rate:"Слишком много попыток. Повторите немного позже.",ac_e_gen:"Сервис временно недоступен. Попробуйте позже или позвоните: "+PHONE_MAIN,ac_rq_in:"Заказ сохранится в вашем кабинете:",ac_rq_out:"Чтобы сохранять историю заказов,",ac_rq_login:"войдите в кабинет",ac_order_saved:"Заказ №{n} сохранён в вашем кабинете.",catalog:"Каталог",search_ph:"Поиск товара, например: губка",list:"Список заказа",list_sub:"для коммерческого предложения",
 nav_dirs:"Направления",nav_catalog:"Каталог",nav_contacts:"Контакты",nav_request:"Оформить заказ",
 pos:"позиций",
 s1_eyebrow:"Снабжение предприятий и государственных организаций",s1_l1:"Один партнёр.",s1_l2:"Четыре направления.",s1_l3:"Один договор.",
@@ -1377,11 +1445,16 @@ applyLang();
 const syncHd = () => document.documentElement.style.setProperty("--hd-h", $("#hd").offsetHeight + "px");
 syncHd(); new ResizeObserver(syncHd).observe($("#hd"));
 
+
+/* ---------- 2-bosqich: ishonch qatori soni, yuqoriga tugmasi ---------- */
+$("#trCount").textContent = P.length;
+$("#toTop").addEventListener("click", () => window.scrollTo({ top:0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }));
 /* ---------- ekranga kirganda paydo bo'lish ---------- */
 (() => {
   if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   const els = [];
-  $$(".sec-head, .req .wrap > *, .contacts .wrap > *").forEach(e => els.push(e));
+  $$(".sec-head, .req .wrap > *, .contacts .wrap > *, .how-cta").forEach(e => els.push(e));
+  $$(".trust .tr, .steps .step").forEach((e, i) => { e.style.setProperty("--d", ((i % 4) * 0.08) + "s"); els.push(e); });
   $$("#dirs .dir").forEach((e, i) => { e.style.setProperty("--d", (i * 0.08) + "s"); els.push(e); });
   els.forEach(e => e.classList.add("rv"));
   document.documentElement.classList.add("anim");
