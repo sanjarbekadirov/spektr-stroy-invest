@@ -63,6 +63,7 @@ Asosiy JS konstantalar (`<script>` boshida, taxminan 640-qatordan):
 | `DIR_PHOTOS` | Fotosi bor yo'nalishlar. Kartaning foto, fon rangi (`--pb`) va pastki gradient rangi (`--pb2`) CSS'da `.dir[data-dir="..."]` da |
 | `PAL`, `ART` | Izometrik SVG illyustratsiyalar. Hozir faqat fotosi yo'q yo'nalish uchun zaxira |
 | `FILE_TYPES` | Formaga biriktirish mumkin bo'lgan fayl turlari (xlsx, xls, csv, pdf, docx, doc, jpg, png) |
+| Ikonkalar | `<svg>` sprite ichidagi `<symbol id="i-...">` (viewBox 0 0 300 300, `fill`). Manba: Flaticon UIcons regular straight + brands (npm `@flaticon/flaticon-uicons`, shriftdan SVG yo'l qilib chiqarilgan). Litsenziya bepul, sharti: footerdagi "Uicons by Flaticon" havolasi turishi shart |
 | `SB_SRC`, `SB_SRI` | supabase-js 2.45.4, jsDelivr'dan SRI bilan, faqat kerak bo'lganda yuklanadi |
 
 Yo'nalishlar bo'yicha mahsulotlar: `chem` 59, `sponge` 23, `pack` 19, `tools` 11.
