@@ -849,6 +849,9 @@ h1,h2,.kpi b,.req blockquote{font-family:var(--f-display);font-weight:700;letter
 #smeta h2{font-family:var(--f-display);font-weight:700;letter-spacing:-.025em;font-size:clamp(1.35rem,2.5vw,1.95rem);line-height:1.2}
 @media (max-width:640px){.hh h1{font-size:1.38rem}.sec-head h2,#smeta h2{font-size:1.28rem;line-height:1.2}.proof-head h2{font-size:1.2rem}.req blockquote{font-size:1.12rem}.kpi b{font-size:1.45rem}}
 
+/* Brauzerning o'z elementlari (fayl tanlash tugmasi va h.k.) ham sayt shriftida */
+input,button,select,textarea{font-family:inherit}
+input[type=file]::file-selector-button{font-family:var(--f-body);font-weight:700}
 /* Qo'lyozma aksentlar (Caveat): faqat 3 joyda, sariq strelka bilan */
 .hand{display:inline-flex;align-items:flex-end;gap:4px;font-family:var(--f-hand);font-weight:700;font-size:1.75rem;line-height:1;color:var(--accent-text);transform:rotate(-3deg);white-space:nowrap;pointer-events:none;user-select:none}
 .hand-ar{flex:none;width:44px;height:30px;fill:none;stroke:var(--brand-accent);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
@@ -980,14 +983,14 @@ h1,h2,.kpi b,.req blockquote{font-family:var(--f-display);font-weight:700;letter
   <section class="sec" id="directions">
     <svg class="bgS" viewBox="240 101 1519 1798" aria-hidden="true"><use href="#sp"/></svg>
     <div class="wrap">
-      <div class="sec-head"><div class="l"><span class="eyebrow" data-i18n="dirs_eyebrow">Yo'nalishlar</span><h2 data-i18n="dirs_title">To'rt yo'nalish, bitta ta'minotchi</h2></div></div>
+      <div class="sec-head"><div class="l"><h2 data-i18n="dirs_title">To'rt yo'nalish, bitta ta'minotchi</h2></div></div>
       <div class="dirs" id="dirs"></div>
     </div>
   </section>
 
   <section class="sec" id="catalog" style="padding-top:8px">
     <div class="wrap">
-      <div class="sec-head"><div class="l"><span class="eyebrow" data-i18n="cat_eyebrow">Katalog</span><h2 data-i18n="cat_title">Mahsulotlar</h2><p data-i18n="cat_lead">Pozitsiyalarni ro'yxatga qo'shing va bitta buyurtma bilan yuboring. Narx tijorat taklifida ko'rsatiladi.</p></div></div>
+      <div class="sec-head"><div class="l"><h2 data-i18n="cat_title">Mahsulotlar</h2><p data-i18n="cat_lead">Pozitsiyalarni ro'yxatga qo'shing va bitta buyurtma bilan yuboring. Narx tijorat taklifida ko'rsatiladi.</p></div></div>
       <div class="cat-bar">
         <div class="tabs" id="tabs"></div>
         <div class="cat-search"><svg class="i"><use href="#i-search"/></svg><input id="q" type="search" data-i18n-ph="search_ph" aria-label="Search" placeholder="Mahsulot qidirish, masalan: gubka"></div>
@@ -1030,7 +1033,7 @@ h1,h2,.kpi b,.req blockquote{font-family:var(--f-display);font-weight:700;letter
   <section class="sec how" id="how">
     <svg class="bgS" viewBox="240 101 1519 1798" aria-hidden="true"><use href="#sp"/></svg>
     <div class="wrap">
-      <div class="sec-head"><div class="l"><span class="eyebrow" data-i18n="how_eyebrow">Ish tartibi</span><h2 data-i18n="how_title">Shaffof ish jarayoni: 4 qadam</h2></div></div>
+      <div class="sec-head"><div class="l"><h2 data-i18n="how_title">Shaffof ish jarayoni: 4 qadam</h2></div></div>
       <ol class="steps">
         <li class="step"><span class="sn"><svg class="i"><use href="#i-list"/></svg></span><h3 data-i18n="how1_h">Ariza yoki smeta</h3><p data-i18n="how1_p">Katalogdan smeta tuzing yoki tayyor smetangizni yuklang.</p></li>
         <li class="step"><span class="sn"><svg class="i"><use href="#i-doc"/></svg></span><h3 data-i18n="how2_h">30 daqiqada hisob-kitob</h3><p data-i18n="how2_p">Menejer tijorat taklifini tayyorlab yuboradi.</p></li>
