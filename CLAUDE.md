@@ -31,6 +31,7 @@ img/catalog/SP-001..112.jpg    Katalog rasmlari, fayl nomi = mahsulot kodi
 img/hero/hero-1..3.webp        Bosh sahifa bannerlari (2400 px); hero-N-m.webp: telefon uchun kesilgan varianti
 img/dirs/<kalit>.webp          Yo'nalish kartalari fotosi (640x1147, 9:16), kalit = DIRS kaliti
 img/promo-N-uz|ru.webp         Hero promo-slayderi, N = 1..3 (21:9, 1568x672); promo-N-uz|ru-m.webp: telefon (1:1). Aksiya o'zgarsa faqat rasmni almashtiring, matn rasmning o'zida. Telefonda tugma joyi slaydning --mt/--ml o'zgaruvchisida
+fonts/*.woff2                  Unbounded, Onest (variable) va Caveat (700, qisqartirilgan): lotin + kirill. @font-face index.html <style> boshida
 img/partners/*.webp, havas.svg  Hamkorlar logotiplari (balandligi 120 px, shaffof fon). Lentada monoxrom, hover'da asl rang. `PARTNERS` da oq logotip uchun `invert` ("alpha" yoki "bg"), ochiq rangli uchun `tone:"light"`
 supabase/schema.sql            profiles, orders jadvallari, RLS, ro'yxatdan o'tish trigger'i
 supabase/telegram.sql          Yangi buyurtma -> Telegram guruhi (pg_net + Vault)
@@ -97,7 +98,7 @@ Har bir kalitni `T.uz` va `T.ru` ikkalasiga qo'shing. Biror tilda kalit yo'q bo'
 ## Brend qoidalari (Brendbuk v2.0)
 
 - **Ranglar:** Spektr Binafsha `#412A9D` (asosiy), Tungi `#1C1340`, Signal Sariq `#FFB71B` (faqat aksent: tugma, raqam, belgilash; katta maydonlarda emas), Lavanda `#8B7ED8`, Beton `#ECEAF2`, Po'lat `#6E6A85`, Grafit `#16141F`.
-- **Shriftlar:** Manrope (sarlavhalar, 700/800), Inter (matn, raqamlar `tabular-nums`). 2026-11-20 redizaynida foydalanuvchi tanlovi bilan Montserrat o'rniga Manrope.
+- **Shriftlar (2026-11-22, foydalanuvchi tanlovi, brendbukdagi Montserrat o'rniga):** Unbounded 700 (`--f-display`: faqat H1, H2, KPI raqamlari, buyurtma iqtibosi), Onest 400-800 (`--f-body`, `--f-head`: matn, kichik sarlavhalar, tugmalar), Caveat 700 (`--f-hand`: qo'lyozma aksent, faqat 3 joyda: hero tugmalari tepasi, hamkorlar sarlavhasi, smeta banneri; ko'paytirmang, ohang rasmiy). Hammasi `fonts/` da (lotin + kirill woff2), Google Fonts ishlatilmaydi.
 - **Tokenlar (redizayn):** `--brand-primary #412A9D`, `--brand-primary-dark #2E1C75`, `--brand-accent #FFB71B`, `--bg-surface #F5F4FA`, `--text-main #161324`, `--text-muted #5F5B73`, `--border-subtle #E5E2F0`. Eski o'zgaruvchilar shularga ulangan.
 - **Logotip fayllari:** `img/01_Spektr_logo_binafsha_shaffof.png` (sarlavha), `img/02_Spektr_logo_oq_shaffof.png` (footer), `img/08_Spektr_belgi_S_binafsha_shaffof.png` (favicon). Asl fayllar: Desktop/Spektr Stroy Invest/Spektr_logotiplar 2.
 - **Logotip:** binafsha, oq (qorong'u fonda) yoki qora variant. Nisbatlarini o'zgartirmang, effekt qo'shmang. Kompaniya nomi yozuvda: **SPEKTR STROY INVEST**.
