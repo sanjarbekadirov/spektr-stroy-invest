@@ -2043,32 +2043,36 @@ $$(".langs button").forEach(b => b.addEventListener("click", () => { paintSm(); 
   if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   const els = [];
   $$(".sec-head, .req .wrap > *, .contacts .wrap > *, .how-cta, .sm-box, .proof-row").forEach(e => els.push(e));
-  $$(".kpi, .steps .step").forEach((e, i) => { e.style.setProperty("--d", ((i % 4) * 0.08) + "s"); els.push(e); });
   $$("#dirs .dir").forEach((e, i) => { e.style.setProperty("--d", (i * 0.08) + "s"); els.push(e); });
   els.forEach(e => e.classList.add("rv"));
   document.documentElement.classList.add("anim");
-  const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); if (en.target.classList.contains("kpis")) countUp(en.target); } }), { rootMargin:"0px 0px -8% 0px" });
+  const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } }), { rootMargin:"0px 0px -8% 0px" });
   els.forEach(e => io.observe(e));
   /* animatsiya tugagach rv olib tashlanadi: hover effektlari kechikmasin */
-  document.addEventListener("transitionend", e => { const el = e.target; if (e.propertyName === "opacity" && el.classList && el.classList.contains("rv") && el.classList.contains("in")){ el.classList.remove("rv"); el.style.removeProperty("--d"); } });
+  document.addEventListener("transitionend", e => { const el = e.target; if (e.propertyName === "opacity" && el.classList && el.classList.contains("rv") && el.classList.contains("in") && !el.hasAttribute("data-rp")){ el.classList.remove("rv"); el.style.removeProperty("--d"); } });
   /* katalog tablari: bir marta ketma-ket chiqadi */
   const tabsEl = $("#tabs");
   if (tabsEl){ tabsEl.classList.add("rv-tabs"); io.observe(tabsEl);
     tabsEl.addEventListener("animationend", e => { if (e.animationName === "tabIn" && e.target === tabsEl.lastElementChild) tabsEl.classList.remove("rv-tabs", "in"); });
     setTimeout(() => { if (tabsEl.classList.contains("in")) tabsEl.classList.remove("rv-tabs", "in"); }, 4000); }
-  /* qadamlar chizig'i */
-  $$(".steps").forEach(e => io.observe(e));
   /* KPI raqamlari 0 dan sanaladi (faqat raqamli 3 tasi) */
   const fmt = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   const nums = [...$$(".kpi b:not([data-i18n])")].map(b => { const m = b.textContent.trim().match(/^([\d\s]+)(.*)$/); return m ? { b, n: parseInt(m[1].replace(/\s/g, "")), suf: m[2] } : null; }).filter(Boolean);
-  nums.forEach(o => { o.b.textContent = "0" + o.suf; });
-  const kp = $(".kpis"); if (kp) io.observe(kp);
-  function countUp(){ const t0 = performance.now(), D = 1600;
-    const step = now => { const k = Math.min(1, (now - t0) / D), e = 1 - Math.pow(1 - k, 3);
+  let run = 0;
+  const resetNums = () => { run++; nums.forEach(o => { o.b.textContent = "0" + o.suf; }); };
+  resetNums();
+  function countUp(){ const my = ++run, t0 = performance.now(), D = 1600;
+    const step = now => { if (my !== run) return; const k = Math.min(1, (now - t0) / D), e = 1 - Math.pow(1 - k, 3);
       nums.forEach(o => { o.b.textContent = fmt(Math.round(o.n * e)) + o.suf; });
       if (k < 1) requestAnimationFrame(step); };
     requestAnimationFrame(step);
-    setTimeout(() => nums.forEach(o => { o.b.textContent = fmt(o.n) + o.suf; }), D + 400); }
+    setTimeout(() => { if (my === run) nums.forEach(o => { o.b.textContent = fmt(o.n) + o.suf; }); }, D + 400); }
+  /* KPI va qadamlar: har safar bo'limga qaytganda qayta o'ynaydi */
+  $$(".kpi, .steps .step").forEach((e, i) => { e.style.setProperty("--d", ((i % 4) * 0.08) + "s"); e.classList.add("rv"); e.setAttribute("data-rp", ""); });
+  const io2 = new IntersectionObserver(es => es.forEach(en => { const el = en.target, kids = el.querySelectorAll("[data-rp]"), kpi = el.classList.contains("kpis");
+    if (en.isIntersecting){ if (el.classList.contains("in")) return; el.classList.add("in"); kids.forEach(k => k.classList.add("in")); if (kpi) countUp(); }
+    else { el.classList.remove("in"); kids.forEach(k => k.classList.remove("in")); if (kpi) resetNums(); } }), { rootMargin:"0px 0px -8% 0px" });
+  $$(".kpis, .steps").forEach(e => io2.observe(e));
   /* katalog kartalari: har bir mahsulot birinchi marta chiqqanda paydo bo'ladi */
   const seen = new Set();
   window.__rvCards = () => { let k = 0;
