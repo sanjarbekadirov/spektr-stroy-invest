@@ -867,6 +867,19 @@ input[type=file]::file-selector-button{font-family:var(--f-body);font-weight:700
 .anim .step .sn::after{transform:scale(0);transition:transform .45s cubic-bezier(.3,1.6,.5,1) calc(var(--d,0s) + .45s)}
 .anim .step.in .sn::after{transform:none}
 @media (max-width:900px){.anim .steps::before{transform:scaleY(0);transform-origin:center top}.anim .steps.in::before{transform:none}}
+
+/* Katalog tablari: ketma-ket paydo bo'lish, hover, tanlanganda pop */
+.tab{transition:background .2s,color .2s,box-shadow .25s,transform .25s cubic-bezier(.2,.7,.2,1)}
+.tab i{transition:transform .25s cubic-bezier(.3,1.6,.5,1)}
+@media (hover:hover){.tab:hover{transform:translateY(-2px);box-shadow:0 10px 20px -14px rgba(65,42,157,.55)}.tab:hover i{transform:scale(1.35)}}
+.tab:active{transform:scale(.96)}
+.tab.pop{animation:tabPop .45s cubic-bezier(.3,1.5,.5,1)}
+.tab.pop i{animation:tabDot .6s ease-out}
+@keyframes tabPop{0%{transform:scale(.92)}60%{transform:scale(1.05)}100%{transform:none}}
+@keyframes tabDot{0%{box-shadow:0 0 0 0 rgba(255,255,255,.7)}100%{box-shadow:0 0 0 8px rgba(255,255,255,0)}}
+.anim .tabs.rv-tabs .tab{opacity:0;transform:translateY(14px)}
+.anim .tabs.rv-tabs.in .tab{animation:tabIn .55s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0) * 70ms)}
+@keyframes tabIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -1501,7 +1514,7 @@ function renderDirs(){
 }
 function renderTabs(){
   const items = [["all",t("all"),"var(--text)"]].concat(Object.entries(DIRS).map(([k,v]) => [k,v.n[lang],v.c]));
-  $("#tabs").innerHTML = items.map(([k,l,c]) => `<button class="tab" type="button" data-dir="${k}" aria-pressed="${k===dir}" style="--c:${c}"><i></i>${l}</button>`).join("");
+  $("#tabs").innerHTML = items.map(([k,l,c], i) => `<button class="tab" type="button" data-dir="${k}" aria-pressed="${k===dir}" style="--c:${c};--i:${i}"><i></i>${l}</button>`).join("");
 }
 const cardsPage = () => matchMedia("(max-width:760px)").matches ? 6 : 12;
 function renderCards(){
@@ -1549,7 +1562,7 @@ function updateCounts(){
   $("#inCount").textContent = n;
   $(".inlist").hidden = !n;
 }
-function setDir(d, scroll){ dir = d; shown = 0; renderTabs(); renderCards(); if (scroll) $("#catalog").scrollIntoView(); }
+function setDir(d, scroll){ dir = d; shown = 0; renderTabs(); const on = $('#tabs [aria-pressed="true"]'); if (on) on.classList.add("pop"); renderCards(); if (scroll) $("#catalog").scrollIntoView(); }
 
 /* ---------- Hero promo-slider: cheksiz bir tomonga aylanadi (chetlarda klon slaydlar), 5 s autoplay, hover'da pauza, nuqtalar, strelkalar, swipe ---------- */
 (() => {
@@ -2038,6 +2051,11 @@ $$(".langs button").forEach(b => b.addEventListener("click", () => { paintSm(); 
   els.forEach(e => io.observe(e));
   /* animatsiya tugagach rv olib tashlanadi: hover effektlari kechikmasin */
   document.addEventListener("transitionend", e => { const el = e.target; if (e.propertyName === "opacity" && el.classList && el.classList.contains("rv") && el.classList.contains("in")){ el.classList.remove("rv"); el.style.removeProperty("--d"); } });
+  /* katalog tablari: bir marta ketma-ket chiqadi */
+  const tabsEl = $("#tabs");
+  if (tabsEl){ tabsEl.classList.add("rv-tabs"); io.observe(tabsEl);
+    tabsEl.addEventListener("animationend", e => { if (e.animationName === "tabIn" && e.target === tabsEl.lastElementChild) tabsEl.classList.remove("rv-tabs", "in"); });
+    setTimeout(() => { if (tabsEl.classList.contains("in")) tabsEl.classList.remove("rv-tabs", "in"); }, 4000); }
   /* qadamlar chizig'i */
   $$(".steps").forEach(e => io.observe(e));
   /* KPI raqamlari 0 dan sanaladi (faqat raqamli 3 tasi) */
