@@ -1,0 +1,77 @@
+<!doctype html>
+<!--
+  Promo-banner shabloni. Saytda ishlatilmaydi, faqat render.py orqali rasm chiqarish uchun.
+  Matnlar pastdagi BANNERS ichida. Ochish: banner.html?b=1&l=uz&s=d  (s: d = kompyuter 1568x672, m = telefon 928x1160)
+  Tugma (promo-cta) rasmga chizilmaydi: saytda HTML bo'lib ustida turadi. Shablon uning joyini bo'sh qoldiradi.
+-->
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<style>
+@font-face{font-family:"Unbounded";font-weight:500 800;src:url("../../fonts/unbounded-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Unbounded";font-weight:500 800;src:url("../../fonts/unbounded-cyrillic.woff2") format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:"Onest";font-weight:400 800;src:url("../../fonts/onest-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Onest";font-weight:400 800;src:url("../../fonts/onest-cyrillic.woff2") format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+*{box-sizing:border-box;margin:0}
+html,body{overflow:hidden;background:#000}
+.bn{position:relative;overflow:hidden;width:var(--w);height:var(--h);background:var(--bg) center/cover no-repeat;font-family:"Onest",sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+/* Matn tomoni biroz yorug'roq (yorug' fonda) yoki to'qroq (to'q fonda), o'qilishi uchun */
+.bn::before{content:"";position:absolute;inset:0;background:var(--scrim)}
+.tx{position:absolute;left:var(--pl);top:var(--pt);width:var(--tw);display:flex;flex-direction:column;align-items:flex-start}
+.chip{display:inline-flex;align-items:center;gap:.6em;font-weight:700;font-size:var(--chip);letter-spacing:.08em;text-transform:uppercase;padding:.62em .95em;border-radius:4px;background:var(--chip-bg);color:var(--chip-fg);line-height:1}
+.chip i{width:.55em;height:.55em;background:#FFB71B;flex:none}
+h1{font-family:"Unbounded",sans-serif;font-weight:700;font-size:var(--h1);line-height:1.1;letter-spacing:-.025em;margin-top:var(--g1);text-wrap:balance}
+.big{display:flex;align-items:center;gap:var(--bg-gap);margin-top:var(--g2)}
+.big b{font-family:"Unbounded",sans-serif;font-weight:700;font-size:var(--big);line-height:.9;letter-spacing:-.04em;color:var(--hi);white-space:nowrap}
+.big span{font-weight:600;font-size:var(--lab);line-height:1.15;color:var(--ink);max-width:7.5em}
+.big span::before{content:"";display:block;width:2.2em;height:.2em;background:#FFB71B;margin-bottom:.45em}
+p{font-size:var(--sub);line-height:1.38;color:var(--muted);margin-top:var(--g3);max-width:var(--sw)}
+/* Kompyuter: 1568x672, tugma saytda chap 5.6%, past 13.4% da */
+.d{--w:1568px;--h:672px;--pl:88px;--pt:104px;--bg-gap:22px;--tw:680px;--chip:15px;--h1:44px;--big:118px;--lab:21px;--sub:21px;--sw:30em;--g1:26px;--g2:18px;--g3:18px}
+/* Telefon: 928x1160 (4:5), matn tepada, tugma matndan keyin (joyi data-mt da) */
+.m{--w:928px;--h:1160px;--pl:64px;--pt:58px;--bg-gap:28px;--tw:800px;--chip:24px;--h1:62px;--big:150px;--lab:32px;--sub:32px;--sw:24em;--g1:26px;--g2:16px;--g3:16px}
+.light{--ink:#1C1340;--hi:#412A9D;--muted:#4A4462;--chip-bg:#1C1340;--chip-fg:#FFFFFF}
+.light.d{--scrim:linear-gradient(90deg,rgba(255,255,255,.42) 0,rgba(255,255,255,.18) 45%,transparent 62%)}
+.light.m{--scrim:linear-gradient(180deg,rgba(255,255,255,.4) 0,rgba(255,255,255,.12) 45%,transparent 58%)}
+.dark{--ink:#FFFFFF;--hi:#FFB71B;--muted:#CEC8EC;--chip-bg:#FFB71B;--chip-fg:#1C1340;--scrim:none}
+.dark .chip i{background:#1C1340}
+</style>
+</head>
+<body>
+<div class="bn" id="bn"><div class="tx" id="tx"></div></div>
+<script>
+// Har banner: fon rangi (light/dark), ikkala tildagi matnlar. Matnni o'zgartirsangiz, render.py ni qayta ishga tushiring.
+const BANNERS = {
+  1: { tone: "light",
+    uz: { chip: "Oy xiti", h1: "Maishiy kimyo va xoʻjalik mollari", big: "−12%", lab: "maxsus narx", sub: "Ofis, klining va ishlab chiqarish uchun omborda toʻgʻridan-toʻgʻri" },
+    ru: { chip: "Хит месяца", h1: "Бытовая химия и хозтовары", big: "−12%", lab: "специальная цена", sub: "Прямые поставки со склада для офисов, клининга и производств" } },
+  2: { tone: "light",
+    uz: { chip: "Omborda mavjud", h1: "Qurilish materiallari va instrumentlar", big: "−10%", lab: "ulgurji narx", sub: "Sement, boʻyoq, elektr jihozlari va sarf materiallari" },
+    ru: { chip: "В наличии на складе", h1: "Стройматериалы и инструменты", big: "−10%", lab: "оптовая цена", sub: "Краски, электроинструмент, кабель и расходники" } },
+  3: { tone: "light",
+    uz: { chip: "QQS 12% • UzRTSB birja", h1: "Toshkent boʻylab yetkazib berish", big: "24 soat", lab: "ichida, bepul", sub: "Bitta shartnoma va rasmiy hisob-faktura" },
+    ru: { chip: "НДС 12% • Биржа UzRTSB", h1: "Доставка по всему Ташкенту", big: "24 часа", lab: "бесплатно", sub: "Один договор и официальный счёт-фактура" } },
+  4: { tone: "dark",
+    uz: { chip: "Yangi yil aksiyasi", h1: "Barcha mahsulotlarga", big: "−10%", lab: "butun katalogga", sub: "Yangi yil oldidan maxsus taklif. Tijorat taklifini soʻrang." },
+    ru: { chip: "Новогодняя акция", h1: "На все товары", big: "−10%", lab: "на весь каталог", sub: "Предновогоднее предложение. Запросите коммерческое предложение." } }
+};
+const q = new URLSearchParams(location.search), b = q.get("b") || "1", l = q.get("l") || "uz", s = q.get("s") || "d";
+const B = BANNERS[b], T = B[l], bn = document.getElementById("bn"), tx = document.getElementById("tx");
+document.documentElement.lang = l;
+bn.className = `bn ${s} ${B.tone}`;
+bn.style.setProperty("--bg", `url("bg/${b}-${s}.jpg")`);
+const esc = v => v.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+tx.innerHTML = `<span class="chip"><i></i>${esc(T.chip)}</span><h1>${esc(T.h1)}</h1><div class="big"><b>${esc(T.big)}</b><span>${esc(T.lab)}</span></div><p>${esc(T.sub)}</p>`;
+// Tugma joyi: matn tugagan joydan biroz pastda. render.py buni o'qib, saytdagi --mt/--ml qiymatlarini beradi.
+document.fonts.ready.then(() => {
+  const r = tx.getBoundingClientRect(), H = bn.offsetHeight, W = bn.offsetWidth;
+  const gap = s === "m" ? 34 : 0;
+  document.body.dataset.mt = ((r.bottom + gap) / H * 100).toFixed(1);
+  document.body.dataset.ml = (tx.offsetLeft / W * 100).toFixed(1);
+  document.body.dataset.bottom = Math.round(r.bottom);
+  document.body.dataset.right = Math.round(r.right);
+  document.body.dataset.ready = "1";
+});
+</script>
+</body>
+</html>

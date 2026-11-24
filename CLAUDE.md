@@ -30,7 +30,8 @@ logo.svg, logo-s.svg           Vektor logotip va "S" belgisi (index.html ichiga 
 img/catalog/SP-001..112.jpg    Katalog rasmlari, fayl nomi = mahsulot kodi
 img/hero/hero-1..3.webp        Bosh sahifa bannerlari (2400 px); hero-N-m.webp: telefon uchun kesilgan varianti
 img/dirs/<kalit>.webp          Yo'nalish kartalari fotosi (640x1147, 9:16), kalit = DIRS kaliti
-img/promo-N-uz|ru.webp         Hero promo-slayderi, N = 1..3 (21:9, 1568x672); promo-N-uz|ru-m.webp: telefon (1:1). Aksiya o'zgarsa faqat rasmni almashtiring, matn rasmning o'zida. Telefonda tugma joyi slaydning --mt/--ml o'zgaruvchisida
+img/promo-N-uz|ru.webp         Hero promo-slayderi, N = 1..4 (21:9, 1568x672); promo-N-uz|ru-m.webp: telefon (4:5, 928x1160). Matn rasmning o'zida, tugma HTML. Slayd tartibi: 4 (Yangi yil), 1, 2, 3. Telefonda tugma joyi slaydning --mt/--ml o'zgaruvchisida
+tools/banner/                  Banner yasash: banner.html (shablon va UZ/RU matnlar, BANNERS), bg/N-d|m.jpg (Gemini fonlari, yozuvsiz), render.py (Chrome + Pillow, img/promo-* ni yozadi va telefon uchun --mt/--ml ni chiqaradi). Aksiya o'zgarsa: matnni BANNERS da tuzating, kerak bo'lsa fonni almashtiring, `python3 tools/banner/render.py N`
 fonts/*.woff2                  Unbounded, Onest (variable) va Caveat (700, qisqartirilgan): lotin + kirill. @font-face index.html <style> boshida
 img/partners/*.webp, havas.svg  Hamkorlar logotiplari (balandligi 120 px, shaffof fon). Lentada monoxrom, hover'da asl rang. `PARTNERS` da oq logotip uchun `invert` ("alpha" yoki "bg"), ochiq rangli uchun `tone:"light"`
 supabase/schema.sql            profiles, orders jadvallari, RLS, ro'yxatdan o'tish trigger'i
