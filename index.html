@@ -882,6 +882,10 @@ input[type=file]::file-selector-button{font-family:var(--f-body);font-weight:700
 .anim .tabs.rv-tabs .tab{opacity:0;transform:translateY(14px)}
 .anim .tabs.rv-tabs.in .tab{animation:tabIn .55s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0) * 70ms)}
 @keyframes tabIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* qayta o'ynaydigan kartalar: paydo bo'lib bo'lgach hover tez va kechikmasdan */
+.anim .rv.in.rp-done{transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s,opacity .3s}
+@media (hover:hover){.anim .dir.rv.in.rp-done:hover{transform:translateY(-6px)}}
 </style>
 </head>
 <body>
@@ -1519,6 +1523,7 @@ function renderDirs(){
       <span class="num">0${i+1}</span>${DIR_PHOTOS.has(k) ? '<span class="art sp" aria-hidden="true"></span>' : `<span class="art">${ART[v.art]()}</span>`}
       <span><h3>${v.n[lang]}</h3><span class="meta"><span>${count(k)} ${t("pos")}</span><span>${t("to_cat")} →</span></span></span>
     </button>`).join("");
+  if (window.__rpDirs) window.__rpDirs();
 }
 function renderTabs(){
   const items = [["all",t("all"),"var(--text)"]].concat(Object.entries(DIRS).map(([k,v]) => [k,v.n[lang],v.c]));
@@ -2052,13 +2057,13 @@ $$(".langs button").forEach(b => b.addEventListener("click", () => { paintSm(); 
   if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   const els = [];
   $$(".sec-head, .req .wrap > *, .contacts .wrap > *, .how-cta, .sm-box, .proof-row").forEach(e => els.push(e));
-  $$("#dirs .dir").forEach((e, i) => { e.style.setProperty("--d", (i * 0.08) + "s"); els.push(e); });
   els.forEach(e => e.classList.add("rv"));
   document.documentElement.classList.add("anim");
   const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } }), { rootMargin:"0px 0px -8% 0px" });
   els.forEach(e => io.observe(e));
   /* animatsiya tugagach rv olib tashlanadi: hover effektlari kechikmasin */
-  document.addEventListener("transitionend", e => { const el = e.target; if (e.propertyName === "opacity" && el.classList && el.classList.contains("rv") && el.classList.contains("in") && !el.hasAttribute("data-rp")){ el.classList.remove("rv"); el.style.removeProperty("--d"); } });
+  document.addEventListener("transitionend", e => { const el = e.target; if (e.propertyName === "opacity" && el.classList && el.classList.contains("rv") && el.classList.contains("in") && el.hasAttribute("data-rp")) el.classList.add("rp-done");
+    if (e.propertyName === "opacity" && el.classList && el.classList.contains("rv") && el.classList.contains("in") && !el.hasAttribute("data-rp")){ el.classList.remove("rv"); el.style.removeProperty("--d"); } });
   /* katalog tablari: bir marta ketma-ket chiqadi */
   const tabsEl = $("#tabs");
   if (tabsEl){ tabsEl.classList.add("rv-tabs"); io.observe(tabsEl);
@@ -2080,8 +2085,13 @@ $$(".langs button").forEach(b => b.addEventListener("click", () => { paintSm(); 
   $$(".kpi, .steps .step").forEach((e, i) => { e.style.setProperty("--d", ((i % 4) * 0.08) + "s"); e.classList.add("rv"); e.setAttribute("data-rp", ""); });
   const io2 = new IntersectionObserver(es => es.forEach(en => { const el = en.target, kids = el.querySelectorAll("[data-rp]"), kpi = el.classList.contains("kpis");
     if (en.isIntersecting){ if (el.classList.contains("in")) return; el.classList.add("in"); kids.forEach(k => k.classList.add("in")); if (kpi) countUp(); }
-    else { el.classList.remove("in"); kids.forEach(k => k.classList.remove("in")); if (kpi) resetNums(); } }), { rootMargin:"0px 0px -8% 0px" });
+    else { el.classList.remove("in"); kids.forEach(k => k.classList.remove("in", "rp-done")); if (kpi) resetNums(); } }), { rootMargin:"0px 0px -8% 0px" });
   $$(".kpis, .steps").forEach(e => io2.observe(e));
+  /* yo'nalish kartalari ham qayta o'ynaydi */
+  const dirsEl = $("#dirs");
+  window.__rpDirs = () => { const on = dirsEl.classList.contains("in");
+    $$("#dirs .dir").forEach((e, i) => { e.style.setProperty("--d", (i * 0.08) + "s"); e.setAttribute("data-rp", ""); e.classList.add("rv"); if (on) e.classList.add("in", "rp-done"); }); };
+  if (dirsEl){ window.__rpDirs(); io2.observe(dirsEl); }
   /* katalog kartalari: har bir mahsulot birinchi marta chiqqanda paydo bo'ladi */
   const seen = new Set();
   window.__rvCards = () => { let k = 0;
